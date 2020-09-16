@@ -1,8 +1,11 @@
 package com.revature.models;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Recipe {
+public class Recipe implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String title;
 	private String link;
