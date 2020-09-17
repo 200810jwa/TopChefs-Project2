@@ -13,6 +13,8 @@
 		<property name="hibernate.format_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		
+
+		
 		<mapping class="com.revature.models.User"/>
 		<mapping class="com.revature.models.Recipe"/>
 	</session-factory>

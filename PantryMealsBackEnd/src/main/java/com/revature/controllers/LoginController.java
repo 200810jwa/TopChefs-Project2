@@ -13,7 +13,7 @@ import com.revature.services.UserService;
 import com.revature.templates.LoginTemplate;
 
 @Controller
-//@RequestMapping("/login")
+@RequestMapping("/login")
 public class LoginController {
 
 	@Autowired
