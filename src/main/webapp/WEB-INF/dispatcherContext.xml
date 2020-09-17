@@ -17,4 +17,5 @@
     	<property name="prefix" value="/static/" />
     	<property name="suffix" value=".html" />
     </bean>
+    
 </beans>

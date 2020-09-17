@@ -7,6 +7,7 @@ public class UserService implements IUserService {
 
 	public User login(LoginTemplate lf) {
 		// TODO Auto-generated method stub
+		System.out.println("login called");
 		return null;
 	}
 
