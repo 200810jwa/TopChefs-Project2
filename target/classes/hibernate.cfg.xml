@@ -3,9 +3,9 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.username">ROOT</property>
 		<property name="hibernate.connection.password">password</property>
-		<property name="hibernate.connection.url"></property>
+		<property name="hibernate.connection.url">jdbc:postgresql://training.cbc5tnpz9fie.us-east-2.rds.amazonaws.com:5432/jwa200810</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
