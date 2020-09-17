@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "recipes")
 public class Recipe implements Serializable {
@@ -20,8 +23,7 @@ public class Recipe implements Serializable {
 	
 	@Id
 	@Column(name ="recipe_id")
-	@SequenceGenerator(name="recipe",
-	sequenceName="recipe_seq", allocationSize=1)
+	@SequenceGenerator(name="recipe",sequenceName="recipe_seq", allocationSize=1)
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="recipe")
 	private int id;
 	private String title;

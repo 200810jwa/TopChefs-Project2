@@ -8,8 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name ="users")
 public class User implements Serializable {
@@ -23,6 +28,9 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
+	
+	@ManyToMany
+	@JoinColumn
 	private List<Recipe> recipes;
 	
 	public User() {
