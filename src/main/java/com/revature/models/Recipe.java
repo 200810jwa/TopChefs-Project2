@@ -2,14 +2,31 @@ package com.revature.models;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "recipes")
 public class Recipe implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name ="recipe_id")
+	@SequenceGenerator(name="recipe",
+	sequenceName="recipe_seq", allocationSize=1)
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="recipe")
 	private int id;
 	private String title;
 	private String link;
-	private String[] ingredients;
+	private String ingredients;
 	private String thumbnailBase64;
 	private byte[] thumbnailByteArray;
 	private float rating;
@@ -31,10 +48,10 @@ public class Recipe implements Serializable {
 	public void setLink(String link) {
 		this.link = link;
 	}
-	public String[] getIngredients() {
+	public String getIngredients() {
 		return ingredients;
 	}
-	public void setIngredients(String[] ingredients) {
+	public void setIngredients(String ingredients) {
 		this.ingredients = ingredients;
 	}
 	public String getThumbnailBase64() {
@@ -59,80 +76,31 @@ public class Recipe implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
-		result = prime * result + Arrays.hashCode(ingredients);
-		result = prime * result + ((link == null) ? 0 : link.hashCode());
-		result = prime * result + Float.floatToIntBits(rating);
-		result = prime * result + ((thumbnailBase64 == null) ? 0 : thumbnailBase64.hashCode());
 		result = prime * result + Arrays.hashCode(thumbnailByteArray);
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + Objects.hash(id, ingredients, link, rating, thumbnailBase64, title);
 		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (!(obj instanceof Recipe)) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		}
 		Recipe other = (Recipe) obj;
-		if (id != other.id)
-			return false;
-		if (!Arrays.equals(ingredients, other.ingredients))
-			return false;
-		if (link == null) {
-			if (other.link != null)
-				return false;
-		} else if (!link.equals(other.link))
-			return false;
-		if (Float.floatToIntBits(rating) != Float.floatToIntBits(other.rating))
-			return false;
-		if (thumbnailBase64 == null) {
-			if (other.thumbnailBase64 != null)
-				return false;
-		} else if (!thumbnailBase64.equals(other.thumbnailBase64))
-			return false;
-		if (!Arrays.equals(thumbnailByteArray, other.thumbnailByteArray))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
-	}
-	public Recipe(int id, String title, String link, String[] ingredients) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.link = link;
-		this.ingredients = ingredients;
-	}
-	public Recipe(int id, String title, String link, String[] ingredients, String thumbnailBase64) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.link = link;
-		this.ingredients = ingredients;
-		this.thumbnailBase64 = thumbnailBase64;
-	}
-	public Recipe(int id, String title, String link, String[] ingredients, byte[] thumbnailByteArray) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.link = link;
-		this.ingredients = ingredients;
-		this.thumbnailByteArray = thumbnailByteArray;
-	}
-	public Recipe() {
-		super();
+		return id == other.id && Objects.equals(ingredients, other.ingredients) && Objects.equals(link, other.link)
+				&& Float.floatToIntBits(rating) == Float.floatToIntBits(other.rating)
+				&& Objects.equals(thumbnailBase64, other.thumbnailBase64)
+				&& Arrays.equals(thumbnailByteArray, other.thumbnailByteArray) && Objects.equals(title, other.title);
 	}
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", title=" + title + ", link=" + link + ", ingredients="
-				+ Arrays.toString(ingredients) + ", thumbnailBase64=" + thumbnailBase64 + ", thumbnailByteArray="
-				+ Arrays.toString(thumbnailByteArray) + ", rating=" + rating + "]";
+		return "Recipe [id=" + id + ", title=" + title + ", link=" + link + ", ingredients=" + ingredients
+				+ ", thumbnailBase64=" + thumbnailBase64 + ", thumbnailByteArray=" + Arrays.toString(thumbnailByteArray)
+				+ ", rating=" + rating + "]";
 	}
 	
+	
 }
+
