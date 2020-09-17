@@ -1,0 +1,9 @@
+<h1>The Register Form works!</h1>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <label> Username:<input type="text" formControlName="Username" /> </label>
+  <label> Password:<input type="text" formControlName="Password" /></label>
+  <label> First Name:<input type="text" formControlName="FirstName" /></label>
+  <label> Last Name:<input type="text" formControlName="LastName" /></label>
+  <label> Email:<input type="text" formControlName="Email" /></label>
+  <button type="submit">Submit</button>
+</form>
