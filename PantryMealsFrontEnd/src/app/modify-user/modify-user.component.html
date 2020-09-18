@@ -1,0 +1,12 @@
+<p>modify-user works!</p>
+
+<form [formGroup]="modifyForm" (ngSubmit)="update()">
+  <label> FirstName:<input type="text" formControlName="FirstName" /> </label
+  ><br />
+  <label> LastName:<input type="text" formControlName="LastName" /></label
+  ><br />
+  <label> Email:<input type="text" formControlName="email" /></label><br />
+  <label> Password:<input type="text" formControlName="password" /></label
+  ><br />
+  <button type="submit">Update</button>
+</form>
