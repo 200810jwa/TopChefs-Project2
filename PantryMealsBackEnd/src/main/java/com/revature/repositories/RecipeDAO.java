@@ -56,5 +56,11 @@ public class RecipeDAO implements IRecipeDAO {
 		
 	}
 
+	@Override
+	public Recipe findbyId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

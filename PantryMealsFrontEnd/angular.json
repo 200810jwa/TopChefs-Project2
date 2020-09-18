@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PantryMeals"
+    }
+  },
+  "defaultProject": "PantryMeals",
+  "cli": {
+    "analytics": "a1467f46-ed45-4d08-81c8-68bc18ea17bf"
+  }
 }

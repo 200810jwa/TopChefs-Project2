@@ -6,6 +6,8 @@ import com.revature.models.Recipe;
 
 public interface IRecipeDAO {
 	
+	public Recipe findbyId();
+	
 	public void save(Recipe r);
 	
 	public Set<Recipe> findAll();

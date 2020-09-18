@@ -13,16 +13,6 @@ import com.revature.services.UserService;
 @ComponentScan("com.revature")
 public class Config {
 	
-	@Bean(name ="user")
-	public User getUser() {
-		return new User();
-	}
-	
-	@Bean(name= "recipe")
-	public Recipe getRecipe() {
-		return new Recipe();
-	}
-
 	@Bean(name = "user")
 	public User getUser() {
 		return new User();

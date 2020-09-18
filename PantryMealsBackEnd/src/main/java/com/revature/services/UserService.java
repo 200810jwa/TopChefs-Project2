@@ -14,15 +14,29 @@ public class UserService {
 	private IUserDAO userDao;
 	
 	public User login(LoginTemplate lf) {
-		System.out.println("login called");
+		System.out.println(userDao.findAll());
+		User u = userDao.findByUsername(lf.getUsername());
+		if(u == null) {
+			System.out.println("couldn't find username");
+			return null;
+		}
+		
+		if(u.getPassword().equals(lf.getPassword())) {
+			return u;
+		}
+		
 		return null;
 	}
 
-	public void save(User u){
-		userDao.save(u);
+	public boolean save(User u){
+		return userDao.save(u);
 	}
 	
-	public void update(User u) {
-		userDao.update(u);
+	public boolean update(User u) {
+		return userDao.update(u);
+	}
+	
+	public boolean delete(User u) {
+		return userDao.delete(u);
 	}
 }

@@ -1,7 +1,14 @@
 package com.revature.repositories;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.User;
@@ -11,34 +18,84 @@ import com.revature.util.HibernateUtil;
 public class UserDAO implements IUserDAO {
 
 	@Override
-	public void save(User u) {
+	public boolean save(User u) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		
-		int id =(Integer) sess.save(u);
-		
-		if(id != 0) {
+
+		int id = (Integer) sess.save(u);
+
+		if (id != 0) {
 			tx.commit();
+			return true;
 		}
 		tx.rollback();
-	
-		
-		
-		
+
+		return false;
+
 	}
 
 	@Override
-	public void update(User u) {
+	public boolean update(User u) {
+		Session sess = HibernateUtil.getSession();
+		Transaction tx = sess.beginTransaction();
+
+		User user = (User) sess.merge(u);
+
+		if (user.equals(u)) {
+			tx.commit();
+			return true;
+		}
+		tx.rollback();
+		return false;
+	}
+
+	@Override
+	public boolean delete(User u) {
+		Session sess = HibernateUtil.getSession();
+		Transaction tx = sess.beginTransaction();
+
+		sess.delete(u);
+		if(sess.contains(u) == false) {
+			tx.commit();
+			return true;
+		}
+		tx.rollback();
+		return false;
+
+	}
+
+	@Override
+	public User findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findByUsername(String username) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
 		
-		User user = (User) sess.merge(u);
-		
-		if(user.equals(u)) {
-			tx.commit();
+		Criteria cr = sess.createCriteria(User.class);
+		cr.add(Restrictions.eq("username", username));
+		if(cr.list().isEmpty()) {
+			return null;
 		}
-		tx.rollback();
+		User u = (User) cr.list().get(0);
+		return u;
 	}
-	
+
+	@Override
+	public Set<User> findAll() {
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		
+		Set<User> result = s.createQuery("FROM User u", User.class)
+				.getResultStream()
+				.collect(Collectors.toSet());
+		
+		tx.commit();
+		
+		return result;
+	}
 
 }
