@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,7 @@ public class UserController {
 	@PutMapping(path = "newUser")
 	public ResponseEntity<User> newUser(@RequestBody User u) {
 		if(service.save(u) == true) {
+			System.out.println(u.toString());
 			return ResponseEntity.ok(u);
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -50,6 +53,7 @@ public class UserController {
 	
 	@DeleteMapping(path = "deleteUser")
 	public ResponseEntity delUser(@RequestBody User u) {
+		System.out.println("deleting...");
 		if(service.delete(u) == true) {
 			return ResponseEntity.accepted().build();
 		}else {
@@ -60,12 +64,19 @@ public class UserController {
 
 	@PatchMapping(path = "updateUser")
 	public ResponseEntity updateUser(@RequestBody User u) {
+		System.out.println("updating");
 		if(service.update(u) == true) {
 			return ResponseEntity.accepted().build();
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 				
+	}
+	
+	@GetMapping(path = "users")
+	public ResponseEntity<Set<User>> users(){
+		Set<User> list = service.findAll();
+		return ResponseEntity.ok(list);
 	}
 	
 }

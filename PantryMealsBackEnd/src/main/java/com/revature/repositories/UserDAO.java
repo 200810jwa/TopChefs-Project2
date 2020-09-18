@@ -38,7 +38,6 @@ public class UserDAO implements IUserDAO {
 	public boolean update(User u) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-
 		User user = (User) sess.merge(u);
 
 		if (user.equals(u)) {
@@ -55,13 +54,13 @@ public class UserDAO implements IUserDAO {
 		Transaction tx = sess.beginTransaction();
 
 		sess.delete(u);
-		if(sess.contains(u) == false) {
+		if (sess.contains(u) == false) {
 			tx.commit();
 			return true;
+		} else {
+			tx.rollback();
+			return false;
 		}
-		tx.rollback();
-		return false;
-
 	}
 
 	@Override
@@ -73,11 +72,10 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public User findByUsername(String username) {
 		Session sess = HibernateUtil.getSession();
-		Transaction tx = sess.beginTransaction();
-		
+
 		Criteria cr = sess.createCriteria(User.class);
 		cr.add(Restrictions.eq("username", username));
-		if(cr.list().isEmpty()) {
+		if (cr.list().isEmpty()) {
 			return null;
 		}
 		User u = (User) cr.list().get(0);
@@ -88,13 +86,11 @@ public class UserDAO implements IUserDAO {
 	public Set<User> findAll() {
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-		
-		Set<User> result = s.createQuery("FROM User u", User.class)
-				.getResultStream()
-				.collect(Collectors.toSet());
-		
+
+		Set<User> result = s.createQuery("FROM User u", User.class).getResultStream().collect(Collectors.toSet());
+
 		tx.commit();
-		
+
 		return result;
 	}
 

@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +40,9 @@ public class UserService {
 	
 	public boolean delete(User u) {
 		return userDao.delete(u);
+	}
+
+	public Set<User> findAll() {
+		return userDao.findAll();
 	}
 }
