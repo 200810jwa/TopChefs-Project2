@@ -16,6 +16,10 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  register() {
+    console.warn('Switch t');
+  }
+
   onSubmit() {
     console.warn(this.loginForm.value);
   }

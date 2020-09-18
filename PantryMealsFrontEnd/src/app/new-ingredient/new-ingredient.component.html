@@ -1,0 +1,25 @@
+<p>new-ingredient works!</p>
+<form [formGroup]="IngredientForm" (ngSubmit)="addIngredient()">
+  <label>
+    Ingredient:<input type="text" formControlName="IngredientName" /> </label
+  ><br />
+  <button type="submit">Add</button>
+</form>
+
+<table class="table">
+  <caption>
+    List Of Ingredients
+  </caption>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ingredient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sample Id</td>
+      <td>Sample title</td>
+    </tr>
+  </tbody>
+</table>
