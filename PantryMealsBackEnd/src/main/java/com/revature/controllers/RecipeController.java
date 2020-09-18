@@ -16,22 +16,22 @@ import com.revature.services.RecipeService;
 @Controller
 public class RecipeController {
 	
-	@Autowired
-	private RecipeService rservice;
-	
-	@GetMapping("recipe/{id}")
-	@ResponseBody
-	public Recipe FindById(@PathVariable("id") int id) {
-		Set<Recipe> all = rservice.findAll();
-		
-		for(Recipe r : all) {
-			if(r.getId() == id) {
-				return r;
-			}
-		}
-		
-		return null;
-	}
+//	@Autowired
+//	private RecipeService rservice;
+//	
+//	@GetMapping("recipe/{id}")
+//	@ResponseBody
+//	public Recipe FindById(@PathVariable("id") int id) {
+//		Set<Recipe> all = rservice.findAll();
+//		
+//		for(Recipe r : all) {
+//			if(r.getId() == id) {
+//				return r;
+//			}
+//		}
+//		
+//		return null;
+//	}
 	
 	
 }
