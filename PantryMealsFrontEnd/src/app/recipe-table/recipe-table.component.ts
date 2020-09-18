@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-recipe-table',
   templateUrl: './recipe-table.component.html',
-  styleUrls: ['./recipe-table.component.css']
+  styleUrls: ['./recipe-table.component.css'],
 })
 export class RecipeTableComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  findRecipes() {
+    console.warn('Not implemented yet.');
   }
-
 }

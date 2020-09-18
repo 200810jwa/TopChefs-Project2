@@ -1,9 +1,11 @@
 <h1>The Login Form works!</h1>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <label> Username:<input type="text" formControlName="Username" /> </label
-  ><br />
-  <label> Password:<input type="text" formControlName="Password" /></label
-  ><br />
-  <button type="button" onclick="register()">Register</button>
-  <button type="submit">Submit</button>
-</form>
+<div margin="50px">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label> Username:<input type="text" formControlName="Username" /> </label
+    ><br />
+    <label> Password:<input type="text" formControlName="Password" /></label
+    ><br />
+    <button class="btn" type="button" onclick="register()">Register</button>
+    <button class="btn" type="submit">Submit</button>
+  </form>
+</div>
