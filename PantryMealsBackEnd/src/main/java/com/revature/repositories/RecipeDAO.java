@@ -1,6 +1,5 @@
 package com.revature.repositories;
 
-
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,45 +14,49 @@ import com.revature.util.HibernateUtil;
 public class RecipeDAO implements IRecipeDAO {
 
 	@Override
-	public void save(Recipe r) {
-	Session sess = HibernateUtil.getSession();
-	Transaction tx = sess.beginTransaction();
-	
-		sess.save(r);
-		tx.commit();
-		
+	public boolean save(Recipe r) {
+		Session sess = HibernateUtil.getSession();
+		Transaction tx = sess.beginTransaction();
+
+		if (sess.save(r) != null) {
+			tx.commit();
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public Set<Recipe> findAll() {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		
-		Set<Recipe> result = sess.createQuery("FROM Recipe r", Recipe.class)
-							.getResultStream()
-							.collect(Collectors.toSet());
-		
+
+		Set<Recipe> result = sess.createQuery("FROM Recipe r", Recipe.class).getResultStream()
+				.collect(Collectors.toSet());
+
 		tx.commit();
 		return result;
 	}
 
 	@Override
-	public void update(Recipe r) {
+	public boolean update(Recipe r) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		
-		sess.merge(r);
-		tx.commit();
+
+		if (sess.merge(r) != null) {
+			tx.commit();
+			return true;
+		}
+		return false;
 	}
 
 	@Override
-	public void delete(Recipe r) {
+	public boolean delete(Recipe r) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		
+
 		sess.delete(r);
 		tx.commit();
-		
+		return true;
 	}
 
 	@Override
@@ -62,5 +65,4 @@ public class RecipeDAO implements IRecipeDAO {
 		return null;
 	}
 
-	
 }

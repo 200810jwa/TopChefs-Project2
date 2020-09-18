@@ -45,4 +45,8 @@ public class UserService {
 	public Set<User> findAll() {
 		return userDao.findAll();
 	}
+
+	public User findById(int id) {
+		return userDao.findById(id);
+	}
 }

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Recipe;
+import com.revature.models.User;
 import com.revature.repositories.IRecipeDAO;
+import com.revature.repositories.IUserDAO;
 
 @Service
 public class RecipeService {
@@ -14,20 +16,28 @@ public class RecipeService {
 	@Autowired
 	private IRecipeDAO dao;
 	
+	@Autowired
+	private IUserDAO udao;
+	
 	public Set<Recipe> findAll() {
 		return dao.findAll();
 	}
 	
-	public void save(Recipe r) {
-		 dao.save(r);
+	public boolean save(Recipe r) {
+		 return dao.save(r);
 	}
 	
-	public void update(Recipe r) {
-		dao.update(r);
+	public boolean update(Recipe r) {
+		return dao.update(r);
 	}
 	
-	public void delete(Recipe r) {
-		dao.delete(r);
+	public boolean delete(Recipe r) {
+		return dao.delete(r);
+	}
+
+	public boolean saveToFavorites(Recipe r, User u) {
+		u.getRecipes().add(r);
+		return udao.update(u);
 	}
 
 }

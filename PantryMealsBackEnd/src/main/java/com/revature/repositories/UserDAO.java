@@ -65,8 +65,15 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public User findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session sess = HibernateUtil.getSession();
+
+		Criteria cr = sess.createCriteria(User.class);
+		cr.add(Restrictions.eq("id", id));
+		if (cr.list().isEmpty()) {
+			return null;
+		}
+		User u = (User) cr.list().get(0);
+		return u;
 	}
 
 	@Override

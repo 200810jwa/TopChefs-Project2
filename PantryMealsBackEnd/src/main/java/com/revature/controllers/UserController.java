@@ -64,7 +64,6 @@ public class UserController {
 
 	@PatchMapping(path = "updateUser")
 	public ResponseEntity updateUser(@RequestBody User u) {
-		System.out.println("updating");
 		if(service.update(u) == true) {
 			return ResponseEntity.accepted().build();
 		}else {
