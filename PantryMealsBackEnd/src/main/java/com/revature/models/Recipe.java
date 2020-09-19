@@ -27,11 +27,11 @@ public class Recipe implements Serializable {
 	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="recipe")
 	private int id;
 	private String title;
-	private String link;
+	private String href;
 	private String ingredients;
-	private String thumbnailBase64;
-	private byte[] thumbnailByteArray;
+	private String thumbnail;
 	private float rating;
+	
 	public int getId() {
 		return id;
 	}
@@ -44,29 +44,12 @@ public class Recipe implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getLink() {
-		return link;
-	}
-	public void setLink(String link) {
-		this.link = link;
-	}
+	
 	public String getIngredients() {
 		return ingredients;
 	}
 	public void setIngredients(String ingredients) {
 		this.ingredients = ingredients;
-	}
-	public String getThumbnailBase64() {
-		return thumbnailBase64;
-	}
-	public void setThumbnailBase64(String thumbnailBase64) {
-		this.thumbnailBase64 = thumbnailBase64;
-	}
-	public byte[] getThumbnailByteArray() {
-		return thumbnailByteArray;
-	}
-	public void setThumbnailByteArray(byte[] thumbnailByteArray) {
-		this.thumbnailByteArray = thumbnailByteArray;
 	}
 	public float getRating() {
 		return rating;
@@ -74,34 +57,76 @@ public class Recipe implements Serializable {
 	public void setRating(float rating) {
 		this.rating = rating;
 	}
+	
+	public String getHref() {
+		return href;
+	}
+	public void setHref(String href) {
+		this.href = href;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	@Override
+	public String toString() {
+		return "Recipe [id=" + id + ", title=" + title + ", href=" + href + ", ingredients=" + ingredients
+				+ ", thumbnail=" + thumbnail + ", rating=" + rating + "]";
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(thumbnailByteArray);
-		result = prime * result + Objects.hash(id, ingredients, link, rating, thumbnailBase64, title);
+		result = prime * result + ((href == null) ? 0 : href.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
+		result = prime * result + Float.floatToIntBits(rating);
+		result = prime * result + ((thumbnail == null) ? 0 : thumbnail.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (!(obj instanceof Recipe)) {
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
 		Recipe other = (Recipe) obj;
-		return id == other.id && Objects.equals(ingredients, other.ingredients) && Objects.equals(link, other.link)
-				&& Float.floatToIntBits(rating) == Float.floatToIntBits(other.rating)
-				&& Objects.equals(thumbnailBase64, other.thumbnailBase64)
-				&& Arrays.equals(thumbnailByteArray, other.thumbnailByteArray) && Objects.equals(title, other.title);
+		if (href == null) {
+			if (other.href != null)
+				return false;
+		} else if (!href.equals(other.href))
+			return false;
+		if (id != other.id)
+			return false;
+		if (ingredients == null) {
+			if (other.ingredients != null)
+				return false;
+		} else if (!ingredients.equals(other.ingredients))
+			return false;
+		if (Float.floatToIntBits(rating) != Float.floatToIntBits(other.rating))
+			return false;
+		if (thumbnail == null) {
+			if (other.thumbnail != null)
+				return false;
+		} else if (!thumbnail.equals(other.thumbnail))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
 	}
-	@Override
-	public String toString() {
-		return "Recipe [id=" + id + ", title=" + title + ", link=" + link + ", ingredients=" + ingredients
-				+ ", thumbnailBase64=" + thumbnailBase64 + ", thumbnailByteArray=" + Arrays.toString(thumbnailByteArray)
-				+ ", rating=" + rating + "]";
-	}
+	
+	
 	
 	
 }
