@@ -20,6 +20,7 @@ import com.revature.models.User;
 import com.revature.services.IUserService;
 import com.revature.services.UserService;
 import com.revature.templates.LoginTemplate;
+import com.revature.templates.RegisterTemplate;
 
 @Controller
 //@RequestMapping("/login")
@@ -41,7 +42,7 @@ public class UserController {
 	}
 	
 	@PutMapping(path = "newUser")
-	public ResponseEntity<User> newUser(@RequestBody User u) {
+	public ResponseEntity<RegisterTemplate> newUser(@RequestBody RegisterTemplate u) {
 		//PasswordHashingService pw = new PasswordHashingService();
 		//u.setPassword(pw.passwordHash(u.getPassword()));
 		if(service.save(u) == true) {

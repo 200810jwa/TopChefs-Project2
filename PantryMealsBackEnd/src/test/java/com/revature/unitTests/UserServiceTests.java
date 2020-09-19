@@ -3,8 +3,6 @@ package com.revature.unitTests;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Timestamp;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,6 +14,8 @@ import org.mockito.MockitoAnnotations;
 import com.revature.models.User;
 import com.revature.repositories.IRecipeDAO;
 import com.revature.repositories.IUserDAO;
+import com.revature.services.UserService;
+import com.revature.templates.LoginTemplate;
 
 public class UserServiceTests {
 
@@ -24,9 +24,15 @@ public class UserServiceTests {
 	@Mock
 	private IRecipeDAO RMockedDao;
 	
+	
+	private UserService testInstance = new UserService(AMockedDao);
 	private User Andrew;
+	private LoginTemplate AndrewTemp;
+	private LoginTemplate wrongTemp1;
+	private LoginTemplate wrongTemp2;
 	private User Zach;
 	private User Leron;
+	
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -40,6 +46,14 @@ public class UserServiceTests {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
+		testInstance = new UserService(AMockedDao);
+		
+		Andrew = new User(1,"alukens", "password","Andrew", "Lukens","email@email.com");
+		AndrewTemp = new LoginTemplate("alukens", "pasword");
+		wrongTemp1 = new LoginTemplate("alukens","wrongpassword");
+		wrongTemp2 = new LoginTemplate("andrew", "pasword");
+		
+	
 	}
 	
 	@After
