@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Ingredient } from './ingredient';
 
 @Component({
   selector: 'app-new-ingredient',
@@ -12,12 +13,18 @@ export class NewIngredientComponent implements OnInit {
     IngredientName: new FormControl(''),
   });
 
+  IngredientArray: Ingredient[] = [];
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   addIngredient() {
-    console.warn(this.IngredientForm.value);
+    this.IngredientArray.push({
+      name: this.IngredientForm.controls['IngredientName'].value,
+    });
+    //console.warn(this.IngredientForm.value);
+    console.warn(this.IngredientArray); //Pass List of Ingredients to Back-End!!!
   }
 
   goBack() {
