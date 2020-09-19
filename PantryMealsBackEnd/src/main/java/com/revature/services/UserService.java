@@ -14,7 +14,7 @@ public class UserService {
 
 	@Autowired
 	private IUserDAO userDao;
-	
+	//private PasswordHashingService pw;
 	public User login(LoginTemplate lf) {
 		System.out.println(userDao.findAll());
 		User u = userDao.findByUsername(lf.getUsername());
@@ -22,7 +22,7 @@ public class UserService {
 			System.out.println("couldn't find username");
 			return null;
 		}
-		
+		//if(pw.passwordHash(u.getPassword()).equals(pw.passwordHash(lf.getPassword()))
 		if(u.getPassword().equals(lf.getPassword())) {
 			return u;
 		}

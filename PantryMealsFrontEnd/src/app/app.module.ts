@@ -12,6 +12,7 @@ import { RecipeTableComponent } from './recipe-table/recipe-table.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewIngredientComponent } from './new-ingredient/new-ingredient.component';
 import { ModifyUserComponent } from './modify-user/modify-user.component';
+import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { ModifyUserComponent } from './modify-user/modify-user.component';
       { path: 'profile', component: ProfileComponent },
       { path: 'new-ingredient', component: NewIngredientComponent },
       { path: 'Modify-User', component: ModifyUserComponent },
+      { path: '404', component: NotFoundComponentComponent },
     ]),
   ],
   declarations: [
@@ -35,6 +37,7 @@ import { ModifyUserComponent } from './modify-user/modify-user.component';
     ProfileComponent,
     NewIngredientComponent,
     ModifyUserComponent,
+    NotFoundComponentComponent,
   ],
   bootstrap: [AppComponent],
   exports: [CommonModule, FormsModule, ReactiveFormsModule],

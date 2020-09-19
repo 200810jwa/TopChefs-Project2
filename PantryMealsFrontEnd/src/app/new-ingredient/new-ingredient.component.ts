@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-ingredient',
@@ -11,11 +12,16 @@ export class NewIngredientComponent implements OnInit {
     IngredientName: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   addIngredient() {
     console.warn(this.IngredientForm.value);
+  }
+
+  goBack() {
+    this.router.navigate(['profile']);
+    console.warn('Log Out function needed');
   }
 }

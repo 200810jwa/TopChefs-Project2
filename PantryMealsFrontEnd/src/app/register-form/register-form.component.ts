@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
@@ -14,11 +15,12 @@ export class RegisterFormComponent implements OnInit {
     email: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
+    this.router.navigate(['login-form']);
     console.warn(this.registerForm.value);
   }
 }

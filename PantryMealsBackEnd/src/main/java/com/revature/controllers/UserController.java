@@ -42,6 +42,8 @@ public class UserController {
 	
 	@PutMapping(path = "newUser")
 	public ResponseEntity<User> newUser(@RequestBody User u) {
+		//PasswordHashingService pw = new PasswordHashingService();
+		//u.setPassword(pw.passwordHash(u.getPassword()));
 		if(service.save(u) == true) {
 			System.out.println(u.toString());
 			return ResponseEntity.ok(u);

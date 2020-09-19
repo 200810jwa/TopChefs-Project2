@@ -1,9 +1,11 @@
 <h1>Make a profile Page here!!!</h1>
 <P> User will see this page after they login!!!</P>
 <div>
-  <button class="btn btn-dark">Change Profile Settings</button><br />
-  <button class="btn">Add Ingredients</button><br />
-  <button class="btn">View Previous</button><br />
-  <button class="btn">View Favorites</button><br />
-  <button>Log Out</button><br />
+  <button class="btn btn-dark" (click)="Modify()">
+    Change Profile Settings</button
+  ><br />
+  <button class="btn" (click)="add()">Add Ingredients</button><br />
+  <button class="btn" (click)="viewPrevious()">View Previous</button><br />
+  <button class="btn" (click)="viewFavorite()">View Favorites</button><br />
+  <button class="btn" (click)="LogOut()">Log Out</button><br />
 </div>
