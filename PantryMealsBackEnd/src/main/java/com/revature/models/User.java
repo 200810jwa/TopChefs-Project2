@@ -33,6 +33,10 @@ public class User implements Serializable {
 	@JoinColumn
 	private List<Recipe> recipes;
 	
+//	@ManyToMany // Need two Lists? One for Previous and One for Favorites?
+//	@JoinColumn
+//	private List<Recipe> recipes;
+	
 	public User() {
 		super();
 	}
