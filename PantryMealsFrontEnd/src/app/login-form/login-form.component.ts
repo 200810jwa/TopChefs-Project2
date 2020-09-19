@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -15,11 +16,12 @@ export class LoginFormComponent implements OnInit {
   });
   //baseURL: string = 'http://localhost:4200/';
 
-  constructor() {} //private http: HttpClient
+  constructor(private router: Router) {} //private http: HttpClient
 
   ngOnInit(): void {}
 
-  register() {
+  goToRegister() {
+    this.router.navigate(['register-form']);
     console.warn('Switch to Register component?');
   }
 
@@ -31,6 +33,7 @@ export class LoginFormComponent implements OnInit {
     // return this.http.post(this.baseURL + 'loginTemplate', body, {
     //  headers: headers,
     // });
+    this.router.navigate(['profile']);
     console.warn(this.loginForm.value);
     //Don't know if this works?
   }

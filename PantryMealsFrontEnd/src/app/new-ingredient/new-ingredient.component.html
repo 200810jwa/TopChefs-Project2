@@ -1,25 +1,15 @@
-<p>new-ingredient works!</p>
+<h1>Add Ingredients in your Kitchen!</h1>
 <form [formGroup]="IngredientForm" (ngSubmit)="addIngredient()">
   <label>
     Ingredient:<input type="text" formControlName="IngredientName" /> </label
   ><br />
-  <button type="submit">Add</button>
+  <button class="btn" type="submit">Add</button>
 </form>
+<button class="btn" (click)="goBack()">Go Back</button>
 
-<table class="table">
-  <caption>
-    List Of Ingredients
-  </caption>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Ingredient</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Sample Id</td>
-      <td>Sample title</td>
-    </tr>
-  </tbody>
-</table>
+<h2>My Ingredients</h2>
+<ul class="Ingredient">
+  <li *ngFor="let Ingredient of IngredientArray">
+    {{ Ingredient.name }}
+  </li>
+</ul>

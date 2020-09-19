@@ -29,9 +29,23 @@ public class User implements Serializable {
 	private String lastName;
 	private String email;
 	
+	public User(int id, String username, String password, String firstName, String lastName, String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
 	@ManyToMany
 	@JoinColumn
 	private List<Recipe> recipes;
+	
+//	@ManyToMany // Need two Lists? One for Previous and One for Favorites?
+//	@JoinColumn
+//	private List<Recipe> recipes;
 	
 	public User() {
 		super();

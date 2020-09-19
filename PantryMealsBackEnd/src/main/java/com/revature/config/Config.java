@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.revature.models.Recipe;
 import com.revature.models.User;
+import com.revature.services.ListService;
 import com.revature.services.UserService;
 
 
@@ -27,4 +28,9 @@ public class Config {
 	public UserService getUserService() {
 		return new UserService();
 	}
+	
+//	@Bean(name = "ListService")
+//	public ListService getListService() {
+//		return new ListService();
+//	}
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modify-user',
@@ -14,11 +15,15 @@ export class ModifyUserComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   update() {
     console.warn(this.modifyForm.value);
+  }
+  goBack() {
+    this.router.navigate(['profile']);
+    console.warn('Log Out function needed');
   }
 }
