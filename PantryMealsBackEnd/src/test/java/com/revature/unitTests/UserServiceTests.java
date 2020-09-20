@@ -86,7 +86,17 @@ public class UserServiceTests {
 	}
 	@Test
 	public void testRegisterSuccessful() {
-		assertEquals(testInstance.save(andrewReg), Andrew);
+		assertEquals(testInstance.save(andrewReg), false);
+	}
+	
+	@Test
+	public void testFindByIDSuccessfull() {
+		assertEquals(testInstance.findById(1), Andrew);
+	}
+	
+	@Test
+	public void testFindByDFaillure() {
+		assertEquals(testInstance.findById(3000), null);
 	}
 	
 }
