@@ -80,10 +80,11 @@ public class UserServiceTests {
 	public void testLoginPasswordFailure() {
 		assertEquals(testInstance.login(wrongTemp1), null);
 	}
-	
+	@Test
 	public void testLoginUserFailure() {
 		assertEquals(testInstance.login(wrongTemp2), null);
 	}
+	@Test
 	public void testRegisterSuccessful() {
 		assertEquals(testInstance.save(andrewReg), Andrew);
 	}
