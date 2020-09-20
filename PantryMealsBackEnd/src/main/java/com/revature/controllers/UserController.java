@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.models.User;
 import com.revature.services.IUserService;
+import com.revature.services.PasswordHashingService;
 import com.revature.services.UserService;
 import com.revature.templates.LoginTemplate;
 import com.revature.templates.RegisterTemplate;
@@ -43,8 +44,8 @@ public class UserController {
 	
 	@PutMapping(path = "newUser")
 	public ResponseEntity<RegisterTemplate> newUser(@RequestBody RegisterTemplate u) {
-		//PasswordHashingService pw = new PasswordHashingService();
-		//u.setPassword(pw.passwordHash(u.getPassword()));
+		PasswordHashingService pw = new PasswordHashingService();
+		u.setPassword(pw.passwordHash(u.getPassword()));
 		if(service.save(u) == true) {
 			System.out.println(u.toString());
 			return ResponseEntity.ok(u);

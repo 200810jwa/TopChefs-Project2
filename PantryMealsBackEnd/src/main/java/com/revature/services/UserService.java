@@ -18,7 +18,8 @@ public class UserService {
 	private IUserDAO userDao;
 	
 	private Logger log = Logger.getLogger(UserService.class);
-	
+
+	private PasswordHashingService pw;
 	
 	public UserService() {
 		super();
@@ -33,7 +34,6 @@ public class UserService {
 
 
 
-	//private PasswordHashingService pw;
 	public User login(LoginTemplate lf) {
 		System.out.println(userDao.findAll());
 		User u = userDao.findByUsername(lf.getUsername());
@@ -41,8 +41,8 @@ public class UserService {
 			log.info("couldn't find username");
 			return null;
 		}
-		//if(pw.passwordHash(u.getPassword()).equals(pw.passwordHash(lf.getPassword()))
-		if(u.getPassword().equals(lf.getPassword())) {
+		if(pw.passwordHash(u.getPassword()).equals(pw.passwordHash(lf.getPassword()))){
+		//if(u.getPassword().equals(lf.getPassword())) {
 			log.info("Logged in a user");
 			return u;
 		}
