@@ -29,8 +29,8 @@ public class Config {
 		return new UserService();
 	}
 	
-//	@Bean(name = "ListService")
-//	public ListService getListService() {
-//		return new ListService();
-//	}
+	@Bean(name = "ListService")
+	public ListService getListService() {
+		return new ListService();
+	}
 }
