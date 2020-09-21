@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -57,7 +58,12 @@ public class RecipeService {
 	}
 
 	public boolean saveToFavorites(Recipe r, User u) {
-		u.getRecipes().add(r);
+		u.getFavoriteRecipes().add(r);
+		return udao.update(u);
+	}
+
+	public boolean saveToPrevious(Recipe r, User u) {
+		u.getPreviousRecipes().add(r);
 		return udao.update(u);
 	}
 
@@ -73,26 +79,49 @@ public class RecipeService {
 		return list;
 	}
 
-	public Set<Recipe> getRecipes(String[] ingredients) {
+	public Set<Recipe> getRecipes(String[] ingredients, boolean hardStop) {
+
 		HttpPost request = null;
 		ObjectMapper om = new ObjectMapper();
 		RecipepuppyResult recipes = null;
+		String list = String.join(", ", ingredients);
+
 		try {
 			URIBuilder builder = new URIBuilder();
-			builder.setScheme("http").setHost("www.recipepuppy.com").setPath("/api").setParameter("i", "eggs,bacon,bread");
-			URI uri = builder.build();
+			builder.setScheme("http").setHost("www.recipepuppy.com").setPath("/api").setParameter("i", list);
+			URI uri;
+			uri = builder.build();
 			request = new HttpPost(uri);
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
 		}
+
 		try (CloseableHttpClient httpClient = HttpClients.createDefault();
 				CloseableHttpResponse response = httpClient.execute(request)) {
 			recipes = om.readValue(EntityUtils.toString(response.getEntity()), RecipepuppyResult.class);
-			System.out.println(EntityUtils.toString(response.getEntity()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(recipes.getResults());
-		return recipes.getResults();
+
+		Set<Recipe> results = recipes.getResults();
+		if (hardStop == true) {
+			return filterExtraIng(results, ingredients);			
+		}
+		return results;
+	}
+	
+	public Set<Recipe> filterExtraIng(Set<Recipe> results, String[] ingredients){
+		List<String> ing = Arrays.asList(ingredients);
+		for (Recipe r : results) {
+			String[] rpingredients = r.getIngredients().split(", ");
+			for (String s : rpingredients) {
+				if (ing.contains(s) == false) {
+					r.setHref("delete");
+				}
+				
+			}
+		}
+		results.removeIf(r -> (r.getHref().equals("delete"))); // THIS IS NOT WORKING!!!!!!
+		return results;
 	}
 }

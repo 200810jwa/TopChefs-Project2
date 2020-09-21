@@ -52,7 +52,6 @@ public class UserService {
 
 	public boolean save(RegisterTemplate rt){
 		User u = new User(0, rt.getUsername(), rt.getPassword(), rt.getFirstname(), rt.getLastname(), rt.getEmail());
-		
 		return userDao.save(u);
 	}
 	

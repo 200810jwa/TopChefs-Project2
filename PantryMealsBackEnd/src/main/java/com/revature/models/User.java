@@ -41,18 +41,18 @@ public class User implements Serializable {
 
 	@ManyToMany
 	@JoinColumn
-	private List<Recipe> recipes;
+	private List<Recipe> FavoriteRecipes;
 	
-//	@ManyToMany // Need two Lists? One for Previous and One for Favorites?
-//	@JoinColumn
-//	private List<Recipe> recipes;
+	@ManyToMany // Need two Lists? One for Previous and One for Favorites?
+	@JoinColumn
+	private List<Recipe> previousRecipes;
 	
 	public User() {
 		super();
 	}
 
 	public User(int id, String username, String password, String firstName, String lastName, String email,
-			List<Recipe> recipes) {
+			List<Recipe> savedRecipes, List<Recipe> previousRecipes) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -60,7 +60,8 @@ public class User implements Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.recipes = recipes;
+		this.FavoriteRecipes = savedRecipes;
+		this.previousRecipes = previousRecipes;
 	}
 
 	public int getId() {
@@ -111,38 +112,100 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public List<Recipe> getRecipes() {
-		return recipes;
-	}
-
-	public void setRecipes(List<Recipe> recipes) {
-		this.recipes = recipes;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, id, lastName, password, recipes, username);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((previousRecipes == null) ? 0 : previousRecipes.hashCode());
+		result = prime * result + ((FavoriteRecipes == null) ? 0 : FavoriteRecipes.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (!(obj instanceof User)) {
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
 		User other = (User) obj;
-		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& Objects.equals(recipes, other.recipes) && Objects.equals(username, other.username);
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (previousRecipes == null) {
+			if (other.previousRecipes != null)
+				return false;
+		} else if (!previousRecipes.equals(other.previousRecipes))
+			return false;
+		if (FavoriteRecipes == null) {
+			if (other.FavoriteRecipes != null)
+				return false;
+		} else if (!FavoriteRecipes.equals(other.FavoriteRecipes))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", email=" + email + ", recipes=" + recipes + "]";
+				+ ", lastName=" + lastName + ", email=" + email + ", savedRecipes=" + FavoriteRecipes
+				+ ", previousRecipes=" + previousRecipes + "]";
 	}
+
+	public List<Recipe> getFavoriteRecipes() {
+		return FavoriteRecipes;
+	}
+
+	public void setFavoriteRecipes(List<Recipe> savedRecipes) {
+		this.FavoriteRecipes = savedRecipes;
+	}
+
+	public List<Recipe> getPreviousRecipes() {
+		return previousRecipes;
+	}
+
+	public void setPreviousRecipes(List<Recipe> previousRecipes) {
+		this.previousRecipes = previousRecipes;
+	}
+
+
+
+	
+
+	
+
+
 	
 	
 	

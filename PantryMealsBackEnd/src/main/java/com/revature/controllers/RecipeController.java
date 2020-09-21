@@ -40,18 +40,6 @@ public class RecipeController {
 		
 	}
 	
-	@PutMapping("save/{id}")
-	@ResponseBody
-	public ResponseEntity<Recipe> newUser(@RequestBody Recipe r, @PathVariable("id") int id) {
-		User u = service.findById(id);
-		if(rservice.saveToFavorites(r,u) == true) {
-			return ResponseEntity.accepted().build();
-		}else {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-				
-	}
-	
 	@PatchMapping("rate")
 	@ResponseBody
 	public ResponseEntity rateRecipe(@RequestBody Recipe r) {
@@ -61,10 +49,23 @@ public class RecipeController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
-	@PostMapping(path = "recipes", produces = "application/json")
+	
+	@PostMapping(path = "recipes/{strict}", produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<Set<Recipe>> findRecipes(@RequestBody String[] list) {
-		Set<Recipe> results = rservice.getRecipes(list);
+	public ResponseEntity<Set<Recipe>> findRecipes(@RequestBody String[] list, @PathVariable("strict") String filter) {
+		Set<Recipe> results;
+		switch(filter) {
+		case "true" :
+			System.out.println("filter called");
+			results = rservice.getRecipes(list,true);
+			break;
+		case "false":
+			System.out.println("filter bypassed");
+			results = rservice.getRecipes(list,false);
+			break;
+		default:
+			return ResponseEntity.badRequest().build();
+		}
 		rservice.assignRatings(results);
 		if(results != null) {
 			return ResponseEntity.ok(results);

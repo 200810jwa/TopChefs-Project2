@@ -30,7 +30,7 @@ public class Recipe implements Serializable {
 	private String href;
 	private String ingredients;
 	private String thumbnail;
-	private float rating;
+	private int[] rating;
 	
 	public int getId() {
 		return id;
@@ -51,10 +51,10 @@ public class Recipe implements Serializable {
 	public void setIngredients(String ingredients) {
 		this.ingredients = ingredients;
 	}
-	public float getRating() {
+	public int[] getRating() {
 		return rating;
 	}
-	public void setRating(float rating) {
+	public void setRating(int[] rating) {
 		this.rating = rating;
 	}
 	
@@ -85,7 +85,7 @@ public class Recipe implements Serializable {
 		result = prime * result + ((href == null) ? 0 : href.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
-		result = prime * result + Float.floatToIntBits(rating);
+		result = prime * result + Arrays.hashCode(rating);
 		result = prime * result + ((thumbnail == null) ? 0 : thumbnail.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
@@ -111,7 +111,7 @@ public class Recipe implements Serializable {
 				return false;
 		} else if (!ingredients.equals(other.ingredients))
 			return false;
-		if (Float.floatToIntBits(rating) != Float.floatToIntBits(other.rating))
+		if (!Arrays.equals(rating, other.rating))
 			return false;
 		if (thumbnail == null) {
 			if (other.thumbnail != null)
@@ -125,6 +125,8 @@ public class Recipe implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 	
 	
 	

@@ -24,10 +24,10 @@ public class Config {
 		return new Recipe();
 	}
 	
-	@Bean(name = "service")
-	public UserService getUserService() {
-		return new UserService();
-	}
+//	@Bean(name = "userService")
+//	public UserService getUserService() {
+//		return new UserService();
+//	}
 	
 	@Bean(name = "ListService")
 	public ListService getListService() {
