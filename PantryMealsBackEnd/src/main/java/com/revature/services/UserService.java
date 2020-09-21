@@ -35,7 +35,6 @@ public class UserService {
 
 
 	public User login(LoginTemplate lf) {
-		System.out.println(userDao.findAll());
 		User u = userDao.findByUsername(lf.getUsername());
 		if(u == null) {
 			log.info("couldn't find username");

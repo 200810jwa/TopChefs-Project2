@@ -26,10 +26,11 @@ public class UserDAO implements IUserDAO {
 
 		if (id != 0) {
 			tx.commit();
+			
 			return true;
 		}
 		tx.rollback();
-
+		
 		return false;
 
 	}
@@ -42,9 +43,11 @@ public class UserDAO implements IUserDAO {
 
 		if (user.equals(u)) {
 			tx.commit();
+			
 			return true;
 		}
 		tx.rollback();
+		
 		return false;
 	}
 
@@ -56,9 +59,11 @@ public class UserDAO implements IUserDAO {
 		sess.delete(u);
 		if (sess.contains(u) == false) {
 			tx.commit();
+			
 			return true;
 		} else {
 			tx.rollback();
+			
 			return false;
 		}
 	}
@@ -70,9 +75,11 @@ public class UserDAO implements IUserDAO {
 		Criteria cr = sess.createCriteria(User.class);
 		cr.add(Restrictions.eq("id", id));
 		if (cr.list().isEmpty()) {
+			
 			return null;
 		}
 		User u = (User) cr.list().get(0);
+		
 		return u;
 	}
 
