@@ -51,7 +51,7 @@ public class RecipeServiceTests {
 		sameIdRecipe = new Recipe(1, "OnionVegetable", "hreflink"," Onions, Pepper");
 		recipe2 = new Recipe(0, "OnionVegetable", "hreflink"," Onions, Pepper");
 		
-		when(RMockedDao.findbyId(0)).thenReturn(null);
+		when(RMockedDao.findbyId(0)).thenReturn(recipe2);
 		when(RMockedDao.findbyId(1)).thenReturn(recipe1);
 		when(RMockedDao.save(recipe1)).thenReturn(true);
 		when(RMockedDao.delete(recipe1)).thenReturn(true);
@@ -81,6 +81,11 @@ public class RecipeServiceTests {
 	@Test
 	public void testDeleteRecipeSuccessful() {
 		assertEquals(testInstance.delete(recipe1), true);
+	}
+	
+	@Test
+	public void testUpdateRecipeSuccessful() {
+		assertEquals(testInstance.update(recipe1), true);
 	}
 	
 	
