@@ -4,7 +4,6 @@
       <!-- <img style = "height : 50px; width : 60px " src = "https://assets.bonappetit.com/photos/5d7296eec4af4d0008ad1263/master/pass/Basically-Gojuchang-Chicken-Recipe-Wide.jpg"> -->
       <a class="navbar-brand" href="#">PantryMeals</a>
     </div>
-<<<<<<< HEAD
       <ul *ngIf = "!currentUser" class="nav navbar-nav navbar-right" style = "display : inline;">
         <li><a (click) = "Register()"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
         <li><a (click) = "Login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -33,13 +32,13 @@
                     </ul>
                 </div>
                 <div class="form-check">
-                    <label class="form-check-label" [(ngModel)] = "looseFilter" for="looseFilter">See results with 1 or more Ingredients than on your list </label>
-                    <input type="checkbox" class="form-check-input" name = "looseFilter" id="looseFilter">
+                    <label class="form-check-label" for="looseFilter">See results with 1 or more Ingredients than on your list:  </label>
+                    <input type="checkbox" class="form-check-input" [(ngModel)] = "looseFilter" name = "looseFilter" id="looseFilter">
                   </div>
                 <button id = "searchbutton" class = "btn btn-primary" (click) = "Search()">Search</button>
                 <br/>
                 <div class = "container" id = "pastRecipes">
-                    <h4>Past Recipes</h4>
+                    <h3>Past Recipes</h3>
                     <ul *ngIf = "currentUser" > <!--*ngFor = "let recipe of savedRecipes">-->
                         <div class = "Recipe">here's where a recipe goes</div>
                     </ul> 
@@ -47,7 +46,7 @@
                     <div *ngIf = "!currentUser"> You must be signed in to view past recipes</div>
                 </div>
                 <div class = "container" id = "favRecipes">
-                    <h4>Favorites</h4>
+                    <h3>Favorites</h3>
                     <ul *ngIf = "currentUser" > <!--*ngFor = "let recipe of FavoriteRecipes">-->
                         <div class = "Recipe">here's where a recipe goes</div>
                     </ul> 
@@ -59,11 +58,9 @@
     </div>
     <div class = "right-side">
         <article *ngIf = "SearchResults">
-            <ul *ngFor = "let Recipe of SearchResults"> 
-                <div class = "Recipe" style = "
-                font-size: 2rem;
-                font-family: sans-serif;
-                line-height: 150%;">
+            <ul *ngFor = "let Recipe of SearchResults | async; index as i"> 
+                <div class = "Recipe" >
+                    <img src = {{Recipe.thumbnail}}>
                     Here are some recipes {{ Recipe.title }}
                 </div>
             </ul> 
@@ -71,100 +68,3 @@
         <div *ngIf = "!SearchResults">Enter Ingredients to view recipes</div>
     </div>
 </section>
-=======
-    <ul
-      *ngIf="!currentUser"
-      class="nav navbar-nav navbar-right"
-      style="display: inline"
-    >
-      <li>
-        <button class="btn-primary" (click)="goToRegister()">
-          <span class="glyphicon glyphicon-user"></span>Sign Up
-        </button>
-      </li>
-      <li>
-        <button class="btn-primary" (click)="goToLogin()">
-          <span class="glyphicon glyphicon-log-in"></span> Login
-        </button>
-      </li>
-    </ul>
-    <ul
-      *ngIf="currentUser"
-      class="nav navbar-nav navbar-right"
-      style="display: inline"
-    >
-      <li><a href="#">Past Recipes</a></li>
-      <li><a href="#">Favorites</a></li>
-      <li><a href="#">Personal Info</a></li>
-      <li>
-        <a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<section class="container">
-  <div class="left-side">
-    <article>
-      <div class="container" id="leftview">
-        <div class="container" id="ingredientsinterface">
-          <label for="ingredient" style="color: black"
-            >Add ingredient to your list of ingredients:</label
-          >
-          <br />
-          <input
-            id="ingredient"
-            [(ngModel)]="ingredient"
-            type="text"
-            name="ingredient"
-          />
-          <button class="btn btn-light" type="submit" (click)="Add()">
-            add
-          </button>
-          <ul *ngFor="let String of ingredients">
-            <li ng-repeat="ingredient">{{ String }}</li>
-          </ul>
-        </div>
-        <br />
-        <button id="searchbutton" class="btn btn-primary">Search</button>
-        <br />
-        <div class="container" id="pastRecipes">
-          <h4>Past Recipes</h4>
-          <ul *ngIf="currentUser">
-            <!--*ngFor = "let recipe of savedRecipes">-->
-            <div class="Recipe">here's where a recipe goes</div>
-          </ul>
-          <button *ngIf="currentUser" class="btn btn-link">view all</button>
-          <div *ngIf="!currentUser">
-            You must be signed in to view past recipes
-          </div>
-        </div>
-        <div class="container" id="favRecipes">
-          <h4>Favorites</h4>
-          <ul *ngIf="currentUser">
-            <!--*ngFor = "let recipe of FavoriteRecipes">-->
-            <div class="Recipe">here's where a recipe goes</div>
-          </ul>
-          <button *ngIf="currentUser" class="btn btn-link">view all</button>
-          <div *ngIf="!currentUser">
-            You must be signed in to view past recipes
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-  <div class="right-side">
-    <article>
-      <ul>
-        <!--*ngFor = "let recipe of Reciperesults"> -->
-        <div
-          class="Recipe"
-          style="font-size: 6rem; font-family: sans-serif; line-height: 150%"
-        >
-          Enter ingredients to see recipes
-        </div>
-      </ul>
-    </article>
-  </div>
-</section>
->>>>>>> ca96353b73624291ba6248a81473222f342c8fb2

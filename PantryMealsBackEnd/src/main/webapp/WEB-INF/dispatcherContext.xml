@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
     http://www.springframework.org/schema/beans 
     http://www.springframework.org/schema/beans/spring-beans.xsd 
     http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/mvc 
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-    
-    <mvc:default-servlet-handler/>
-    
-    <mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
-    
-    <bean name="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    	<property name="prefix" value="/static/" />
-    	<property name="suffix" value=".html" />
-    </bean>
-    
+
+	<mvc:default-servlet-handler />
+	
+	<mvc:cors>
+		<mvc:mapping path="/**" allowed-origins="*"
+			allowed-headers="Content-Type, content-type, x-requested-with, Access-Control-Allow-Origin, Access-Control-Allow-Headers, x-auth-token, x-app-id, Origin,Accept, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers"
+			allowed-methods="*"
+			exposed-headers="x-auth-token, Access-Control-Allow-Origin" />
+	</mvc:cors>
+
+	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
+
+	<bean name="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/static/" />
+		<property name="suffix" value=".html" />
+	</bean>
+
 </beans>

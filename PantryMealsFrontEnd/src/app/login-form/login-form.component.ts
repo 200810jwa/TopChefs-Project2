@@ -3,7 +3,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { HttpModule } from '@angular/http';
 
 @Component({
   selector: 'app-login-form',
