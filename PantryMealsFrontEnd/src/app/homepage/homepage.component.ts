@@ -6,20 +6,26 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  styleUrls: ['./homepage.component.css'],
 })
 export class HomepageComponent implements OnInit {
   public currentUser: User;
   public ingredients: String[] = [];
   public ingredient: String;
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     // this.currentUser = new User;
-    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
   }
   Add(): void {
     this.ingredients.push(this.ingredient);
     this.ingredient = null;
+  }
+  goToRegister(): void {
+    this.router.navigate(['register-form']);
+  }
+  goToLogin(): void {
+    this.router.navigate(['login']);
   }
 }

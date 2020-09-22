@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +17,7 @@ export class LoginFormComponent implements OnInit {
   });
   //baseURL: string = 'http://localhost:4200/';
 
-  constructor(private router: Router) {} //private http: HttpClient
+  constructor(private router: Router, private http: HttpClient) {} //private http: HttpClient
 
   ngOnInit(): void {}
 
@@ -26,15 +27,19 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit() {
-    //: Observable<any>
+    // const promise = new Promise(function(resolve,reject)){
+
+    // }
     // const headers = { 'content-type': 'application/json' };
+    //let body = JSON.parse(this.loginForm.value);
+    //let baseURL = 'http.localhost:4200/';
     // const body = JSON.stringify(this.loginForm.value);
     //console.log(body);
-    // return this.http.post(this.baseURL + 'loginTemplate', body, {
-    //  headers: headers,
+    //return this.http.post(baseURL + 'login', body, {
+    //Returns user class?
+    //response = sessionStorage.setItem('currentUser');
     // });
-    this.router.navigate(['profile']);
-    console.warn(this.loginForm.value);
-    //Don't know if this works?
+
+    this.router.navigate(['home']);
   }
 }

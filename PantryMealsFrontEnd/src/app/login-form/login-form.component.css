@@ -10,3 +10,8 @@ input {
 }
 button {
 }
+
+form {
+  border: medium solid black;
+  margin: 10px;
+}
