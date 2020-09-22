@@ -49,7 +49,7 @@ public class RecipeServiceTests {
 		
 		recipe1 = new Recipe(1, "OnionVegetable", "hreflink"," Onions, Pepper");
 		sameIdRecipe = new Recipe(1, "OnionVegetable", "hreflink"," Onions, Pepper");
-		recipe2 = new Recipe(0, "OnionVegetable", "hreflink"," Onions, Pepper")
+		recipe2 = new Recipe(0, "OnionVegetable", "hreflink"," Onions, Pepper");
 		
 		when(RMockedDao.findbyId(0)).thenReturn(null);
 		when(RMockedDao.findbyId(1)).thenReturn(recipe1);
