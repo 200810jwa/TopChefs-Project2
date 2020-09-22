@@ -32,6 +32,32 @@ public class Recipe implements Serializable {
 	private String thumbnail;
 	private int[] rating;
 	
+	
+	public Recipe() {
+		super();
+	}
+
+
+	public Recipe(int id, String title, String href, String ingredients, String thumbnail, int[] rating) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.href = href;
+		this.ingredients = ingredients;
+		this.thumbnail = thumbnail;
+		this.rating = rating;
+	}
+	
+	
+	public Recipe(int id, String title, String href, String ingredients) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.href = href;
+		this.ingredients = ingredients;
+	}
+
+
 	public int getId() {
 		return id;
 	}

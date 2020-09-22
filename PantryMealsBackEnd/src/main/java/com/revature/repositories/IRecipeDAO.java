@@ -6,7 +6,7 @@ import com.revature.models.Recipe;
 
 public interface IRecipeDAO {
 	
-	public Recipe findbyId();
+	public Recipe findbyId(int id);
 	
 	public boolean save(Recipe r);
 	

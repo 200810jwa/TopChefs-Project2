@@ -1,6 +1,7 @@
 package com.revature.unitTests;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,10 +11,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.revature.models.Recipe;
 import com.revature.models.User;
 import com.revature.repositories.IRecipeDAO;
 import com.revature.repositories.IUserDAO;
-import com.revature.services.UserService;
+import com.revature.services.RecipeService;
 
 public class RecipeServiceTests {
 	
@@ -23,7 +25,10 @@ public class RecipeServiceTests {
 	private IUserDAO AMockedDao;
 	@Mock
 	private IRecipeDAO RMockedDao;
-	private UserService testInstance = new UserService(AMockedDao);
+	private Recipe recipe1;
+	private Recipe recipe2;
+	private Recipe sameIdRecipe;
+	private RecipeService testInstance = new RecipeService(RMockedDao);
 	private User Andrew;
 	private User Zach;
 	private User Leron;
@@ -40,7 +45,17 @@ public class RecipeServiceTests {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		testInstance = new UserService(AMockedDao);
+		testInstance = new RecipeService(RMockedDao);
+		
+		recipe1 = new Recipe(1, "OnionVegetable", "hreflink"," Onions, Pepper");
+		sameIdRecipe = new Recipe(1, "OnionVegetable", "hreflink"," Onions, Pepper");
+		recipe2 = new Recipe(0, "OnionVegetable", "hreflink"," Onions, Pepper");
+		
+		when(RMockedDao.findbyId(0)).thenReturn(recipe2);
+		when(RMockedDao.findbyId(1)).thenReturn(recipe1);
+		when(RMockedDao.save(recipe1)).thenReturn(true);
+		when(RMockedDao.delete(recipe1)).thenReturn(true);
+		when(RMockedDao.update(recipe1)).thenReturn(true);
 	}
 	
 	@After
@@ -49,7 +64,29 @@ public class RecipeServiceTests {
 	}
 	
 	@Test
-	public void testRecipeSuccesful() {
-		assertEquals(1,1);
+	public void testAddRecipeSuccesful() {
+		assertEquals(testInstance.save(recipe1), true);
 	}
+	
+	@Test
+	public void testFindByIdFailure() {
+		assertEquals(testInstance.findById(0), recipe2);
+	}
+	
+	@Test
+	public void testFindByIdSuccessful() {
+		assertEquals(testInstance.findById(1), recipe1);
+	}
+	
+	@Test
+	public void testDeleteRecipeSuccessful() {
+		assertEquals(testInstance.delete(recipe1), true);
+	}
+	
+	@Test
+	public void testUpdateRecipeSuccessful() {
+		assertEquals(testInstance.update(recipe1), true);
+	}
+	
+	
 }

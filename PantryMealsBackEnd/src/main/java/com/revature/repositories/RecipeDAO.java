@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.Recipe;
@@ -60,9 +61,14 @@ public class RecipeDAO implements IRecipeDAO {
 	}
 
 	@Override
-	public Recipe findbyId() {
-		// TODO Auto-generated method stub
-		return null;
+	public Recipe findbyId(int id) {
+		Session sess = HibernateUtil.getSession();
+		Transaction tx = sess.beginTransaction();
+		
+		Query q = sess.createQuery("From Recipe WHERE id = ?");
+		Recipe recipe = (Recipe)q.uniqueResult();
+		tx.commit();
+		return recipe;
 	}
 
 }
