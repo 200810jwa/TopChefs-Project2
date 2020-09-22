@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,12 +25,14 @@ import com.revature.templates.LoginTemplate;
 import com.revature.templates.RegisterTemplate;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 //@RequestMapping("/login")
 public class UserController {
 
 	@Autowired
 	private UserService service;
 	
+//	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(path = "login", produces = "application/json")
 	@ResponseBody
 	public ResponseEntity<User> loginController(@RequestBody LoginTemplate lf) {
@@ -42,6 +45,7 @@ public class UserController {
 				
 	}
 	
+//	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping(path = "newUser")
 	public ResponseEntity<RegisterTemplate> newUser(@RequestBody RegisterTemplate u) {
 		PasswordHashingService pw = new PasswordHashingService();
@@ -55,6 +59,7 @@ public class UserController {
 				
 	}
 	
+//	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping(path = "deleteUser")
 	public ResponseEntity delUser(@RequestBody User u) {
 		System.out.println("deleting...");
@@ -66,6 +71,7 @@ public class UserController {
 				
 	}
 
+//	@CrossOrigin(origins = "http://localhost:4200")
 	@PatchMapping(path = "updateUser")
 	public ResponseEntity updateUser(@RequestBody User u) {
 		if(service.update(u) == true) {
@@ -76,6 +82,7 @@ public class UserController {
 				
 	}
 	
+//	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(path = "users")
 	public ResponseEntity<Set<User>> users(){
 		Set<User> list = service.findAll();

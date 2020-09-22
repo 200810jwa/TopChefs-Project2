@@ -49,9 +49,9 @@ export class HomepageComponent implements OnInit {
   }
 
   Search(): void {
-    console.log(this.ingredients.join(', '));
+    console.log(this.ingredients);
     console.log(this.looseFilter);
-    let list = this.ingredients.join(', ');
+
     try {
       let results = this.http.post<Recipe[]>(
         'http://localhost:8085/Project2/recipes',
