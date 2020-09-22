@@ -51,17 +51,14 @@ export class HomepageComponent implements OnInit {
   Search(): void {
     console.log(this.ingredients);
     console.log(this.looseFilter);
-
+    
     try {
       let results = this.http.post<Recipe[]>(
         'http://localhost:8085/Project2/recipes',
         {
           list: this.ingredients,
-          filter: true,
+          looseFilter: this.looseFilter,
         },
-        {
-          withCredentials: true,
-        }
       );
       console.log(results);
       this.SearchResults = results;

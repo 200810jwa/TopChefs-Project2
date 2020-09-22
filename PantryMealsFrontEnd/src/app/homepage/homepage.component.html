@@ -34,30 +34,6 @@
     </ul>
   </div>
 </nav>
-
-<section class="container">
-  <div class="left-side">
-    <article>
-      <div class="container" id="leftview">
-        <div class="container" id="ingredientsinterface">
-          <label for="ingredient" style="color: black"
-            >Add ingredient to your list of ingredients:</label
-          >
-          <br />
-          <select
-            [(ngModel)]="task"
-            style="display: inline-block"
-            class="select"
-          >
-            <option
-              *ngFor="let key of taskTypeOptions"
-              [value]="key"
-              [label]="listOfIngredients[key]"
-            >
-              >
-            </option>
-          </select>
-
   <section class = "container">
     <div class = "left-side">
         <article>
@@ -72,8 +48,8 @@
                     </ul>
                 </div>
                 <div class="form-check">
-                    <label class="form-check-label" for="looseFilter">See results with 1 or more Ingredients than on your list:  </label>
-                    <input type="checkbox" class="form-check-input" [(ngModel)] = "looseFilter" name = "looseFilter" id="looseFilter">
+                    <label class="form-check-label" for="looseFilter" >See results with 1 or more Ingredients than on your list:  </label>
+                    <input type="checkbox" class="form-check-input" [(ngModel)] = "looseFilter" name = "looseFilter" id="looseFilter" Checked >
                   </div>
                 <button id = "searchbutton" class = "btn btn-primary" (click) = "Search()">Search</button>
                 <br/>
@@ -82,7 +58,7 @@
                     <ul *ngIf = "currentUser" > <!--*ngFor = "let recipe of savedRecipes">-->
                         <div class = "Recipe">
                             <img src = "http://img.recipepuppy.com/601028.jpg" class = "thumbnail">
-                            <div class = "Recipe-Title">here's where a recipe goes</div>
+                            <div class = "Recipe-Title">Fake Recipe Title</div>
                             <div class="Rating">
                                 <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
                                 </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
@@ -98,13 +74,12 @@
                     <ul *ngIf = "currentUser" > <!--*ngFor = "let recipe of FavoriteRecipes">-->
                         <div class = "Recipe">
                             <img src = "http://img.recipepuppy.com/601028.jpg" class = "thumbnail">
-                            <div class = "Recipe-Title">here's where a recipe goes</div>
+                            <div class = "Recipe-Title">These are fake recipes</div>
                             <div class="Rating">
                                 <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
                                 </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
                                 </span><span class="glyphicon glyphicon-star-empty"></span>
                             </div>
-                            
                         </div>
                     </ul> 
                     <button *ngIf = "currentUser" class="btn btn-link">view all</button>

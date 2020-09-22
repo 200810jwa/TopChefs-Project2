@@ -13,6 +13,6 @@ export class AppComponent {
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/home');
   }
 }
