@@ -1,0 +1,41 @@
+
+#navbar{
+
+}
+article {
+    /* position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0px; */
+    
+}
+
+.container {
+    display: table;
+    width: 100%;
+}
+  
+.left-side {
+    top: 35%;
+    position: absolute;
+    left: 50px;
+    width: 35%;
+}
+
+.right-side {
+    top: 35%;
+    position: absolute;
+    right: 50px;
+    width: 60%;
+    text-align: center;
+}
+
+#leftview{
+    border:1px solid black;
+    padding: 5px;
+}
+#searchbutton{
+    float: right;
+}

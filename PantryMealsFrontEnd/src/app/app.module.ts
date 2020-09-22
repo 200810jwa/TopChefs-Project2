@@ -13,24 +13,29 @@ import { ProfileComponent } from './profile/profile.component';
 import { NewIngredientComponent } from './new-ingredient/new-ingredient.component';
 import { ModifyUserComponent } from './modify-user/modify-user.component';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: 'login-form', component: LoginFormComponent },
-      { path: 'register-form', component: RegisterFormComponent },
-      { path: 'recipe-table', component: RecipeTableComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'new-ingredient', component: NewIngredientComponent },
-      { path: 'Modify-User', component: ModifyUserComponent },
-      { path: '404', component: NotFoundComponentComponent },
-    ]),
+    AppRoutingModule,
+    // RouterModule.forRoot([
+    //   { path: 'login-form', component: LoginFormComponent },
+    //   { path: 'register-form', component: RegisterFormComponent },
+    //   { path: 'recipe-table', component: RecipeTableComponent },
+    //   { path: 'profile', component: ProfileComponent },
+    //   { path: 'new-ingredient', component: NewIngredientComponent },
+    //   { path: 'Modify-User', component: ModifyUserComponent },
+    //   { path: '404', component: NotFoundComponentComponent },
+    // ]),
   ],
   declarations: [
     AppComponent,
+    HomepageComponent,
     LoginFormComponent,
     RegisterFormComponent,
     RecipeTableComponent,
@@ -38,6 +43,7 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
     NewIngredientComponent,
     ModifyUserComponent,
     NotFoundComponentComponent,
+    HomepageComponent,
   ],
   bootstrap: [AppComponent],
   exports: [CommonModule, FormsModule, ReactiveFormsModule],
