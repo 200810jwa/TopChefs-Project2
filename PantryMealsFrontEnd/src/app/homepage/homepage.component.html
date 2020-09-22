@@ -4,74 +4,6 @@
       <!-- <img style = "height : 50px; width : 60px " src = "https://assets.bonappetit.com/photos/5d7296eec4af4d0008ad1263/master/pass/Basically-Gojuchang-Chicken-Recipe-Wide.jpg"> -->
       <a class="navbar-brand" href="#">PantryMeals</a>
     </div>
-<<<<<<< HEAD
-      <ul *ngIf = "!currentUser" class="nav navbar-nav navbar-right" style = "display : inline;">
-        <li><a (click) = "Register()"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-        <li><a (click) = "Login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-      <ul *ngIf = "currentUser" class="nav navbar-nav navbar-right" style = "display : inline;">
-        <li><a href="#">Past Recipes</a></li>
-        <li><a href="#">Favorites</a></li>
-        <li><a href="#">Personal Info</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-      </ul>
-    </div>
-  </nav>
-
-
-  <section class = "container">
-    <div class = "left-side">
-        <article>
-            <div class = "container" id = "leftview">
-                <div class = "container" id = "ingredientsinterface">
-                    <label  for = "ingredient" style = "color:black;">Add ingredient to your list of ingredients:</label>
-                    <br/>
-                    <input id = "ingredient" [(ngModel)] = "ingredient" type="text" name="ingredient">
-                    <button class="btn btn-light" type="submit" (click) = "Add()">add</button>
-                    <ul *ngFor = "let String of ingredients; index as i;">
-                        <li ng-repeat="ingredient">{{ String }} <button class="btn btn-danger" (click) = "Remove(i)">X</button></li> 
-                    </ul>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label" [(ngModel)] = "looseFilter" for="looseFilter">See results with 1 or more Ingredients than on your list </label>
-                    <input type="checkbox" class="form-check-input" name = "looseFilter" id="looseFilter">
-                  </div>
-                <button id = "searchbutton" class = "btn btn-primary" (click) = "Search()">Search</button>
-                <br/>
-                <div class = "container" id = "pastRecipes">
-                    <h4>Past Recipes</h4>
-                    <ul *ngIf = "currentUser" > <!--*ngFor = "let recipe of savedRecipes">-->
-                        <div class = "Recipe">here's where a recipe goes</div>
-                    </ul> 
-                    <button *ngIf = "currentUser" class="btn btn-link">view all</button>
-                    <div *ngIf = "!currentUser"> You must be signed in to view past recipes</div>
-                </div>
-                <div class = "container" id = "favRecipes">
-                    <h4>Favorites</h4>
-                    <ul *ngIf = "currentUser" > <!--*ngFor = "let recipe of FavoriteRecipes">-->
-                        <div class = "Recipe">here's where a recipe goes</div>
-                    </ul> 
-                    <button *ngIf = "currentUser" class="btn btn-link">view all</button>
-                    <div *ngIf = "!currentUser"> You must be signed in to view past recipes</div>
-                </div>
-            </div>
-        </article>
-    </div>
-    <div class = "right-side">
-        <article *ngIf = "SearchResults">
-            <ul *ngFor = "let Recipe of SearchResults"> 
-                <div class = "Recipe" style = "
-                font-size: 2rem;
-                font-family: sans-serif;
-                line-height: 150%;">
-                    Here are some recipes {{ Recipe.title }}
-                </div>
-            </ul> 
-        </article>
-        <div *ngIf = "!SearchResults">Enter Ingredients to view recipes</div>
-    </div>
-</section>
-=======
     <ul
       *ngIf="!currentUser"
       class="nav navbar-nav navbar-right"
@@ -112,6 +44,20 @@
             >Add ingredient to your list of ingredients:</label
           >
           <br />
+          <select
+            [(ngModel)]="task"
+            style="display: inline-block"
+            class="select"
+          >
+            <option
+              *ngFor="let key of taskTypeOptions"
+              [value]="key"
+              [label]="listOfIngredients[key]"
+            >
+              >
+            </option>
+          </select>
+
           <input
             id="ingredient"
             [(ngModel)]="ingredient"
@@ -167,4 +113,3 @@
     </article>
   </div>
 </section>
->>>>>>> ca96353b73624291ba6248a81473222f342c8fb2

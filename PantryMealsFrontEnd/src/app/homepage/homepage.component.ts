@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Recipe } from 'src/app/models/recipe';
 import { Observable } from 'rxjs';
+import { Ingredient } from 'src/app/new-ingredient/ingredient';
+import { ListOfIngredients } from 'src/app/new-ingredient/list-of-ingredients.enum';
 
 @Component({
   selector: 'app-homepage',
@@ -19,27 +21,31 @@ export class HomepageComponent implements OnInit {
   public SavedRecipes: Observable<Recipe[]>;
   public SearchResults: Observable<Recipe[]>;
 
+  public task: Ingredient;
+  private listOfIngredients = ListOfIngredients;
+  public taskTypeOptions = [];
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.currentUser = new User;
+    this.currentUser = new User();
     // this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    this.taskTypeOptions = Object.keys(this.listOfIngredients);
   }
   Add(): void {
     this.ingredients.push(this.ingredient);
     this.ingredient = null;
   }
   Login(): void {
-    this.router.navigateByUrl("/login-form");
+    this.router.navigateByUrl('/login-form');
   }
 
   Register(): void {
-    this.router.navigateByUrl("/register-form");
+    this.router.navigateByUrl('/register-form');
   }
 
   Remove(i: number): void {
-    this.ingredients.splice(i,1);
+    this.ingredients.splice(i, 1);
   }
 
   Search(): void {
@@ -47,17 +53,21 @@ export class HomepageComponent implements OnInit {
     console.log(this.looseFilter);
     let list = this.ingredients.join(', ');
     try {
-      let results = this.http.post<Recipe[]>('http://localhost:8085/Project2/recipes', {
-        list: list, filter: true
-        }, {
-        withCredentials: true
-        })
-        console.log(results);
-        this.SearchResults = results;
-    }catch(error) {
+      let results = this.http.post<Recipe[]>(
+        'http://localhost:8085/Project2/recipes',
+        {
+          list: list,
+          filter: true,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(results);
+      this.SearchResults = results;
+    } catch (error) {
       console.log(error);
-      alert("Failed to submit");
+      alert('Failed to submit');
     }
   }
-
 }
