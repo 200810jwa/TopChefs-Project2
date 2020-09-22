@@ -38,6 +38,20 @@ public class RecipeService {
 
 	@Autowired
 	private IUserDAO udao;
+	
+
+	public RecipeService() {
+		super();
+	}
+	
+	
+
+	public RecipeService(IRecipeDAO dao) {
+		super();
+		this.dao = dao;
+	}
+
+
 
 	private final CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -49,6 +63,9 @@ public class RecipeService {
 		return dao.save(r);
 	}
 
+	public Recipe findById(int id) {
+		return dao.findbyId(id);
+	}
 	public boolean update(Recipe r) {
 		return dao.update(r);
 	}
