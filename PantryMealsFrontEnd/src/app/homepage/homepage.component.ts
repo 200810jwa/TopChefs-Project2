@@ -56,7 +56,7 @@ export class HomepageComponent implements OnInit {
       let results = this.http.post<Recipe[]>(
         'http://localhost:8085/Project2/recipes',
         {
-          list: list,
+          list: this.ingredients,
           filter: true,
         },
         {
@@ -70,10 +70,7 @@ export class HomepageComponent implements OnInit {
       alert('Failed to submit');
     }
   }
-<<<<<<< HEAD
   gotToRecipe(href: string): void{
     window.open(href, "_blank");
   }
-=======
->>>>>>> 8da9342c97960e5a48ff30448488192e2160c7c1
 }
