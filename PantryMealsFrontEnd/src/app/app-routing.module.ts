@@ -11,7 +11,7 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
 import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
-  { path: 'login-form', component: LoginFormComponent },
+  { path: 'login', component: LoginFormComponent },
   { path: 'home', component: HomepageComponent },
   { path: 'register-form', component: RegisterFormComponent },
   { path: 'recipe-table', component: RecipeTableComponent },

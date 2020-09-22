@@ -20,7 +20,7 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.router.navigate(['login-form']);
+    this.router.navigate(['login']);
     console.warn(this.registerForm.value);
   }
 }

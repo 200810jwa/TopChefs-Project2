@@ -1,4 +1,4 @@
-<h1>Welcome to Pantry Meals</h1>
+<h1 class="jumbotron">Welcome to Pantry Meals</h1>
 <body>
   <div margin="50px">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -19,14 +19,14 @@
           formControlName="Password" /></label
       ><br />
       <button class="btn btn-primary btn-lg" type="submit" (click)="Login()">Submit</button>
+      <button
+        class="btn btn-secondary btn-lg"
+        type="button"
+        (click)="goToRegister()"
+      >
+        Register
+      </button>
     </form>
-    <button
-      class="btn btn-secondary btn-lg"
-      type="button"
-      (click)="goToRegister()"
-    >
-      Register
-    </button>
   </div>
   <body></body>
 </body>
