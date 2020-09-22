@@ -3,6 +3,6 @@ export class Recipe {
     public title: String;
     public thumbnail: String;
     public ingredients: String;
-    public href: String;
+    public href: string;
     public rating: Number[];
 }

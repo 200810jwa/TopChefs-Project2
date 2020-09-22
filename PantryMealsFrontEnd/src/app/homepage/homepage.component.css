@@ -1,17 +1,23 @@
-
-#navbar{
-
+.Recipe {
+    height: 110px;
+    border:1px solid black;
+    align-self: center;
+    padding: 5px;
 }
-article {
-    /* position: absolute; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    padding: 0px; */
-    
+.thumbnail {
+    float: left;
+    align-self: center;
 }
-
+.Recipe-Title {
+    z-index: 1;
+    float: right;
+    align-self: flex-start;
+}
+.Rating {
+    z-index: 2;
+    float: right;
+    align-self: flex-end;
+}
 .container {
     display: table;
     width: 100%;

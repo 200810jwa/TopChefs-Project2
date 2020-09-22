@@ -40,7 +40,15 @@
                 <div class = "container" id = "pastRecipes">
                     <h3>Past Recipes</h3>
                     <ul *ngIf = "currentUser" > <!--*ngFor = "let recipe of savedRecipes">-->
-                        <div class = "Recipe">here's where a recipe goes</div>
+                        <div class = "Recipe">
+                            <img src = "http://img.recipepuppy.com/601028.jpg" class = "thumbnail">
+                            <div class = "Recipe-Title">here's where a recipe goes</div>
+                            <div class="Rating">
+                                <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                                </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                                </span><span class="glyphicon glyphicon-star-empty"></span>
+                            </div>
+                        </div>
                     </ul> 
                     <button *ngIf = "currentUser" class="btn btn-link">view all</button>
                     <div *ngIf = "!currentUser"> You must be signed in to view past recipes</div>
@@ -48,7 +56,16 @@
                 <div class = "container" id = "favRecipes">
                     <h3>Favorites</h3>
                     <ul *ngIf = "currentUser" > <!--*ngFor = "let recipe of FavoriteRecipes">-->
-                        <div class = "Recipe">here's where a recipe goes</div>
+                        <div class = "Recipe">
+                            <img src = "http://img.recipepuppy.com/601028.jpg" class = "thumbnail">
+                            <div class = "Recipe-Title">here's where a recipe goes</div>
+                            <div class="Rating">
+                                <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                                </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                                </span><span class="glyphicon glyphicon-star-empty"></span>
+                            </div>
+                            
+                        </div>
                     </ul> 
                     <button *ngIf = "currentUser" class="btn btn-link">view all</button>
                     <div *ngIf = "!currentUser"> You must be signed in to view past recipes</div>
@@ -59,12 +76,21 @@
     <div class = "right-side">
         <article *ngIf = "SearchResults">
             <ul *ngFor = "let Recipe of SearchResults | async; index as i"> 
-                <div class = "Recipe" >
-                    <img src = {{Recipe.thumbnail}}>
-                    Here are some recipes {{ Recipe.title }}
+                <div class = "Recipe" (click) = "goToRecipe(Recipe.href)" id = "Recipe" style="cursor: pointer;">
+                    <script>
+                        document.getElementById("Recipe").addEventListener("click", goToRecipe(Recipe.href));
+                    </script>
+                    <img src = {{Recipe.thumbnail}} class = "thumbnail">
+                    <div class = "Recipe-Title">{{ Recipe.title }}</div>
+                        <div class="rating">
+                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                            </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                            </span><span class="glyphicon glyphicon-star-empty"></span>
+                        </div>
                 </div>
             </ul> 
         </article>
         <div *ngIf = "!SearchResults">Enter Ingredients to view recipes</div>
     </div>
 </section>
+

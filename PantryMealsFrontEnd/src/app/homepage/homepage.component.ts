@@ -59,5 +59,7 @@ export class HomepageComponent implements OnInit {
       alert("Failed to submit");
     }
   }
-
+  gotToRecipe(href: string): void{
+    window.open(href, "_blank");
+  }
 }
