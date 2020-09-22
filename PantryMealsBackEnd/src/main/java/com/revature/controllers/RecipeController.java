@@ -20,6 +20,7 @@ import com.revature.models.User;
 import com.revature.services.RecipeService;
 import com.revature.services.UserService;
 import com.revature.templates.LoginTemplate;
+import com.revature.templates.RecipeRequestTemplate;
 import com.revature.templates.RecipeTemp;
 
 
@@ -50,22 +51,11 @@ public class RecipeController {
 		}
 	}
 	
-	@PostMapping(path = "recipes/{strict}", produces = "application/json")
+	@PostMapping(path = "recipes", produces = "application/json")
 	@ResponseBody
-	public ResponseEntity<Set<Recipe>> findRecipes(@RequestBody String[] list, @PathVariable("strict") String filter) {
+	public ResponseEntity<Set<Recipe>> findRecipes(@RequestBody RecipeRequestTemplate rt) {
 		Set<Recipe> results;
-		switch(filter) {
-		case "true" :
-			System.out.println("filter called");
-			results = rservice.getRecipes(list,true);
-			break;
-		case "false":
-			System.out.println("filter bypassed");
-			results = rservice.getRecipes(list,false);
-			break;
-		default:
-			return ResponseEntity.badRequest().build();
-		}
+		results = rservice.getRecipes(rt.list,rt.looseFilter);
 		rservice.assignRatings(results);
 		if(results != null) {
 			return ResponseEntity.ok(results);

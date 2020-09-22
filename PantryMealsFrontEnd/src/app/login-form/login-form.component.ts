@@ -16,7 +16,7 @@ export class LoginFormComponent implements OnInit {
   });
   //baseURL: string = 'http://localhost:4200/';
 
-  constructor(private router: Router) {} //private http: HttpClient
+  constructor(private router: Router, private http: HttpClient) {} //private http: HttpClient
 
   ngOnInit(): void {}
 
@@ -24,7 +24,10 @@ export class LoginFormComponent implements OnInit {
     this.router.navigate(['register-form']);
     console.warn('Switch to Register component?');
   }
-
+  Login(): void {
+    sessionStorage.setItem("currentUser", "test");
+    this.router.navigateByUrl("/home");
+  }
   onSubmit() {
     //: Observable<any>
     // const headers = { 'content-type': 'application/json' };

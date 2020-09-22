@@ -96,7 +96,7 @@ public class RecipeService {
 		return list;
 	}
 
-	public Set<Recipe> getRecipes(String[] ingredients, boolean hardStop) {
+	public Set<Recipe> getRecipes(String[] ingredients, boolean looseFilter) {
 
 		HttpPost request = null;
 		ObjectMapper om = new ObjectMapper();
@@ -121,7 +121,7 @@ public class RecipeService {
 		}
 
 		Set<Recipe> results = recipes.getResults();
-		if (hardStop == true) {
+		if (looseFilter == false && results != null && !results.isEmpty()) {
 			return filterExtraIng(results, ingredients);			
 		}
 		return results;
