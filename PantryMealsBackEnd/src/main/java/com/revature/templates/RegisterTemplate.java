@@ -2,8 +2,11 @@ package com.revature.templates;
 
 import java.util.Objects;
 
-public class RegisterTemplate {
+import javax.persistence.Column;
 
+public class RegisterTemplate {
+	
+	@Column (unique = true)
 	private String username;
 	private String password;
 	private String firstname;
