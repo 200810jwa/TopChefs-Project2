@@ -129,16 +129,18 @@ public class RecipeService {
 	
 	public Set<Recipe> filterExtraIng(Set<Recipe> results, String[] ingredients){
 		List<String> ing = Arrays.asList(ingredients);
+		Set<Recipe> a = results;
 		for (Recipe r : results) {
 			String[] rpingredients = r.getIngredients().split(", ");
 			for (String s : rpingredients) {
 				if (ing.contains(s) == false) {
-					r.setHref("delete");
+					a.remove(r);
+					//r.setHref("delete");
+					}
 				}
-				
 			}
-		}
-		results.removeIf(r -> (r.getHref().equals("delete"))); // THIS IS NOT WORKING!!!!!!
-		return results;
+		//results.removeIf(r -> (r.getHref().equals("delete"))); // THIS IS NOT WORKING!!!!!!
+		
+		return a;
 	}
 }
