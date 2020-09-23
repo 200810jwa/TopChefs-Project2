@@ -28,16 +28,17 @@ export class HomepageComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.taskTypeOptions = Object.keys(this.listOfIngredients);
   }
   Add(): void {
-    this.ingredients.push(this.ingredient);
+    // this.ingredients.push(this.ingredient);
+    this.ingredients.push(this.task.toString());
     this.ingredient = null;
   }
-  
+
   Logout(): void {
-    sessionStorage.removeItem("currentUser");
+    sessionStorage.removeItem('currentUser');
     window.location.reload();
   }
   Remove(i: number): void {
@@ -47,14 +48,14 @@ export class HomepageComponent implements OnInit {
   Search(): void {
     console.log(this.ingredients);
     console.log(this.looseFilter);
-    
+
     try {
       let results = this.http.post<Recipe[]>(
         'http://localhost:8085/Project2/recipes',
         {
           list: this.ingredients,
           looseFilter: this.looseFilter,
-        },
+        }
       );
       console.log(results);
       this.SearchResults = results;
@@ -63,7 +64,7 @@ export class HomepageComponent implements OnInit {
       alert('Failed to submit');
     }
   }
-  gotToRecipe(href: string): void{
-    window.open(href, "_blank");
+  gotToRecipe(href: string): void {
+    window.open(href, '_blank');
   }
 }

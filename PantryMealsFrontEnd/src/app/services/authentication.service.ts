@@ -7,12 +7,13 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+  private baseUrl: String = 'http://localhost:8080/';
   private currentUser: User;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   public async loginService(username: String, password: String) {
-    //Build out promise here?
+    return this.http.get<User>(this.baseUrl + '/allRecipes');
   }
 
   public async logoutService() {}
