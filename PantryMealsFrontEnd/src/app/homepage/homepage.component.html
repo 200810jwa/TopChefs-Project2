@@ -1,7 +1,6 @@
 <nav class="navbar navbar-dark bg-dark" id="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
-      <!-- <img style = "height : 50px; width : 60px " src = "https://assets.bonappetit.com/photos/5d7296eec4af4d0008ad1263/master/pass/Basically-Gojuchang-Chicken-Recipe-Wide.jpg"> -->
       <a class="navbar-brand" href="#">PantryMeals</a>
     </div>
     <ul
@@ -10,26 +9,21 @@
       style="display: inline"
     >
       <li>
-        <button class="btn-primary" (click)="goToRegister()">
-          <span class="glyphicon glyphicon-user"></span>Sign Up
-        </button>
+        <a routerLink = "/register-form"><span class="glyphicon glyphicon-user"></span>Sign Up</a>
       </li>
       <li>
-        <button class="btn-primary" (click)="goToLogin()">
-          <span class="glyphicon glyphicon-log-in"></span> Login
-        </button>
+        <a routerLink = "/login" ><span class="glyphicon glyphicon-log-in"></span> Login</a>
       </li>
     </ul>
-    <ul
-      *ngIf="currentUser"
+    <ul *ngIf="currentUser"
       class="nav navbar-nav navbar-right"
       style="display: inline"
     >
-      <li><a href="#">Past Recipes</a></li>
-      <li><a href="#">Favorites</a></li>
-      <li><a href="#">Personal Info</a></li>
+      <li><a routerLink="#">Past Recipes</a></li>
+      <li><a routerLink="#">Favorites</a></li>
+      <li><a routerLink="#" class="glyphicon glyphicon-user">Personal Info</a></li>
       <li>
-        <a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+        <a routerLink="/home" (click)="Logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
       </li>
     </ul>
   </div>
@@ -83,7 +77,7 @@
                         </div>
                     </ul> 
                     <button *ngIf = "currentUser" class="btn btn-link">view all</button>
-                    <div *ngIf = "!currentUser"> You must be signed in to view past recipes</div>
+                    <div *ngIf = "!currentUser"> You must be signed in to view favorite recipes</div>
                 </div>
             </div>
         </article>

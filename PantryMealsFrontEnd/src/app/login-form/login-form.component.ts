@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-login-form',
@@ -25,7 +26,8 @@ export class LoginFormComponent implements OnInit {
     console.warn('Switch to Register component?');
   }
   Login(): void {
-    sessionStorage.setItem("currentUser", "test");
+    let testUser = new User();
+    sessionStorage.setItem("currentUser", JSON.stringify(testUser));
     this.router.navigateByUrl("/home");
   }
   onSubmit() {

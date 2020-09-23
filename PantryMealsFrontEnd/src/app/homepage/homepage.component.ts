@@ -28,22 +28,18 @@ export class HomepageComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.currentUser = new User();
-    // this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
     this.taskTypeOptions = Object.keys(this.listOfIngredients);
   }
   Add(): void {
     this.ingredients.push(this.ingredient);
     this.ingredient = null;
   }
-  Login(): void {
-    this.router.navigateByUrl('/login-form');
+  
+  Logout(): void {
+    sessionStorage.removeItem("currentUser");
+    window.location.reload();
   }
-
-  Register(): void {
-    this.router.navigateByUrl('/register-form');
-  }
-
   Remove(i: number): void {
     this.ingredients.splice(i, 1);
   }
