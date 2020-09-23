@@ -43,11 +43,11 @@ public class User implements Serializable {
 	}
 
 	@ManyToMany
-	@JoinColumn
+	@JoinColumn(nullable = true)
 	private List<Recipe> FavoriteRecipes;
 	
 	@ManyToMany // Need two Lists? One for Previous and One for Favorites?
-	@JoinColumn
+	@JoinColumn(nullable = true)
 	private List<Recipe> previousRecipes;
 	
 	public User() {

@@ -1,0 +1,81 @@
+<nav class="navbar navbar-dark bg-dark" id="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <!-- <img style = "height : 45px; width : 45px " src = "https://i7.pngguru.com/preview/511/1001/144/pm-international-multi-level-marketing-logo-schengen-sales-business.jpg"> -->
+        <a class="navbar-brand"
+          routerLink="/home"
+          id="Title"
+          style="font-size: 25px">
+          PantryMeals</a>
+      </div>
+      <ul *ngIf="!currentUser"
+        class="nav navbar-nav navbar-right"
+        style="display: inline">
+        <li>
+          <a routerLink="/register-form">
+            <span class="glyphicon glyphicon-user"></span>Sign Up</a>
+        </li>
+        <li>
+          <a routerLink="/login">
+            <span class="glyphicon glyphicon-log-in"></span> Login</a>
+        </li>
+      </ul>
+      <ul *ngIf="currentUser"
+        class="nav navbar-nav navbar-right"
+        style="display: inline">
+        <li><a routerLink="#">Past Recipes</a></li>
+        <li><a routerLink="#">Favorites</a></li>
+        <li>
+          <a routerLink="/Modify-User" class="glyphicon glyphicon-user">
+            Personal Info</a>
+        </li>
+        <li>
+          <a routerLink="/home" (click)="Logout()">
+            <span class="glyphicon glyphicon-log-in"></span> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<div class = "Recipe-Feedback">
+    <h3 class = "header">Did you make this Recipe?</h3>
+    <div class="Recipe">
+        <img src="{{ this.recipe.thumbnail }}" class="thumbnail" />
+        <div class = "TitleandRating">
+            <h2 class="Recipe-Title">{{ this.recipe.title }}</h2>
+            <br/>
+            <div class="Rating">
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"> </span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"> </span>
+              <span class="glyphicon glyphicon-star-empty"></span>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class = "YesNoButtons">
+      <button class = "btn btn-success" type = "submit" id="Yes" (click) = "RecipeMade()">Yes</button>
+      <button class = "btn btn-danger" type = "submit" id="No" (click) = "RecipeNotMade()">No</button>
+    </div>
+    <br/>
+    <div *ngIf = "made" class = "Rate">
+        <h4>How would you rate this recipe?</h4>
+        <ngb-rating [(rate)]="currentRating"></ngb-rating>
+    </div>
+
+    <div *ngIf = "made && currentUser" class="addToFavorites">
+        <label class="form-check-label" for="addToFavorites">
+            <h4>Add Recipe to Favorites: </h4> 
+        </label>
+        <input type="checkbox" class="form-check-input" [(ngModel)]="addToFavorites" 
+            name="addToFavorites"
+            id="addToFavorites"/>
+        
+    </div>
+    <a *ngIf = "made && !currentUser" routerLink = "/login"><em>Sign in or create an account to save this recipe</em></a>
+    <div class = "Back">
+        <button class = "btn btn-primary" type = "submit" id = "Back" (click) = "Back()">Done</button>
+    </div>
+    
+</div>

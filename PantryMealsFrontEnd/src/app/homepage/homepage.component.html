@@ -36,6 +36,7 @@
     </ul>
   </div>
 </nav>
+
 <section class="container">
   <div class="left-side">
     <article>
@@ -65,14 +66,16 @@
           <br />Powered by
           <a href="http://www.recipepuppy.com" style="font-size: 10px">
             Recipe Puppy</a>
+          <br/>
           <ul *ngFor="let String of ingredients; index as i">
             <li ng-repeat="ingredient">
               {{ String }}
               <button class="btn btn-danger" (click)="Remove(i)">X</button>
             </li>
           </ul>
+          <p *ngIf= "ingredients.length == 0"><em> Enter the ingredients you have available</em></p>
         </div>
-
+        
         <div class="form-check">
           <label class="form-check-label" for="looseFilter"
             >See results with 1 or more Ingredients than on your list:
@@ -87,29 +90,30 @@
         <button id="searchbutton" class="btn btn-primary" (click)="Search()">
           Search
         </button>
-        <br/>
         <div class="container" id="pastRecipes">
           <h3>Past Recipes</h3>
           <ul *ngIf="currentUser">
-            <!--*ngFor = "let recipe of savedRecipes">-->
-            <div class="Recipe">
-              <img src="http://img.recipepuppy.com/601028.jpg"
-                class="thumbnail"/>
-
-              <div class="Recipe-Title">Fake Recipe Title</div>
-              <div class="Rating">
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
+            <div class="Recipe" *ngFor = "let recipe of savedRecipes">
+            <img src="{{ recipe.href }}" class="thumbnail"/>
+            <div class = "TitleandRating">
+              <h3 class="Recipe-Title">{{ recipe.title }}</h3>
+                <div class="Rating">
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
               </div>
             </div>
           </ul>
-          <button *ngIf="currentUser" class="btn btn-link">view all</button>
+          
+          
           <div *ngIf="!currentUser">
-            You must be signed in to view past recipes
+            <p><em>You must be signed in to view past recipes</em></p>
+            <br/>
           </div>
+        <button *ngIf="currentUser" class="btn btn-link" id = "viewPrevious">view all</button>
         </div>
         <div class="container" id="favRecipes">
           <h3>Favorites</h3>
@@ -118,21 +122,26 @@
             <div class="Recipe">
               <img src="http://img.recipepuppy.com/601028.jpg"
                 class="thumbnail"/>
-              <div class="Recipe-Title">These are fake recipes</div>
-              <div class="Rating">
-                <span class="glyphicon glyphicon-star"></span
-                ><span class="glyphicon glyphicon-star"> </span
-                ><span class="glyphicon glyphicon-star"></span
-                ><span class="glyphicon glyphicon-star"> </span
-                ><span class="glyphicon glyphicon-star-empty"></span>
+              <div class = "TitleandRating">
+                <h3 class="Recipe-Title">These are fake recipes</h3>
+                <div class="Rating">
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"> </span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"> </span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
               </div>
             </div>
           </ul>
-          <button *ngIf="currentUser" class="btn btn-link">view all</button>
+          
           <div *ngIf="!currentUser">
-            You must be signed in to view favorite recipes
+            <p><em>You must be signed in to view favorite recipes</em></p>
+            <br/>
           </div>
+        <button *ngIf="currentUser" class="btn btn-link" id = "viewFavorites">view all</button>
         </div>
+        
       </div>
     </article>
   </div>
@@ -140,22 +149,19 @@
     <article *ngIf="SearchResults">
       <ul *ngFor="let Recipe of SearchResults | async; index as i">
         <div class="Recipe"
-          (click)="goToRecipe(Recipe.href)"
+          (click)="goToRecipe(Recipe)"
           id="Recipe"
           style="cursor: pointer">
-          <script>
-            document
-              .getElementById("Recipe")
-              .addEventListener("click", goToRecipe(Recipe.href));
-          </script>
           <img src="{{ Recipe.thumbnail }}" class="thumbnail" />
-          <div class="Recipe-Title">{{ Recipe.title }}</div>
-          <div class="rating">
-            <span class="glyphicon glyphicon-star"></span
-            ><span class="glyphicon glyphicon-star"> </span
-            ><span class="glyphicon glyphicon-star"></span
-            ><span class="glyphicon glyphicon-star"> </span
-            ><span class="glyphicon glyphicon-star-empty"></span>
+          <div class = "TitleandRating">
+            <h3 class="Recipe-Title">{{ Recipe.title }}</h3>
+            <div class="Rating">
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"> </span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"> </span>
+              <span class="glyphicon glyphicon-star-empty"></span>
+            </div>
           </div>
         </div>
       </ul>

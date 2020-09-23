@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +21,7 @@ import com.revature.services.RecipeService;
 import com.revature.services.UserService;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserActionsController {
 
 	@Autowired
@@ -56,6 +58,7 @@ public class UserActionsController {
 	public ResponseEntity<Recipe> saveToFavorites(@RequestBody Recipe r, @PathVariable("id") int id) {
 		User u = uservice.findById(id);
 		if(rservice.saveToFavorites(r,u) == true) {
+			System.out.println("Saved to Favorites");
 			return ResponseEntity.accepted().build();
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -67,7 +70,9 @@ public class UserActionsController {
 	@ResponseBody
 	public ResponseEntity<Recipe> saveToPrevious(@RequestBody Recipe r, @PathVariable("id") int id) {
 		User u = uservice.findById(id);
+		System.out.println(u.toString());
 		if(rservice.saveToPrevious(r, u) == true) {
+			System.out.println("saved to previous");
 			return ResponseEntity.accepted().build();
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

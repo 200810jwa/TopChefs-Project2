@@ -38,14 +38,17 @@ public class UserService {
 		User u = userDao.findByUsername(lf.getUsername());
 		if(u == null) {
 			log.info("couldn't find username");
+			System.out.println("couldn't find username");
 			return null;
 		}
-		if(pw.passwordHash(u.getPassword()).equals(pw.passwordHash(lf.getPassword()))){
+		if(u.getPassword().equals(pw.passwordHash(lf.getPassword()))){
 		//if(u.getPassword().equals(lf.getPassword())) {
 			log.info("Logged in a user");
+			System.out.println("Logged in a user");
 			return u;
 		}
 		log.info("Loggin attemp failed");
+		System.out.println("password hashing not working");
 		return null;
 	}
 

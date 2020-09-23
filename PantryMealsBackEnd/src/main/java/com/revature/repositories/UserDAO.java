@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.lang.UsesSunHttpServer;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.User;
@@ -31,7 +32,7 @@ public class UserDAO implements IUserDAO {
 		}
 		tx.rollback();
 		
-		return false;
+		return true;
 
 	}
 
@@ -39,8 +40,10 @@ public class UserDAO implements IUserDAO {
 	public boolean update(User u) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
+		sess.saveOrUpdate(u);
+//		tx.commit();
+//		return true;
 		User user = (User) sess.merge(u);
-
 		if (user.equals(u)) {
 			tx.commit();
 			

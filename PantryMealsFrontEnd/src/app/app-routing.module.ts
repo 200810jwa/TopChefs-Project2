@@ -9,10 +9,12 @@ import { NewIngredientComponent } from './new-ingredient/new-ingredient.componen
 import { ModifyUserComponent } from './modify-user/modify-user.component';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { RecipeFeedbackComponent } from './recipe-feedback/recipe-feedback.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'home', component: HomepageComponent },
+  { path: 'recipe-feedback', component: RecipeFeedbackComponent },
   { path: 'register-form', component: RegisterFormComponent },
   { path: 'recipe-table', component: RecipeTableComponent },
   { path: 'profile', component: ProfileComponent },

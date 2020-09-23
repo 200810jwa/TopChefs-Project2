@@ -17,19 +17,25 @@ export class HomepageComponent implements OnInit {
   public ingredients: String[] = [];
   public ingredient: String;
   public looseFilter: Boolean;
-  public FavoriteRecipes: Observable<Recipe[]>;
-  public SavedRecipes: Observable<Recipe[]>;
+  public FavoriteRecipes: Recipe[] = [];
+  public SavedRecipes: Recipe[] = [];
   public SearchResults: Observable<Recipe[]>;
 
   public task: Ingredient;
   private listOfIngredients = ListOfIngredients;
   public taskTypeOptions = [];
 
+
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     this.taskTypeOptions = Object.keys(this.listOfIngredients);
+    // if(this.currentUser != null){
+    //   this.SavedRecipes = this.currentUser.previousRecipes;
+    //   this.FavoriteRecipes = this.currentUser.favoriteRecipes;
+    // }
+    
   }
   Add(): void {
     // this.ingredients.push(this.ingredient);
@@ -64,7 +70,9 @@ export class HomepageComponent implements OnInit {
       alert('Failed to submit');
     }
   }
-  gotToRecipe(href: string): void {
-    window.open(href, '_blank');
+  goToRecipe(recipe: Recipe): void {
+    sessionStorage.setItem("Recipe", JSON.stringify(recipe));
+    window.open(recipe.href, '_blank');
+    this.router.navigateByUrl("/recipe-feedback");
   }
 }

@@ -80,7 +80,9 @@ public class RecipeService {
 	}
 
 	public boolean saveToPrevious(Recipe r, User u) {
+		dao.save(r);
 		u.getPreviousRecipes().add(r);
+		System.out.println(u.toString());
 		return udao.update(u);
 	}
 

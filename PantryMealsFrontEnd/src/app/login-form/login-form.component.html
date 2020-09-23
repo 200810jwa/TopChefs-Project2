@@ -1,23 +1,13 @@
 <h1 class="jumbotron">Welcome to Pantry Meals</h1>
 <body>
   <div margin="50px">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <label>
-        Username :<input
-          id="usernameBox"
-          type="text"
-          placeholder="Enter Username"
-          formControlName="Username"
-        /> </label>
+    <form class = "login-form">
+      <label  for="username">Username:</label>
+      <input [(ngModel)] = "username" name="username" type="username" id="username" placeholder="Enter Username">
       <br/>
-      <label>
-        Password :
-        <input
-          id="passwordBox"
-          type="text"
-          placeholder="Enter Password"
-          formControlName="Password" /></label>
-        <br/>
+      <label  for="password">Password:</label>
+      <input [(ngModel)] = "password" name="password" type ="password" id="password" placeholder="Enter Password">
+      <br/>
       <button class="btn btn-primary btn-lg" type="submit" (click)="Login()">Submit</button>
       <button
         class="btn btn-secondary btn-lg"

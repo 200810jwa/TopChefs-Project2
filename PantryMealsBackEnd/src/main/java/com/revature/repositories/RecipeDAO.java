@@ -18,7 +18,7 @@ public class RecipeDAO implements IRecipeDAO {
 	public boolean save(Recipe r) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-
+//		int id = (Integer) sess.save(r);		
 		if (sess.save(r) != null) {
 			tx.commit();
 			return true;
@@ -42,6 +42,7 @@ public class RecipeDAO implements IRecipeDAO {
 	public boolean update(Recipe r) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
+		
 
 		if (sess.merge(r) != null) {
 			tx.commit();

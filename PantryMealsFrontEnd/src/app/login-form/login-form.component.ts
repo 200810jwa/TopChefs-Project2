@@ -11,10 +11,8 @@ import { User } from '../models/User';
   styleUrls: ['./login-form.component.css'],
 })
 export class LoginFormComponent implements OnInit {
-  loginForm = new FormGroup({
-    Username: new FormControl(''),
-    Password: new FormControl(''),
-  });
+  public username: String;
+  public password: String;
   //baseURL: string = 'http://localhost:4200/';
 
   constructor(private router: Router, private http: HttpClient) {} //private http: HttpClient
@@ -25,10 +23,21 @@ export class LoginFormComponent implements OnInit {
     this.router.navigate(['register-form']);
     console.warn('Switch to Register component?');
   }
-  Login(): void {
-    let testUser = new User();
-    sessionStorage.setItem("currentUser", JSON.stringify(testUser));
-    this.router.navigateByUrl("/home");
+  async Login(): Promise<void> {
+    try {
+      let user = await this.http.post<User>(
+        'http://localhost:8085/Project2/login',
+        { username: this.username,
+        password: this.password}
+      ).toPromise();
+      
+      sessionStorage.setItem("currentUser", JSON.stringify(user));  
+      this.router.navigateByUrl("/home");
+    } catch (error) {
+      console.log(error);
+      alert('Failed to Login');
+    }
+    
   }
   onSubmit() {
     // const promise = new Promise(function(resolve,reject)){
