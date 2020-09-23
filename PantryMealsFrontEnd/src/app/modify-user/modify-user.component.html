@@ -1,13 +1,23 @@
-<p>modify-user works!</p>
-
-<form [formGroup]="modifyForm" (ngSubmit)="update()">
-  <label> FirstName:<input type="text" formControlName="FirstName" /> </label
-  ><br />
-  <label> LastName:<input type="text" formControlName="LastName" /></label
-  ><br />
-  <label> Email:<input type="text" formControlName="email" /></label><br />
-  <label> Password:<input type="text" formControlName="password" /></label
-  ><br />
-  <button type="submit">Update</button>
-</form>
-<button class="btn" (click)="goBack()">Go Back</button>
+<h1 class="h1">Modify User</h1>
+<p>Change this</p>
+<div>
+  <form [formGroup]="modifyForm" (ngSubmit)="update()">
+    <label>
+      First Name&nbsp;:
+      <input type="text" formControlName="FirstName" /> </label
+    ><br />
+    <label>
+      Last Name&nbsp; : <input type="text" formControlName="LastName" /></label
+    ><br />
+    <label>
+      Email&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" formControlName="email" /></label
+    ><br />
+    <label>
+      Password&nbsp;:&nbsp;&nbsp;&nbsp;
+      <input type="text" formControlName="password" /></label
+    ><br />
+    <button class="btn btn-primary" type="submit">Update</button>
+    <button class="btn btn-primary" (click)="goBack()">Go Back</button>
+  </form>
+</div>

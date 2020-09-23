@@ -1,47 +1,50 @@
 .Recipe {
-    height: 110px;
-    border:1px solid black;
-    align-self: center;
-    padding: 5px;
+  height: 110px;
+  border: 1px solid black;
+  align-self: center;
+  padding: 5px;
 }
 .thumbnail {
-    float: left;
-    align-self: center;
+  float: left;
+  align-self: center;
 }
 .Recipe-Title {
-    z-index: 1;
-    float: right;
-    align-self: flex-start;
+  z-index: 1;
+  float: right;
+  align-self: flex-start;
 }
 .Rating {
-    z-index: 2;
-    float: right;
-    align-self: flex-end;
+  z-index: 2;
+  float: right;
+  align-self: flex-end;
 }
 .container {
-    display: table;
-    width: 100%;
+  display: table;
+  width: 100%;
 }
-  
+
 .left-side {
-    top: 35%;
-    position: absolute;
-    left: 50px;
-    width: 35%;
+  top: 35%;
+  position: absolute;
+  left: 50px;
+  width: 35%;
 }
 
 .right-side {
-    top: 35%;
-    position: absolute;
-    right: 50px;
-    width: 60%;
-    text-align: center;
+  top: 35%;
+  position: absolute;
+  right: 50px;
+  width: 60%;
+  text-align: center;
 }
 
-#leftview{
-    border:1px solid black;
-    padding: 5px;
+#leftview {
+  border: 1px solid black;
+  padding: 5px;
 }
-#searchbutton{
-    float: right;
+#searchbutton {
+  float: right;
+}
+#title {
+  font-size: 20px;
 }
