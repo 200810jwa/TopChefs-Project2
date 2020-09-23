@@ -4,6 +4,9 @@ package com.revature.unitTests;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,6 +39,8 @@ public class UserServiceTests {
 	private User Zach;
 	private User Leron;
 	
+	public static Set<User> userList;
+	public static Set<User> emptyUserList;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -51,18 +56,29 @@ public class UserServiceTests {
 		MockitoAnnotations.initMocks(this);
 		testInstance = new UserService(AMockedDao);
 		
+		 userList = new HashSet<>();
+
 		
 		Andrew = new User(1,"alukens", "password","Andrew", "Lukens","email@email.com");
+		Zach = new User(2, "zquinn", "password1", "Zach", "Quinn", "email1@email.com");
 		AndrewTemp = new LoginTemplate("alukens", "password");
 		wrongTemp1 = new LoginTemplate("alukens","wrongpassword");
 		wrongTemp2 = new LoginTemplate("andrew", "pasword");
 		andrewReg = new RegisterTemplate("andrew","password", "Andrew", "Lukens","email@email.com");
 		Zach = new User(0, "zquinn", "password1", "Zach", "Quinn", "email1@email.com");
+		userList.add(Andrew);
+		userList.add(Zach);
+	
+	
+	
 		
 		when(AMockedDao.findByUsername("alukens")).thenReturn(Andrew);
 		when(AMockedDao.findByUsername("leron1")).thenReturn(null);
 		when(AMockedDao.save(Zach)).thenReturn(true);
 		when(AMockedDao.findById(1)).thenReturn(Andrew);
+		when(AMockedDao.findById(2)).thenReturn(Zach);
+		when(AMockedDao.findAll()).thenReturn(userList);
+
 		
 	}
 	
@@ -81,7 +97,12 @@ public class UserServiceTests {
 		assertEquals(testInstance.login(wrongTemp1), null);
 	}
 	@Test
-	public void testLoginUserFailure() {
+	public void testLoginUserFailureWrongPassword() {
+		assertEquals(testInstance.login(wrongTemp2), null);
+	}
+	
+	@Test
+	public void testLoginUserFailureWrongUserName() {
 		assertEquals(testInstance.login(wrongTemp2), null);
 	}
 	@Test
@@ -89,9 +110,18 @@ public class UserServiceTests {
 		assertEquals(testInstance.save(andrewReg), false);
 	}
 	
+	@Test 
+	public void testFindByIDSuccsseful2() {
+		assertEquals(testInstance.findById(2), Zach);
+	}
 	@Test
-	public void testFindByIDSuccessfull() {
+	public void testFindByIDSuccessful() {
 		assertEquals(testInstance.findById(1), Andrew);
+	}
+	
+	@Test
+	public void testFindAllusersSuccessful() {
+		assertEquals(testInstance.findAll(), userList);
 	}
 	
 	@Test
