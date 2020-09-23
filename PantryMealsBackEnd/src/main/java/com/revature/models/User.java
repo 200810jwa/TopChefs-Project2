@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.sun.istack.NotNull;
+
 @Component
 @Entity
 @Table(name ="users")
@@ -41,13 +43,15 @@ public class User implements Serializable {
 		this.lastName = lastName;
 		this.email = email;
 	}
-
+	
+	@NotNull
 	@ManyToMany
-	@JoinColumn(nullable = true)
+	@JoinColumn(nullable = false)
 	private List<Recipe> FavoriteRecipes;
 	
+	@NotNull
 	@ManyToMany // Need two Lists? One for Previous and One for Favorites?
-	@JoinColumn(nullable = true)
+	@JoinColumn(nullable = false)
 	private List<Recipe> previousRecipes;
 	
 	public User() {
