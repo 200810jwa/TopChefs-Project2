@@ -1,7 +1,8 @@
 <nav class="navbar navbar-dark bg-dark" id="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">PantryMeals</a>
+      <!-- <img style = "height : 45px; width : 45px " src = "https://i7.pngguru.com/preview/511/1001/144/pm-international-multi-level-marketing-logo-schengen-sales-business.jpg"> -->
+      <a class="navbar-brand" routerLink="/home">PantryMeals</a>
     </div>
     <ul
       *ngIf="!currentUser"
@@ -21,7 +22,7 @@
     >
       <li><a routerLink="#">Past Recipes</a></li>
       <li><a routerLink="#">Favorites</a></li>
-      <li><a routerLink="#" class="glyphicon glyphicon-user">Personal Info</a></li>
+      <li><a routerLink="/Modify-User" class="glyphicon glyphicon-user">Personal Info</a></li>
       <li>
         <a routerLink="/home" (click)="Logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
       </li>
@@ -37,6 +38,8 @@
                     <br/>
                     <input id = "ingredient" [(ngModel)] = "ingredient" type="text" name="ingredient">
                     <button class="btn btn-light" type="submit" (click) = "Add()">add</button>
+                    <br/>Powered by
+                    <a href="http://www.recipepuppy.com" style="font-size: 10px">Recipe Puppy</a>
                     <ul *ngFor = "let String of ingredients; index as i;">
                         <li ng-repeat="ingredient">{{ String }} <button class="btn btn-danger" (click) = "Remove(i)">X</button></li> 
                     </ul>
