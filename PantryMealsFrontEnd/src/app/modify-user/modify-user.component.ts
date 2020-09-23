@@ -23,7 +23,7 @@ export class ModifyUserComponent implements OnInit {
     console.warn(this.modifyForm.value);
   }
   goBack() {
-    this.router.navigate(['profile']);
+    this.router.navigateByUrl("/home");
     console.warn('Log Out function needed');
   }
 }
