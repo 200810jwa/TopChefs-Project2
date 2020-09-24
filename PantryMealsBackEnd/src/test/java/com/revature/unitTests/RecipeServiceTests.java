@@ -99,7 +99,7 @@ public class RecipeServiceTests {
 	}
 	
 	@Test
-	public void testFindallRecipeSuccessful() {
+	public void testFindAllRecipeSuccessful() {
 		assertEquals(testInstance.findAll(), recipeList);
 	}
 	
