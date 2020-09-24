@@ -58,8 +58,11 @@ public class UserDAO implements IUserDAO {
 	public boolean delete(User u) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-
-		sess.delete(u);
+		
+		Criteria cr = sess.createCriteria(User.class);
+		cr.add(Restrictions.eq("id", u.getId()));
+		User user = (User) cr.list().get(0);
+		sess.delete(user);
 		if (sess.contains(u) == false) {
 			tx.commit();
 			

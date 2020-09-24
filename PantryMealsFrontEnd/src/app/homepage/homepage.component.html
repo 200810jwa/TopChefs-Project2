@@ -44,7 +44,6 @@
             type="text"
             name="ingredient"
           /> -->
-
           <div class="ng-autocomplete" style="font-size: 15px;">
             <ng-autocomplete id="search" [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
               (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
@@ -61,7 +60,7 @@
           </div>
 
           <button class="btn btn-light" type="submit" (click)="Add()">
-            add
+            Add
           </button>
           <br />Powered by
           <a href="http://www.recipepuppy.com" style="font-size: 10px">

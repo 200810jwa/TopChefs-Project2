@@ -41,10 +41,9 @@ export class HomepageComponent implements OnInit {
 
   }
   Add(): void {
-    // this.ingredients.push(this.ingredient);
     this.ingredients.push(this.value);
-    console.log(this.value);
-    this.ingredient = null;
+    // console.log(this.value);
+    // this.ingredient = null;
   }
 
   Logout(): void {
