@@ -64,6 +64,9 @@ public class Recipe implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public void setIdNull(int id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}

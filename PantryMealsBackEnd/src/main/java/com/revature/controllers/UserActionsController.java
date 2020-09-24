@@ -56,10 +56,10 @@ public class UserActionsController {
 	
 	@PutMapping("saveToFavorites")
 	@ResponseBody
-	public ResponseEntity<Recipe> saveToFavorites(@RequestBody RecipeSaveTemplate rst) {
+	public ResponseEntity<User> saveToFavorites(@RequestBody RecipeSaveTemplate rst) {
 		if(rservice.saveToFavorites(rst.getRecipe(), rst.getUser()) == true) {
-			System.out.println("Saved to Favorites");
-			return ResponseEntity.accepted().build();
+			User u = uservice.findByUserName(rst.getUser());
+			return ResponseEntity.ok(u);
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
@@ -68,10 +68,10 @@ public class UserActionsController {
 	
 	@PutMapping("saveToPrevious")
 	@ResponseBody
-	public ResponseEntity<Recipe> saveToPrevious(@RequestBody RecipeSaveTemplate rst) {
+	public ResponseEntity<User> saveToPrevious(@RequestBody RecipeSaveTemplate rst) {
 		if(rservice.saveToPrevious(rst.getRecipe(), rst.getUser()) == true) {
-			System.out.println("saved to previous");
-			return ResponseEntity.accepted().build();
+			User u = uservice.findByUserName(rst.getUser());
+			return ResponseEntity.ok(u);
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}

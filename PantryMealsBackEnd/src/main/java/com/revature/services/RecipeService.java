@@ -124,6 +124,9 @@ public class RecipeService {
 		}
 
 		Set<Recipe> results = recipes.getResults();
+//		for(Recipe r: results) {
+//			r.setId(null);
+//		}
 		if (looseFilter == false && results != null && !results.isEmpty()) {
 			return filterExtraIng(results, ingredients);			
 		}

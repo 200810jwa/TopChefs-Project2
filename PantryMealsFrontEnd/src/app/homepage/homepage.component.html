@@ -103,6 +103,7 @@
                 </div>
               </div>
             </div>
+            <p *ngIf = "SavedRecipes.length == 0"><em>You do not have any Saved Recipes</em></p>
           </ul>
 
 
@@ -128,6 +129,7 @@
                 </div>
               </div>
             </div>
+            <p *ngIf = "FavoriteRecipes.length == 0"><em>You do not have any Favorite Recipes</em></p>
           </ul>
 
           <div *ngIf="!currentUser">
@@ -158,6 +160,6 @@
         </div>
       </ul>
     </article>
-    <div *ngIf="!SearchResults">Enter Ingredients to view recipes</div>
+    <h2 *ngIf="!SearchResults">Enter Ingredients to view recipes</h2>
   </div>
 </section>
