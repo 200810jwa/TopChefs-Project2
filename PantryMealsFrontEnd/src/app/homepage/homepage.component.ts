@@ -6,6 +6,7 @@ import { Recipe } from 'src/app/models/recipe';
 import { Observable } from 'rxjs';
 import { Ingredient } from 'src/app/new-ingredient/ingredient';
 import { ListOfIngredients } from 'src/app/new-ingredient/list-of-ingredients.enum';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @Component({
   selector: 'app-homepage',
@@ -21,25 +22,28 @@ export class HomepageComponent implements OnInit {
   public SavedRecipes: Recipe[] = [];
   public SearchResults: Observable<Recipe[]>;
 
-  public task: Ingredient;
-  private listOfIngredients = ListOfIngredients;
-  public taskTypeOptions = [];
+  keyword = 'name';
+  data = [{ name: "Butter" }, { name: "Flour" }, { name: "Salt" }, { name: "Water" }, { name: "Eggplant" }, { name: "Onions" },
+  { name: "Parsley" }, { name: "Garlic" }, { name: "Eggs" }, { name: "Tomato" }, { name: "Milk" }, { name: "Cream" },
+  { name: "Asparagus" }, { name: "Strawberries" }, { name: "Beef" }, { name: "Vegetable" }, { name: "Potato" }, { name: "Carrot" },
+  { name: "Barley" }, { name: "Banana" }, { name: "Chicken" }, { name: "Cinnamon" }, { name: "Paprika" }, { name: "Sugar" },];
+  value = '';
 
-
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    this.taskTypeOptions = Object.keys(this.listOfIngredients);
+    //this.taskTypeOptions = Object.keys(this.listOfIngredients);
     // if(this.currentUser != null){
     //   this.SavedRecipes = this.currentUser.previousRecipes;
     //   this.FavoriteRecipes = this.currentUser.favoriteRecipes;
     // }
-    
+
   }
   Add(): void {
     // this.ingredients.push(this.ingredient);
-    this.ingredients.push(this.task.toString());
+    this.ingredients.push(this.value);
+    console.log(this.value);
     this.ingredient = null;
   }
 
@@ -74,5 +78,19 @@ export class HomepageComponent implements OnInit {
     sessionStorage.setItem("Recipe", JSON.stringify(recipe));
     window.open(recipe.href, '_blank');
     this.router.navigateByUrl("/recipe-feedback");
+  }
+
+  selectEvent(item) {
+    this.value = item;
+    console.warn(item);
+  }
+
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e) {
+    // do something when input is focused
   }
 }

@@ -16,9 +16,11 @@ import { NotFoundComponentComponent } from './not-found-component/not-found-comp
 import { HomepageComponent } from './homepage/homepage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipeFeedbackComponent } from './recipe-feedback/recipe-feedback.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   imports: [
+    AutocompleteLibModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -50,4 +52,4 @@ import { RecipeFeedbackComponent } from './recipe-feedback/recipe-feedback.compo
   bootstrap: [AppComponent],
   exports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
-export class AppModule {}
+export class AppModule { }
