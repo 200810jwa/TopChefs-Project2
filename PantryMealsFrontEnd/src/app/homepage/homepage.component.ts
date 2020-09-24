@@ -80,8 +80,8 @@ export class HomepageComponent implements OnInit {
   }
 
   selectEvent(item) {
-    this.value = item;
-    console.warn(item);
+    this.value = item.name;
+    console.warn(this.value);
   }
 
   onChangeSearch(val: string) {

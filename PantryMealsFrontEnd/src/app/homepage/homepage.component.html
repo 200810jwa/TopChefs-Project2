@@ -44,7 +44,8 @@
             type="text"
             name="ingredient"
           /> -->
-          <div class="ng-autocomplete" style="font-size: 15px;">
+
+          <div class="ng-autocomplete" style="width:150px; font-size: 15px;">
             <ng-autocomplete id="search" [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
               (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
               [notFoundTemplate]="notFoundTemplate">
@@ -57,20 +58,22 @@
             <ng-template #notFoundTemplate let-notFound>
               <div [innerHTML]="notFound"></div>
             </ng-template>
-          </div>
 
-          <button class="btn btn-light" type="submit" (click)="Add()">
-            Add
+          </div>
+          <button style="height:30px;width: 35px;" class="btn btn-primary" type="submit" (click)="Add()">
+            add
           </button>
           <br />Powered by
           <a href="http://www.recipepuppy.com" style="font-size: 10px">
             Recipe Puppy</a>
           <br />
           <ul *ngFor="let String of ingredients; index as i">
+            <!--<div style="border-style:solid;border-color:black; height:auto;width:60px">-->
             <li ng-repeat="ingredient">
-              {{ String.name }}
+              {{ String }}
               <button class="btn btn-danger" (click)="Remove(i)">X</button>
             </li>
+            <!--</div>-->
           </ul>
           <p *ngIf="ingredients.length == 0"><em> Enter the ingredients you have available</em></p>
         </div>
