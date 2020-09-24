@@ -70,7 +70,7 @@
           <ul *ngFor="let String of ingredients; index as i">
             <!--<div style="border-style:solid;border-color:black; height:auto;width:60px">-->
             <li ng-repeat="ingredient">
-              {{ String.name }}
+              {{ String }}
               <button class="btn btn-danger" (click)="Remove(i)">X</button>
             </li>
             <!--</div>-->

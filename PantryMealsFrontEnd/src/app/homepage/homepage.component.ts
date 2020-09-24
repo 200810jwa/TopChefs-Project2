@@ -42,8 +42,9 @@ export class HomepageComponent implements OnInit {
   }
   Add(): void {
     // this.ingredients.push(this.ingredient);
+    console.log(this.value);
     this.ingredients.push(this.value);
-    console.log(this.ingredients);
+    //console.log(this.ingredients);
     this.ingredient = null;
   }
 
@@ -81,8 +82,8 @@ export class HomepageComponent implements OnInit {
   }
 
   selectEvent(item) {
-    this.value = item;
-    console.warn(item);
+    this.value = item.name;
+    console.warn(this.value);
   }
 
   onChangeSearch(val: string) {
