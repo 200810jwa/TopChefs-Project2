@@ -8,3 +8,9 @@ h1 {
 p {
   margin: 50px;
 }
+
+div{
+  margin:auto;
+  border-style: solid;
+  border-color: black;
+}

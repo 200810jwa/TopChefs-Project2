@@ -10,11 +10,16 @@ export class AuthenticationService {
   private baseUrl: String = 'http://localhost:8080/';
   private currentUser: User;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   public async loginService(username: String, password: String) {
-    return this.http.get<User>(this.baseUrl + '/allRecipes');
+    let lf = { username, password } // Need to pass this through as a logintemplate?
+    return this.http.post<User>(this.baseUrl + '/login', lf);
+  }
+  public async registerService(username: String, password: String, firstName: String, lastName: String, email: String) {
+    let rg = { username, password, firstName, lastName, email } // Need to pass this through as a Registertemplate?
+    return this.http.put<User>(this.baseUrl + '/login', rg);
   }
 
-  public async logoutService() {}
+  public async logoutService() { }
 }

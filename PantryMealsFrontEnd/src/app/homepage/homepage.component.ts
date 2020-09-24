@@ -43,7 +43,7 @@ export class HomepageComponent implements OnInit {
   Add(): void {
     // this.ingredients.push(this.ingredient);
     this.ingredients.push(this.value);
-    console.log(this.value);
+    console.log(this.ingredients);
     this.ingredient = null;
   }
 

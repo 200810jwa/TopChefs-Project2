@@ -11,9 +11,17 @@ import { BehaviorSubject } from 'rxjs';
 export class UserServicesService {
   private baseUrl: String = 'http://localhost:8080/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   updateUser(value: String): Observable<User> {
-    return this.http.post<User>(this.baseUrl + '/updateUsers/', value);
+    return this.http.post<User>(this.baseUrl + '/updateUser/', value);
+  }
+
+  deleteUser(value: User): Observable<User> {
+    return this.http.post<User>(this.baseUrl + '/deleteUser', value);
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'users');
   }
 }
