@@ -2,15 +2,10 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <!-- <img style = "height : 45px; width : 45px " src = "https://i7.pngguru.com/preview/511/1001/144/pm-international-multi-level-marketing-logo-schengen-sales-business.jpg"> -->
-      <a class="navbar-brand"
-        routerLink="/home"
-        id="Title"
-        style="font-size: 25px">
+      <a class="navbar-brand" routerLink="/home" id="Title" style="font-size: 25px">
         PantryMeals</a>
     </div>
-    <ul *ngIf="!currentUser"
-      class="nav navbar-nav navbar-right"
-      style="display: inline">
+    <ul *ngIf="!currentUser" class="nav navbar-nav navbar-right" style="display: inline">
       <li>
         <a routerLink="/register-form">
           <span class="glyphicon glyphicon-user"></span>Sign Up</a>
@@ -20,9 +15,7 @@
           <span class="glyphicon glyphicon-log-in"></span> Login</a>
       </li>
     </ul>
-    <ul *ngIf="currentUser"
-      class="nav navbar-nav navbar-right"
-      style="display: inline">
+    <ul *ngIf="currentUser" class="nav navbar-nav navbar-right" style="display: inline">
       <li><a routerLink="#">Past Recipes</a></li>
       <li><a routerLink="#">Favorites</a></li>
       <li>
@@ -44,7 +37,7 @@
         <div class="container" id="ingredientsinterface">
           <label for="ingredient" style="color: black">
             Add ingredient to your list of ingredients:</label>
-          <br/>
+          <br />
           <!--<input
             id="ingredient"
             [(ngModel)]="ingredient"
@@ -52,40 +45,42 @@
             name="ingredient"
           /> -->
 
-          <select [(ngModel)]="task"
-            style="display: inline-block"
-            class="select">
-            <option *ngFor="let key of taskTypeOptions"
-              [value]="listOfIngredients[key]"
-              [label]="listOfIngredients[key]">
-            </option>
-          </select>
+          <div class="ng-autocomplete" style="font-size: 15px;">
+            <ng-autocomplete id="search" [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+              (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+              [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+
+            <ng-template #itemTemplate let-item>
+              <a [innerHTML]="item.name"></a>
+            </ng-template>
+
+            <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
+          </div>
+
           <button class="btn btn-light" type="submit" (click)="Add()">
             add
           </button>
           <br />Powered by
           <a href="http://www.recipepuppy.com" style="font-size: 10px">
             Recipe Puppy</a>
-          <br/>
+          <br />
           <ul *ngFor="let String of ingredients; index as i">
             <li ng-repeat="ingredient">
-              {{ String }}
+              {{ String.name }}
               <button class="btn btn-danger" (click)="Remove(i)">X</button>
             </li>
           </ul>
-          <p *ngIf= "ingredients.length == 0"><em> Enter the ingredients you have available</em></p>
+          <p *ngIf="ingredients.length == 0"><em> Enter the ingredients you have available</em></p>
         </div>
-        
+
         <div class="form-check">
-          <label class="form-check-label" for="looseFilter"
-            >See results with 1 or more Ingredients than on your list:
+          <label class="form-check-label" for="looseFilter">See results with 1 or more Ingredients than on your list:
           </label>
-          <input type="checkbox"
-            class="form-check-input"
-            [(ngModel)]="looseFilter"
-            name="looseFilter"
-            id="looseFilter"
-            Checked/>
+          <input type="checkbox" class="form-check-input" [(ngModel)]="looseFilter" name="looseFilter" id="looseFilter"
+            Checked />
         </div>
         <button id="searchbutton" class="btn btn-primary" (click)="Search()">
           Search
@@ -93,10 +88,10 @@
         <div class="container" id="pastRecipes">
           <h3>Past Recipes</h3>
           <ul *ngIf="currentUser">
-            <div class="Recipe" *ngFor = "let recipe of savedRecipes">
-            <img src="{{ recipe.href }}" class="thumbnail"/>
-            <div class = "TitleandRating">
-              <h3 class="Recipe-Title">{{ recipe.title }}</h3>
+            <div class="Recipe" *ngFor="let recipe of savedRecipes">
+              <img src="{{ recipe.href }}" class="thumbnail" />
+              <div class="TitleandRating">
+                <h3 class="Recipe-Title">{{ recipe.title }}</h3>
                 <div class="Rating">
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
@@ -107,22 +102,21 @@
               </div>
             </div>
           </ul>
-          
-          
+
+
           <div *ngIf="!currentUser">
             <p><em>You must be signed in to view past recipes</em></p>
-            <br/>
+            <br />
           </div>
-        <button *ngIf="currentUser" class="btn btn-link" id = "viewPrevious">view all</button>
+          <button *ngIf="currentUser" class="btn btn-link" id="viewPrevious">view all</button>
         </div>
         <div class="container" id="favRecipes">
           <h3>Favorites</h3>
           <ul *ngIf="currentUser">
             <!--*ngFor = "let recipe of FavoriteRecipes">-->
             <div class="Recipe">
-              <img src="http://img.recipepuppy.com/601028.jpg"
-                class="thumbnail"/>
-              <div class = "TitleandRating">
+              <img src="http://img.recipepuppy.com/601028.jpg" class="thumbnail" />
+              <div class="TitleandRating">
                 <h3 class="Recipe-Title">These are fake recipes</h3>
                 <div class="Rating">
                   <span class="glyphicon glyphicon-star"></span>
@@ -134,26 +128,23 @@
               </div>
             </div>
           </ul>
-          
+
           <div *ngIf="!currentUser">
             <p><em>You must be signed in to view favorite recipes</em></p>
-            <br/>
+            <br />
           </div>
-        <button *ngIf="currentUser" class="btn btn-link" id = "viewFavorites">view all</button>
+          <button *ngIf="currentUser" class="btn btn-link" id="viewFavorites">view all</button>
         </div>
-        
+
       </div>
     </article>
   </div>
   <div class="right-side">
     <article *ngIf="SearchResults">
       <ul *ngFor="let Recipe of SearchResults | async; index as i">
-        <div class="Recipe"
-          (click)="goToRecipe(Recipe)"
-          id="Recipe"
-          style="cursor: pointer">
+        <div class="Recipe" (click)="goToRecipe(Recipe)" id="Recipe" style="cursor: pointer">
           <img src="{{ Recipe.thumbnail }}" class="thumbnail" />
-          <div class = "TitleandRating">
+          <div class="TitleandRating">
             <h3 class="Recipe-Title">{{ Recipe.title }}</h3>
             <div class="Rating">
               <span class="glyphicon glyphicon-star"></span>

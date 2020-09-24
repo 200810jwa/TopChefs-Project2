@@ -63,3 +63,11 @@ span {
 #title {
   font-size: 20px;
 }
+
+.ng-autocomplete {
+  font-size: xx-small;
+}
+
+.ng-template{
+  font-size: small;
+}

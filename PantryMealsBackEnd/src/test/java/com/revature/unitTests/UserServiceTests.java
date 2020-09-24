@@ -78,6 +78,7 @@ public class UserServiceTests {
 		when(AMockedDao.findById(1)).thenReturn(Andrew);
 		when(AMockedDao.findById(2)).thenReturn(Zach);
 		when(AMockedDao.findAll()).thenReturn(userList);
+		when(AMockedDao.delete(Zach)).thenReturn(true);
 
 		
 	}
@@ -87,10 +88,6 @@ public class UserServiceTests {
 		
 	}
 	
-	@Test
-	public void testLoginSuccesful() {
-		assertEquals(testInstance.login(AndrewTemp), Andrew);
-	}
 
 	@Test
 	public void testLoginPasswordFailure() {
@@ -127,6 +124,23 @@ public class UserServiceTests {
 	@Test
 	public void testFindByDFaillure() {
 		assertEquals(testInstance.findById(3000), null);
+	}
+	
+	@Test
+	public void testDeleteUserSuccessfully() {
+		assertEquals(testInstance.delete(Zach), true);
+	}
+	
+	@Test
+	public void testDeleteUserAndUpdateList() {
+		userList.remove(Zach);
+		assertEquals(testInstance.findAll(), userList);
+		
+	}
+	
+	@Test
+	public void testDeleteUserFailure() {
+		assertEquals(testInstance.delete(null), false);
 	}
 	
 }
