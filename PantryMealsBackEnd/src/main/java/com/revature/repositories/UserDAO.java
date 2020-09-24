@@ -40,18 +40,10 @@ public class UserDAO implements IUserDAO {
 	public boolean update(User u) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		sess.saveOrUpdate(u);
-//		tx.commit();
-//		return true;
-		User user = (User) sess.merge(u);
-		if (user.equals(u)) {
-			tx.commit();
-			
-			return true;
-		}
-		tx.rollback();
 		
-		return false;
+		sess.saveOrUpdate(u);
+		tx.commit();
+		return true;
 	}
 
 	@Override

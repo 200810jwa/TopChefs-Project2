@@ -17,17 +17,18 @@ import com.revature.util.HibernateUtil;
 @Repository
 public class RecipeDAO implements IRecipeDAO {
 
-	@Override
-	public boolean save(Recipe r) {
-		Session sess = HibernateUtil.getSession();
-		Transaction tx = sess.beginTransaction();
-//		int id = (Integer) sess.save(r);		
-		if (sess.save(r) != null) {
-			tx.commit();
-			return true;
-		}
-		return false;
-	}
+//	@Override
+//	public boolean save(Recipe r) {
+//		Session sess = HibernateUtil.getSession();
+//		Transaction tx = sess.beginTransaction();
+//		sess.saveOrUpdate(r);
+////		int id = (Integer) sess.save(r);		
+//		if (sess.save(r) != null) {
+//			tx.commit();
+//			return true;
+//		}
+//		return false;
+//	}
 
 	@Override
 	public Set<Recipe> findAll() {
@@ -42,15 +43,13 @@ public class RecipeDAO implements IRecipeDAO {
 	}
 
 	@Override
-	public boolean update(Recipe r) {
+	public boolean saveOrUpdate(Recipe r) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
 
-		if (sess.merge(r) != null) {
-			tx.commit();
-			return true;
-		}
-		return false;
+		sess.saveOrUpdate(r);
+		tx.commit();
+		return true;
 	}
 
 	@Override
@@ -81,5 +80,7 @@ public class RecipeDAO implements IRecipeDAO {
 		return r;
 
 	}
+
+
 
 }

@@ -90,8 +90,8 @@
         <div class="container" id="pastRecipes">
           <h3>Past Recipes</h3>
           <ul *ngIf="currentUser">
-            <div class="Recipe" *ngFor="let recipe of savedRecipes">
-              <img src="{{ recipe.href }}" class="thumbnail" />
+            <div class="Recipe" *ngFor="let recipe of SavedRecipes">
+              <img src="{{ recipe.href }}" class="thumbnail"/>
               <div class="TitleandRating">
                 <h3 class="Recipe-Title">{{ recipe.title }}</h3>
                 <div class="Rating">
@@ -115,11 +115,10 @@
         <div class="container" id="favRecipes">
           <h3>Favorites</h3>
           <ul *ngIf="currentUser">
-            <!--*ngFor = "let recipe of FavoriteRecipes">-->
-            <div class="Recipe">
-              <img src="http://img.recipepuppy.com/601028.jpg" class="thumbnail" />
+            <div class="Recipe" *ngFor = "let recipe of FavoriteRecipes">
+              <img src="{{ recipe.href }}" class="thumbnail" />
               <div class="TitleandRating">
-                <h3 class="Recipe-Title">These are fake recipes</h3>
+                <h3 class="Recipe-Title">{{ recipe.title }}</h3>
                 <div class="Rating">
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"> </span>

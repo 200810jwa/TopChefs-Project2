@@ -63,9 +63,9 @@ public class RecipeServiceTests {
 		
 		when(RMockedDao.findbyId(0)).thenReturn(recipe2);
 		when(RMockedDao.findbyId(1)).thenReturn(recipe1);
-		when(RMockedDao.save(recipe1)).thenReturn(true);
+		when(RMockedDao.saveOrUpdate(recipe1)).thenReturn(true);
 		when(RMockedDao.delete(recipe1)).thenReturn(true);
-		when(RMockedDao.update(recipe1)).thenReturn(true);
+		when(RMockedDao.saveOrUpdate(recipe1)).thenReturn(true);
 		when(RMockedDao.findAll()).thenReturn(recipeList);
 	}
 	

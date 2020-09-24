@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -18,22 +19,22 @@ import com.sun.istack.NotNull;
 
 @Component
 @Entity
-@Table(name ="users")
+@Table(name = "users")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@Column(unique = true)
 	private String username;
-	
+
 	private String password;
 	private String firstName;
 	private String lastName;
 	private String email;
-	
+
 	public User(int id, String username, String password, String firstName, String lastName, String email) {
 		super();
 		this.id = id;
@@ -43,17 +44,18 @@ public class User implements Serializable {
 		this.lastName = lastName;
 		this.email = email;
 	}
-	
-	@NotNull
+
 	@ManyToMany
+	@JoinTable(name = "User_Favorites", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "recipe_id") })
 	@JoinColumn(nullable = false)
 	private List<Recipe> FavoriteRecipes;
-	
-	@NotNull
-	@ManyToMany // Need two Lists? One for Previous and One for Favorites?
-	@JoinColumn(nullable = false)
+
+	@ManyToMany
+	@JoinTable(name = "User_Previous", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "recipe_id") })
 	private List<Recipe> previousRecipes;
-	
+
 	public User() {
 		super();
 	}
@@ -205,16 +207,5 @@ public class User implements Serializable {
 	public void setPreviousRecipes(List<Recipe> previousRecipes) {
 		this.previousRecipes = previousRecipes;
 	}
-
-
-
-	
-
-	
-
-
-	
-	
-	
 
 }

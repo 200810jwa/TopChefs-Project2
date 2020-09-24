@@ -60,14 +60,14 @@ public class RecipeService {
 	}
 
 	public boolean save(Recipe r) {
-		return dao.save(r);
+		return dao.saveOrUpdate(r);
 	}
 
 	public Recipe findById(int id) {
 		return dao.findbyId(id);
 	}
 	public boolean update(Recipe r) {
-		return dao.update(r);
+		return dao.saveOrUpdate(r);
 	}
 
 	public boolean delete(Recipe r) {
@@ -75,12 +75,13 @@ public class RecipeService {
 	}
 
 	public boolean saveToFavorites(Recipe r, User u) {
+		dao.saveOrUpdate(r);
 		u.getFavoriteRecipes().add(r);
 		return udao.update(u);
 	}
 
 	public boolean saveToPrevious(Recipe r, User u) {
-		dao.save(r);
+		dao.saveOrUpdate(r);
 		u.getPreviousRecipes().add(r);
 		System.out.println(u.toString());
 		return udao.update(u);

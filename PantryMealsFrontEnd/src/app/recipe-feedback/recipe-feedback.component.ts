@@ -33,8 +33,8 @@ export class RecipeFeedbackComponent implements OnInit {
     if(this.currentUser != null && this.made == true){
       try {
         let results = await this.http.put(
-          'http://localhost:8085/Project2/saveToPrevious/' + this.currentUser.id,
-          {
+          'http://localhost:8085/Project2/saveToPrevious',
+          { user: this.currentUser,
             recipe: this.recipe
           }
         ).toPromise();
