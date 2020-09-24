@@ -26,7 +26,16 @@ export class HomepageComponent implements OnInit {
   data = [{ name: "Butter" }, { name: "Flour" }, { name: "Salt" }, { name: "Water" }, { name: "Eggplant" }, { name: "Onions" },
   { name: "Parsley" }, { name: "Garlic" }, { name: "Eggs" }, { name: "Tomato" }, { name: "Milk" }, { name: "Cream" },
   { name: "Asparagus" }, { name: "Strawberries" }, { name: "Beef" }, { name: "Vegetable" }, { name: "Potato" }, { name: "Carrot" },
-  { name: "Barley" }, { name: "Banana" }, { name: "Chicken" }, { name: "Cinnamon" }, { name: "Paprika" }, { name: "Sugar" },];
+  { name: "Barley" }, { name: "Banana" }, { name: "Chicken" }, { name: "Cinnamon" }, { name: "Paprika" }, { name: "Sugar" },
+  { name: "Pepper" }, { name: "Cumin" }, { name: "Cayenne" }, { name: "Orange" }, { name: "Cranberries" }, { name: "raisin" },
+  { name: "Nutmeg" }, { name: "Ginger" }, { name: "Apple" }, { name: "Hamburger" }, { name: "Ketchup" }, { name: "Vinegar" },
+  { name: "Turmeric" }, { name: "Shallot" }, { name: "Rum" }, { name: "Cornstarch" }, { name: "Honey" }, { name: "Hazelnuts" },
+  { name: "Chocolate" }, { name: "Sauce" }, { name: "Pecan" }, { name: "Baguette" }, { name: "Blueberries" }, { name: "Bread" },
+  { name: "Lime" }, { name: "Lemon" }, { name: "Mushroom" }, { name: "Cheese" }, { name: "Cilantro" }, { name: "Peppercorn" },
+  { name: "Brandy" }, { name: "Tarragon" }, { name: "Chilies" }, { name: "Sriracha" }, { name: "Relish" }, { name: "Turkey" },
+  { name: "Basil" }, { name: "Tofu" }, { name: "Berries" }, { name: "Whiskey" }, { name: "Margarine" }, { name: "Buttermilk" },
+  { name: "Karo" }, { name: "Liquini" }, { name: "Mirin" }, { name: "Chives" }, { name: "Mango" }, { name: "Pineapple" },
+  { name: "Pear" }, { name: "Sherry" }, { name: "Bourbon" }, { name: "Wine" }, { name: "Kiwi" }, { name: "Cloves" },];
   value = '';
 
   constructor(private router: Router, private http: HttpClient) { }
