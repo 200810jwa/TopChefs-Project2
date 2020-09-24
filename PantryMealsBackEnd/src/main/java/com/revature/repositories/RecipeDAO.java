@@ -3,12 +3,15 @@ package com.revature.repositories;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.Recipe;
+import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 @Repository
@@ -42,7 +45,6 @@ public class RecipeDAO implements IRecipeDAO {
 	public boolean update(Recipe r) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		
 
 		if (sess.merge(r) != null) {
 			tx.commit();
@@ -55,8 +57,10 @@ public class RecipeDAO implements IRecipeDAO {
 	public boolean delete(Recipe r) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-
-		sess.delete(r);
+		Criteria cr = sess.createCriteria(Recipe.class);
+		cr.add(Restrictions.eq("id", r.getId()));
+		Recipe delete = (Recipe) cr.list().get(0);
+		sess.delete(delete);
 		tx.commit();
 		return true;
 	}
@@ -65,11 +69,17 @@ public class RecipeDAO implements IRecipeDAO {
 	public Recipe findbyId(int id) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		
-		Query q = sess.createQuery("From Recipe WHERE id = ?");
-		Recipe recipe = (Recipe)q.uniqueResult();
+
+		Criteria cr = sess.createCriteria(Recipe.class);
+		cr.add(Restrictions.eq("id",id));
+		if (cr.list().isEmpty()) {
+			tx.commit();
+			return null;
+		}
+		Recipe r = (Recipe) cr.list().get(0);
 		tx.commit();
-		return recipe;
+		return r;
+
 	}
 
 }
