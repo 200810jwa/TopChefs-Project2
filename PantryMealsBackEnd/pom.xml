@@ -19,7 +19,7 @@
 	<build>
 	
 	<!--I am not sure if this has to be the backend name (Project2) or the pipeline name (TopChefs-Project2)  -->
-		<finalName>Project2</finalName>
+		<finalName>TopChefs-Project2</finalName>
 		<plugins>
 		  <plugin>
 		    <groupId>org.jacoco</groupId>
