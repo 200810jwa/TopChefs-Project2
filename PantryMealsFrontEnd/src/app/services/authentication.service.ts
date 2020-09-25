@@ -4,10 +4,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  private baseUrl: String = 'http://localhost:8081/';
+
+  baseUrl = environment.baseURL;
+  //private baseUrl: String = 'http://localhost:8081/';
   private currentUser: User;
 
   constructor(private http: HttpClient, private router: Router) { }

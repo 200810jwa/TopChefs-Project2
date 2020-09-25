@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Ingredient } from 'src/app/new-ingredient/ingredient';
 import { ListOfIngredients } from 'src/app/new-ingredient/list-of-ingredients.enum';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-homepage',
@@ -21,9 +22,8 @@ export class HomepageComponent implements OnInit {
   public FavoriteRecipes: Recipe[] = [];
   public SavedRecipes: Recipe[] = [];
   public SearchResults: Observable<Recipe[]>;
-  baseURL: string = 'http://localhost:8085/Project2/';
-  // baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
-
+  baseURL = environment.baseURL;
+  //baseUrl: = 'baseURL: 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/',
   keyword = 'name';
   data = [{ name: "Butter" }, { name: "Flour" }, { name: "Salt" }, { name: "Water" }, { name: "Eggplant" }, { name: "Onions" },
   { name: "Parsley" }, { name: "Garlic" }, { name: "Eggs" }, { name: "Tomato" }, { name: "Milk" }, { name: "Cream" },
@@ -45,7 +45,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     //this.taskTypeOptions = Object.keys(this.listOfIngredients);
-    if(this.currentUser != null){
+    if (this.currentUser != null) {
       this.SavedRecipes = this.currentUser.previousRecipes;
       this.FavoriteRecipes = this.currentUser.favoriteRecipes;
     }

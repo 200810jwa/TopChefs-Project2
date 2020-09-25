@@ -31,6 +31,7 @@ public class RecipeServiceTests {
 	private Recipe recipe1;
 	private Recipe recipe2;
 	private Recipe sameIdRecipe;
+	private String[] ingredients;
 	private RecipeService testInstance = new RecipeService(RMockedDao);
 	private User Andrew;
 	private User Zach;
@@ -38,6 +39,8 @@ public class RecipeServiceTests {
 	
 	
 	private static Set<Recipe> recipeList;
+	
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -50,6 +53,8 @@ public class RecipeServiceTests {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
+		
+		
 		testInstance = new RecipeService(RMockedDao);
 		
 		recipeList = new HashSet<>();
@@ -67,19 +72,26 @@ public class RecipeServiceTests {
 		when(RMockedDao.delete(recipe1)).thenReturn(true);
 		when(RMockedDao.saveOrUpdate(recipe1)).thenReturn(true);
 		when(RMockedDao.findAll()).thenReturn(recipeList);
+		when(RMockedDao.saveOrUpdate(recipe2)).thenReturn(true);
+		
 	}
 	
 	
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+	@Test
 	public void testAddRecipeSuccesful() {
 		assertEquals(testInstance.save(recipe1), true);
 	}
 	
 	@Test
-	public void testFindByIdSuccessfulOne() {
+	public void testAddRecipeFailure() {
+		assertEquals(testInstance.save(null), false);
+	}
+	
+	@Test
+	public void testFindByDifferentIdSuccessful() {
 		assertEquals(testInstance.findById(0), recipe2);
 	}
 	
@@ -89,8 +101,17 @@ public class RecipeServiceTests {
 	}
 	
 	@Test
+	public void testSaveOrUpdate() {
+		assertEquals(testInstance.save(recipe1), true);
+	}
+	@Test
 	public void testDeleteRecipeSuccessful() {
 		assertEquals(testInstance.delete(recipe1), true);
+	}
+	
+	@Test 
+	public void testDeleteRecipeFailure() {
+		assertEquals(testInstance.delete(null), false);
 	}
 	
 	@Test
@@ -99,8 +120,14 @@ public class RecipeServiceTests {
 	}
 	
 	@Test
+	public void testUpdateFailure() {
+		assertEquals(testInstance.update(null), false);
+	}
+	
+	@Test
 	public void testFindAllRecipeSuccessful() {
 		assertEquals(testInstance.findAll(), recipeList);
 	}
+
 	
 }
