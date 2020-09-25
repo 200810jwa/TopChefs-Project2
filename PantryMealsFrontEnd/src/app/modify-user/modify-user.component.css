@@ -14,3 +14,12 @@ div{
   border-style: solid;
   border-color: black;
 }
+
+.title {
+  font-size: 30px;
+  color: white;
+}
+
+.navbar{
+  height: 100px;
+}

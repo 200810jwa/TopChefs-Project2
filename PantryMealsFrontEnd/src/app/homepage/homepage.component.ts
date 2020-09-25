@@ -94,11 +94,11 @@ export class HomepageComponent implements OnInit {
   }
 
   onChangeSearch(val: string) {
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
+    //To Do with the Autocomplete, build functionality later?
   }
 
   onFocused(e) {
     // do something when input is focused
+    //To Do with the Autocomplete, build functionality later?
   }
 }

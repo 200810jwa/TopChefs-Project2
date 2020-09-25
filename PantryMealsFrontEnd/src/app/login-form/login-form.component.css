@@ -6,12 +6,22 @@ h1 {
 }
 
 input {
-  margin-left: 10px;
+
+
 }
 button {
-}
+  border: medium solid black;
+  margin: 10px;}
 
 form {
   border: medium solid black;
   margin: 10px;
+}
+.title {
+  font-size: 30px;
+  color: white;
+}
+
+.navbar{
+  height: 100px;
 }

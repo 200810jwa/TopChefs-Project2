@@ -1,4 +1,7 @@
-<h1>The Register Form works!</h1>
+<nav class="navbar navbar-dark bg-dark" id="navbar">
+  <h1 class="title"> Pantry Meals</h1>
+</nav>
+
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" orient="vertical">
   <label> Username:<input type="text" formControlName="username" /> </label><br />
   <label> Password:<input type="text" formControlName="password" /></label><br />
