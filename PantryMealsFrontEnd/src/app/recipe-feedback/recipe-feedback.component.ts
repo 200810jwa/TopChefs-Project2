@@ -13,6 +13,7 @@ export class RecipeFeedbackComponent implements OnInit {
   public made: Boolean = false;
   public currentRating = 2;
   public addToFavorites: Boolean;
+  baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -34,7 +35,7 @@ export class RecipeFeedbackComponent implements OnInit {
     if(this.currentUser != null && this.made == true){
       try {
         let result = await this.http.put(
-          'http://localhost:8085/Project2/saveToPrevious',
+          this.baseURL + 'saveToPrevious',
           { user: this.currentUser,
             recipe: this.recipe
           }
@@ -51,7 +52,7 @@ export class RecipeFeedbackComponent implements OnInit {
     if(this.currentUser != null && this.addToFavorites == true){
       try {
         let result = await this.http.put(
-          'http://localhost:8085/Project2/saveToFavorites',
+          this.baseURL + 'saveToFavorites',
           { user: this.currentUser,
             recipe: this.recipe
           }

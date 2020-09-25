@@ -13,7 +13,7 @@ import { User } from '../models/User';
 export class LoginFormComponent implements OnInit {
   public username: String;
   public password: String;
-  //baseURL: string = 'http://localhost:4200/';
+  baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
 
   constructor(private router: Router, private http: HttpClient) {} //private http: HttpClient
 
@@ -26,7 +26,7 @@ export class LoginFormComponent implements OnInit {
   async Login(): Promise<void> {
     try {
       let user = await this.http.post<User>(
-        'http://localhost:8085/Project2/login',
+        this.baseURL + 'login',
         { username: this.username,
         password: this.password}
       ).toPromise();

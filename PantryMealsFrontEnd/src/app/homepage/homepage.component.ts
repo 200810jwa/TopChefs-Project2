@@ -21,6 +21,7 @@ export class HomepageComponent implements OnInit {
   public FavoriteRecipes: Recipe[] = [];
   public SavedRecipes: Recipe[] = [];
   public SearchResults: Observable<Recipe[]>;
+  baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
 
   keyword = 'name';
   data = [{ name: "Butter" }, { name: "Flour" }, { name: "Salt" }, { name: "Water" }, { name: "Eggplant" }, { name: "Onions" },
@@ -69,7 +70,7 @@ export class HomepageComponent implements OnInit {
 
     try {
       let results = this.http.post<Recipe[]>(
-        'http://localhost:8085/Project2/recipes',
+        this.baseURL + 'recipes',
         {
           list: this.ingredients,
           looseFilter: this.looseFilter,
