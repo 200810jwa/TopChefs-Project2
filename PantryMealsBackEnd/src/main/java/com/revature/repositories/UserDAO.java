@@ -22,16 +22,12 @@ public class UserDAO implements IUserDAO {
 	public boolean save(User u) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-
 		int id = (Integer) sess.save(u);
-
 		if (id != 0) {
 			tx.commit();
-			
 			return true;
 		}
 		tx.rollback();
-		
 		return true;
 
 	}
@@ -40,8 +36,7 @@ public class UserDAO implements IUserDAO {
 	public boolean update(User u) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		
-		sess.saveOrUpdate(u);
+		sess.merge(u);
 		tx.commit();
 		return true;
 	}

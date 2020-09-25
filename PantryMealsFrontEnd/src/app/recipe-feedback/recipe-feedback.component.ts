@@ -13,7 +13,8 @@ export class RecipeFeedbackComponent implements OnInit {
   public made: Boolean = false;
   public currentRating = 2;
   public addToFavorites: Boolean;
-  baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
+  baseURL: string = 'http://localhost:8085/Project2/';
+  // baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -40,7 +41,7 @@ export class RecipeFeedbackComponent implements OnInit {
             recipe: this.recipe
           }
         ).toPromise();
-        console.log("successfully sent request to save recipe");
+        console.log("successfully sent request to save recipe to previous");
         sessionStorage.removeItem('currentUser');
         sessionStorage.setItem("currentUser", JSON.stringify(result));  
       } catch (error) {
@@ -57,7 +58,7 @@ export class RecipeFeedbackComponent implements OnInit {
             recipe: this.recipe
           }
         ).toPromise();
-        console.log("successfully sent request to save recipe");
+        console.log("successfully sent request to save recipe to favorites");
         sessionStorage.removeItem('currentUser');
         sessionStorage.setItem("currentUser", JSON.stringify(result));  
       } catch (error) {

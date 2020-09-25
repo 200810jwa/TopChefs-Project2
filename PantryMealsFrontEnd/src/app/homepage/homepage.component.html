@@ -89,24 +89,24 @@
         </button>
         <div class="container" id="pastRecipes">
           <h3>Past Recipes</h3>
-          <ul *ngIf="currentUser">
-            <div class="Recipe" *ngFor="let recipe of SavedRecipes">
-              <img src="{{ recipe.href }}" class="thumbnail"/>
-              <div class="TitleandRating">
-                <h3 class="Recipe-Title">{{ recipe.title }}</h3>
-                <div class="Rating">
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
+          <article *ngIf="currentUser">
+            <ul *ngFor="let recipe of SavedRecipes">
+              <div class="Recipe" (click)="goToRecipe(recipe)" id="Recipe" style="cursor: pointer">
+                <img src="{{ recipe.href }}" class="thumbnail"/>
+                <div class="TitleandRating">
+                  <h3 class="Recipe-Title">{{ recipe.title }}</h3>
+                  <div class="Rating">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ul>
             <p *ngIf = "SavedRecipes.length == 0"><em>You do not have any Saved Recipes</em></p>
-          </ul>
-
-
+          </article>
           <div *ngIf="!currentUser">
             <p><em>You must be signed in to view past recipes</em></p>
             <br />
@@ -115,23 +115,24 @@
         </div>
         <div class="container" id="favRecipes">
           <h3>Favorites</h3>
-          <ul *ngIf="currentUser">
-            <div class="Recipe" *ngFor = "let recipe of FavoriteRecipes">
-              <img src="{{ recipe.href }}" class="thumbnail" />
-              <div class="TitleandRating">
-                <h3 class="Recipe-Title">{{ recipe.title }}</h3>
-                <div class="Rating">
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"> </span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"> </span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
+          <article *ngIf="currentUser">
+            <ul *ngFor = "let recipe of FavoriteRecipes">
+              <div class="Recipe"  (click)="goToRecipe(recipe)" id="Recipe" style="cursor: pointer">
+                <img src="{{ recipe.href }}" class="thumbnail" />
+                <div class="TitleandRating">
+                  <h3 class="Recipe-Title">{{ recipe.title }}</h3>
+                  <div class="Rating">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"> </span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"> </span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ul>
             <p *ngIf = "FavoriteRecipes.length == 0"><em>You do not have any Favorite Recipes</em></p>
-          </ul>
-
+          </article>
           <div *ngIf="!currentUser">
             <p><em>You must be signed in to view favorite recipes</em></p>
             <br />

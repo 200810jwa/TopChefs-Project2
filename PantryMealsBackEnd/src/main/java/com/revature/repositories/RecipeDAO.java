@@ -46,7 +46,6 @@ public class RecipeDAO implements IRecipeDAO {
 	public boolean saveOrUpdate(Recipe r) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-
 		sess.saveOrUpdate(r);
 		tx.commit();
 		return true;

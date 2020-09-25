@@ -75,15 +75,20 @@ public class RecipeService {
 	}
 
 	public boolean saveToFavorites(Recipe r, User u) {
+		if(u.getFavoriteRecipes().contains(r)) {
+			return true;
+		}
 		dao.saveOrUpdate(r);
 		u.getFavoriteRecipes().add(r);
 		return udao.update(u);
 	}
 
 	public boolean saveToPrevious(Recipe r, User u) {
+		if(u.getPreviousRecipes().contains(r)) {
+			return true;
+		}
 		dao.saveOrUpdate(r);
 		u.getPreviousRecipes().add(r);
-		System.out.println(u.toString());
 		return udao.update(u);
 	}
 
