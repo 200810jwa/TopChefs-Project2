@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { User } from '../models/User';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserServicesService {
-  private baseUrl: String = 'http://localhost:8080/';
+  baseUrl = environment.baseURL;
+  //private baseUrl: String = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }
 

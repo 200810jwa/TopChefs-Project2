@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/User';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login-form',
@@ -13,11 +14,12 @@ import { User } from '../models/User';
 export class LoginFormComponent implements OnInit {
   public username: String;
   public password: String;
-  baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
+  baseURL = environment.baseURL;
+  //baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
 
-  constructor(private router: Router, private http: HttpClient) {} //private http: HttpClient
+  constructor(private router: Router, private http: HttpClient) { } //private http: HttpClient
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   goToRegister() {
     this.router.navigate(['register-form']);
@@ -27,17 +29,19 @@ export class LoginFormComponent implements OnInit {
     try {
       let user = await this.http.post<User>(
         this.baseURL + 'login',
-        { username: this.username,
-        password: this.password}
+        {
+          username: this.username,
+          password: this.password
+        }
       ).toPromise();
-      
-      sessionStorage.setItem("currentUser", JSON.stringify(user));  
+
+      sessionStorage.setItem("currentUser", JSON.stringify(user));
       this.router.navigateByUrl("/home");
     } catch (error) {
       console.log(error);
       alert('Failed to Login');
     }
-    
+
   }
   onSubmit() {
     // const promise = new Promise(function(resolve,reject)){
