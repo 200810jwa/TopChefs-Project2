@@ -12,6 +12,7 @@ export class RecipeFeedbackComponent implements OnInit {
   public recipe: any;
   public made: Boolean = false;
   public currentRating = 2;
+  public addToFavorites: Boolean;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -32,18 +33,36 @@ export class RecipeFeedbackComponent implements OnInit {
   async Back(): Promise<void> {
     if(this.currentUser != null && this.made == true){
       try {
-        let results = await this.http.put(
-          'http://localhost:8085/Project2/saveToPrevious/' + this.currentUser.id,
-          {
+        let result = await this.http.put(
+          'http://localhost:8085/Project2/saveToPrevious',
+          { user: this.currentUser,
             recipe: this.recipe
           }
         ).toPromise();
         console.log("successfully sent request to save recipe");
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.setItem("currentUser", JSON.stringify(result));  
       } catch (error) {
         console.log(error);
         alert('Failed to submit');
       }
 
+    }
+    if(this.currentUser != null && this.addToFavorites == true){
+      try {
+        let result = await this.http.put(
+          'http://localhost:8085/Project2/saveToFavorites',
+          { user: this.currentUser,
+            recipe: this.recipe
+          }
+        ).toPromise();
+        console.log("successfully sent request to save recipe");
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.setItem("currentUser", JSON.stringify(result));  
+      } catch (error) {
+        console.log(error);
+        alert('Failed to submit');
+      }
     }
     sessionStorage.removeItem("Recipe");
     history.go(-1);

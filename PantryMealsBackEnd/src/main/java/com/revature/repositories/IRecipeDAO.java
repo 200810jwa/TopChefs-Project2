@@ -8,11 +8,11 @@ public interface IRecipeDAO {
 	
 	public Recipe findbyId(int id);
 	
-	public boolean save(Recipe r);
+	public boolean saveOrUpdate(Recipe r);
 	
 	public Set<Recipe> findAll();
 	
-	public boolean update(Recipe r);
+//	public boolean update(Recipe r);
 	
 	public boolean delete(Recipe r);
 	

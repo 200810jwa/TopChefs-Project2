@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>Project2</groupId>
+	<groupId>com.revature</groupId>
 	<artifactId>Project2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -10,7 +10,37 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<sonar.projectKey>TopChefs-Project2</sonar.projectKey>
+		<sonar.organization>200810jwa</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
+	
+	<build>
+		<finalName>TopChefs-Project2</finalName>
+		<plugins>
+		  <plugin>
+		    <groupId>org.jacoco</groupId>
+		    <artifactId>jacoco-maven-plugin</artifactId>
+		    <version>0.8.5</version>
+		    <executions>
+		      <execution>
+		        <id>prepare-agent</id>
+		        <goals>
+		          <goal>prepare-agent</goal>
+		        </goals>
+		      </execution>
+		      <execution>
+		        <id>report</id>
+		          <phase>prepare-package</phase>
+		          <goals>
+		            <goal>report</goal>
+		        </goals>
+		      </execution>
+		    </executions>
+		  </plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 
@@ -76,12 +106,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.2.16</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.11.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>

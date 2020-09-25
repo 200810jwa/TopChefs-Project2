@@ -19,6 +19,7 @@ import com.revature.models.User;
 import com.revature.services.ListService;
 import com.revature.services.RecipeService;
 import com.revature.services.UserService;
+import com.revature.templates.RecipeSaveTemplate;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
@@ -53,27 +54,24 @@ public class UserActionsController {
 		}
 	}
 	
-	@PutMapping("saveToFavorites/{id}")
+	@PutMapping("saveToFavorites")
 	@ResponseBody
-	public ResponseEntity<Recipe> saveToFavorites(@RequestBody Recipe r, @PathVariable("id") int id) {
-		User u = uservice.findById(id);
-		if(rservice.saveToFavorites(r,u) == true) {
-			System.out.println("Saved to Favorites");
-			return ResponseEntity.accepted().build();
+	public ResponseEntity<User> saveToFavorites(@RequestBody RecipeSaveTemplate rst) {
+		if(rservice.saveToFavorites(rst.getRecipe(), rst.getUser()) == true) {
+			User u = uservice.findByUserName(rst.getUser());
+			return ResponseEntity.ok(u);
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 				
 	}
 	
-	@PutMapping("saveToPrevious/{id}")
+	@PutMapping("saveToPrevious")
 	@ResponseBody
-	public ResponseEntity<Recipe> saveToPrevious(@RequestBody Recipe r, @PathVariable("id") int id) {
-		User u = uservice.findById(id);
-		System.out.println(u.toString());
-		if(rservice.saveToPrevious(r, u) == true) {
-			System.out.println("saved to previous");
-			return ResponseEntity.accepted().build();
+	public ResponseEntity<User> saveToPrevious(@RequestBody RecipeSaveTemplate rst) {
+		if(rservice.saveToPrevious(rst.getRecipe(), rst.getUser()) == true) {
+			User u = uservice.findByUserName(rst.getUser());
+			return ResponseEntity.ok(u);
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}

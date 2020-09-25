@@ -43,10 +43,10 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     //this.taskTypeOptions = Object.keys(this.listOfIngredients);
-    // if(this.currentUser != null){
-    //   this.SavedRecipes = this.currentUser.previousRecipes;
-    //   this.FavoriteRecipes = this.currentUser.favoriteRecipes;
-    // }
+    if(this.currentUser != null){
+      this.SavedRecipes = this.currentUser.previousRecipes;
+      this.FavoriteRecipes = this.currentUser.favoriteRecipes;
+    }
 
   }
   Add(): void {
@@ -83,6 +83,7 @@ export class HomepageComponent implements OnInit {
     }
   }
   goToRecipe(recipe: Recipe): void {
+    recipe.id = null;
     sessionStorage.setItem("Recipe", JSON.stringify(recipe));
     window.open(recipe.href, '_blank');
     this.router.navigateByUrl("/recipe-feedback");
