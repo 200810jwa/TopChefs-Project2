@@ -61,11 +61,13 @@ public class UserServiceTests {
 		
 		Andrew = new User(1,"alukens", "password","Andrew", "Lukens","email@email.com");
 		Zach = new User(2, "zquinn", "password1", "Zach", "Quinn", "email1@email.com");
+		Leron = new User();
 		AndrewTemp = new LoginTemplate("alukens", "password");
 		wrongTemp1 = new LoginTemplate("alukens","wrongpassword");
 		wrongTemp2 = new LoginTemplate("andrew", "pasword");
 		andrewReg = new RegisterTemplate("andrew","password", "Andrew", "Lukens","email@email.com");
 		Zach = new User(0, "zquinn", "password1", "Zach", "Quinn", "email1@email.com");
+		
 		userList.add(Andrew);
 		userList.add(Zach);
 	
@@ -79,6 +81,8 @@ public class UserServiceTests {
 		when(AMockedDao.findById(2)).thenReturn(Zach);
 		when(AMockedDao.findAll()).thenReturn(userList);
 		when(AMockedDao.delete(Zach)).thenReturn(true);
+		when(AMockedDao.update(Andrew)).thenReturn(true);
+		when(AMockedDao.update(Leron)).thenReturn(false);
 
 		
 	}
@@ -114,6 +118,19 @@ public class UserServiceTests {
 	@Test
 	public void testFindByIDSuccessful() {
 		assertEquals(testInstance.findById(1), Andrew);
+	}
+	
+	@Test
+	public void testUpdateUserSuccessful() {
+		assertEquals(testInstance.update(Andrew), true);
+	}
+	@Test
+	public void testUpdateUserFailure() {
+		assertEquals(testInstance.update(null), false);
+	}
+	@Test
+	public void testUpdateNullUser() {
+		assertEquals(testInstance.update(Leron), false);
 	}
 	
 	@Test
