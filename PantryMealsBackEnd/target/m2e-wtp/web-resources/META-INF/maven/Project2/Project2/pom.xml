@@ -17,8 +17,6 @@
 	</properties>
 	
 	<build>
-	
-	<!--I am not sure if this has to be the backend name (Project2) or the pipeline name (TopChefs-Project2)  -->
 		<finalName>TopChefs-Project2</finalName>
 		<plugins>
 		  <plugin>
