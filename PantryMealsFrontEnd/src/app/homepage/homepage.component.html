@@ -16,11 +16,11 @@
       </li>
     </ul>
     <ul *ngIf="currentUser" class="nav navbar-nav navbar-right" style="display: inline">
-      <li><a routerLink="#">Past Recipes</a></li>
+      <li><a routerLink="/recipe-table">Past Recipes</a></li>
       <li><a routerLink="#">Favorites</a></li>
       <li>
         <a routerLink="/Modify-User" class="glyphicon glyphicon-user">
-          Personal Info</a>
+          Modify User</a>
       </li>
       <li>
         <a routerLink="/home" (click)="Logout()">
@@ -92,7 +92,8 @@
           <article *ngIf="currentUser">
             <ul *ngFor="let recipe of SavedRecipes">
               <div class="Recipe" (click)="goToRecipe(recipe)" id="Recipe" style="cursor: pointer">
-                <img src="{{ recipe.href }}" class="thumbnail"/>
+                <!-- <img src="{{ recipe.href }}" alt="Link to Recipe" class="thumbnail" />-->
+                <img src="{{ recipe.thumbnail }}" alt="Photo of Recipe" class="thumbnail" />
                 <div class="TitleandRating">
                   <h3 class="Recipe-Title">{{ recipe.title }}</h3>
                   <div class="Rating">
@@ -105,7 +106,7 @@
                 </div>
               </div>
             </ul>
-            <p *ngIf = "SavedRecipes.length == 0"><em>You do not have any Saved Recipes</em></p>
+            <p *ngIf="SavedRecipes.length == 0"><em>You do not have any Saved Recipes</em></p>
           </article>
           <div *ngIf="!currentUser">
             <p><em>You must be signed in to view past recipes</em></p>
@@ -116,9 +117,10 @@
         <div class="container" id="favRecipes">
           <h3>Favorites</h3>
           <article *ngIf="currentUser">
-            <ul *ngFor = "let recipe of FavoriteRecipes">
-              <div class="Recipe"  (click)="goToRecipe(recipe)" id="Recipe" style="cursor: pointer">
-                <img src="{{ recipe.href }}" class="thumbnail" />
+            <ul *ngFor="let recipe of FavoriteRecipes">
+              <div class="Recipe" (click)="goToRecipe(recipe)" id="Recipe" style="cursor: pointer">
+                <!--<img src="{{ recipe.href }}" alt="Link to Recipe" class="thumbnail" />-->
+                <img src="{{ recipe.thumbnail }}" alt="Photo of Recipe" class="thumbnail" />
                 <div class="TitleandRating">
                   <h3 class="Recipe-Title">{{ recipe.title }}</h3>
                   <div class="Rating">
@@ -131,7 +133,7 @@
                 </div>
               </div>
             </ul>
-            <p *ngIf = "FavoriteRecipes.length == 0"><em>You do not have any Favorite Recipes</em></p>
+            <p *ngIf="FavoriteRecipes.length == 0"><em>You do not have any Favorite Recipes</em></p>
           </article>
           <div *ngIf="!currentUser">
             <p><em>You must be signed in to view favorite recipes</em></p>
