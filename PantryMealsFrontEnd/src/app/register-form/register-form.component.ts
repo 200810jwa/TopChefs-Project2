@@ -15,20 +15,20 @@ export class RegisterFormComponent implements OnInit {
   registerForm = new FormGroup({
     Username: new FormControl(''),
     Password: new FormControl(''),
-    FirstName: new FormControl(''),
-    LastName: new FormControl(''),
+    First: new FormControl(''),
+    Last: new FormControl(''),
     Email: new FormControl(''),
   });
   Auth: AuthenticationService;
   baseURL = environment.baseURL;
   constructor(private router: Router, private http: HttpClient) { }
 
-  private id: number;
-  private username: String;
-  private firstName: String;
-  private lastName: String;
-  private email: String;
-  private password: String;
+  //private id: number;
+  //private username: String;
+  //private firstName: String;
+  // private lastName: String;
+  //private email: String;
+  //private password: String;
 
   ngOnInit(): void { }
 
@@ -39,16 +39,16 @@ export class RegisterFormComponent implements OnInit {
         {
           username: this.registerForm.get('Username').value,
           password: this.registerForm.get('Password').value,
-          firstName: this.registerForm.get('FirstName').value,
-          LastName: this.registerForm.get('LastName').value,
+          firstname: this.registerForm.get('First').value,
+          lastname: this.registerForm.get('Last').value,
           email: this.registerForm.get('Email').value,
         }
       ).toPromise();
-      console.log("Problem running " + results);
     } catch (error) {
       console.log(error);
       alert('Failed to submit');
     }
+
     console.warn(this.registerForm.value);
     this.router.navigate(['login']);
   }
