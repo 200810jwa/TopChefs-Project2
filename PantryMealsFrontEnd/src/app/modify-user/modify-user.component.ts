@@ -31,23 +31,24 @@ export class ModifyUserComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  async update() {
+  async update(): Promise<void> {
     let cu = sessionStorage.getItem("currentUser");
-    let User = JSON.parse(cu);
-    //console.log(User);
-
-    //Doesn't work at the moment
-
+    let obj = JSON.parse(sessionStorage.currentUser);
+    console.log(obj);
+    this.id = obj.id;
+    //this.username = obj.username;
+    console.log(this.id);
     try {
-      let user = await this.http.post<User>(
+      //Doesn't work at the moment
+      let user = await this.http.patch<User>(
         this.baseUrl + 'updateUser',
         {
-          id: User.id,
-          username: User.username,
-          password: this.modifyForm.get('Password'),
-          firstName: this.modifyForm.get('FirstName'),
-          LastName: this.modifyForm.get('LastName'),
-          email: this.modifyForm.get('Email'),
+          id: this.id,
+          username: this.username,
+          password: this.modifyForm.get('Password').value,
+          firstName: this.modifyForm.get('FirstName').value,
+          LastName: this.modifyForm.get('LastName').value,
+          email: this.modifyForm.get('Email').value,
         }
       ).toPromise();
 
@@ -55,6 +56,7 @@ export class ModifyUserComponent implements OnInit {
       this.router.navigateByUrl("/home");
     } catch (error) {
       alert("Update was unsuccessful.");
+      console.warn(error);
     }
   }
   goBack() {
