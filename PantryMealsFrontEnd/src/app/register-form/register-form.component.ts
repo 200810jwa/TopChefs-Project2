@@ -32,9 +32,9 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  onSubmit() {
+  async onSubmit() {
     try {
-      let results = this.http.post<User>(
+      let results = await this.http.post<User>(
         this.baseURL + 'newUser',
         {
           username: this.registerForm.get('Username').value,
@@ -43,8 +43,8 @@ export class RegisterFormComponent implements OnInit {
           LastName: this.registerForm.get('LastName').value,
           email: this.registerForm.get('Email').value,
         }
-      );
-      console.log(results);
+      ).toPromise();
+      console.log("Problem running " + results);
     } catch (error) {
       console.log(error);
       alert('Failed to submit');
