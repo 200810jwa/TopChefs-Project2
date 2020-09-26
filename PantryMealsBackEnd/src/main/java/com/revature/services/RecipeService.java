@@ -75,8 +75,10 @@ public class RecipeService {
 	}
 
 	public boolean saveToFavorites(Recipe r, User u) {
-		if(u.getFavoriteRecipes().contains(r)) {
-			return true;
+		for(Recipe favs: u.getFavoriteRecipes()) {
+			if(favs.getHref().equals(r.getHref())) {
+				return true;
+			}
 		}
 		dao.saveOrUpdate(r);
 		u.getFavoriteRecipes().add(r);
@@ -84,8 +86,10 @@ public class RecipeService {
 	}
 
 	public boolean saveToPrevious(Recipe r, User u) {
-		if(u.getPreviousRecipes().contains(r)) {
-			return true;
+		for(Recipe saved: u.getPreviousRecipes()) {
+			if(saved.getHref().equals(r.getHref())) {
+				return true;
+			}
 		}
 		dao.saveOrUpdate(r);
 		u.getPreviousRecipes().add(r);

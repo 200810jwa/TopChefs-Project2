@@ -49,6 +49,7 @@ export class HomepageComponent implements OnInit {
       this.SavedRecipes = this.currentUser.previousRecipes;
       this.FavoriteRecipes = this.currentUser.favoriteRecipes;
     }
+    this.looseFilter = false;
 
   }
   Add(): void {
