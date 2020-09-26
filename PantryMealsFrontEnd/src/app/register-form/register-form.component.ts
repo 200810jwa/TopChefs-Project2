@@ -34,7 +34,7 @@ export class RegisterFormComponent implements OnInit {
 
   async onSubmit() {
     try {
-      let results = await this.http.post<User>(
+      let results = await this.http.put<User>(
         this.baseURL + 'newUser',
         {
           username: this.registerForm.get('Username').value,
