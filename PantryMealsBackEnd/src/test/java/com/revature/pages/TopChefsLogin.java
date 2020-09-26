@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class TopChefsLogin {
 	public final static String title = "PantryMeals";
 
-	@FindBy(name = "username")
+	@FindBy(xpath = "//input[@name='username']")
 	public WebElement username;
 	
 	@FindBy(name = "password")
