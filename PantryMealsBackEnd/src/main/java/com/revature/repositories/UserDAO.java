@@ -36,7 +36,7 @@ public class UserDAO implements IUserDAO {
 	public boolean update(User u) {
 		Session sess = HibernateUtil.getSession();
 		Transaction tx = sess.beginTransaction();
-		sess.merge(u);
+		sess.saveOrUpdate(u);
 		tx.commit();
 		return true;
 	}
