@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.revature.templates.RecipeTemp;
+
 @Component
 @Entity
 @Table(name = "recipes")
@@ -153,6 +155,16 @@ public class Recipe implements Serializable {
 		} else if (!title.equals(other.title))
 			return false;
 		return true;
+	}
+
+
+	public Recipe(RecipeTemp rt) {
+		super();
+		this.title = rt.getRec().getTitle();
+		this.href = rt.getRec().getHref();
+		this.ingredients = rt.getRec().getIngredients();
+		this.thumbnail = rt.getRec().getThumbnail();
+		this.rating = rt.getRec().getRating();
 	}
 
 	

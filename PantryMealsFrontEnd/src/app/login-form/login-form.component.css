@@ -5,10 +5,7 @@ h1 {
   margin: 50px;
 }
 
-input {
 
-
-}
 button {
   border: medium solid black;
   margin: 10px;}
@@ -17,7 +14,7 @@ form {
   border: medium solid black;
   margin: 10px;
 }
-.title {
+#title {
   font-size: 30px;
   color: white;
 }

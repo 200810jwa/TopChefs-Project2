@@ -66,6 +66,7 @@ public class RecipeService {
 	public Recipe findById(int id) {
 		return dao.findbyId(id);
 	}
+	
 	public boolean update(Recipe r) {
 		return dao.saveOrUpdate(r);
 	}
@@ -90,6 +91,15 @@ public class RecipeService {
 		return udao.update(u);
 		
 	}
+	public Recipe findByHref(Recipe r) {
+		Set<Recipe> list = dao.findAll();
+		for (Recipe a: list) {
+			if(a.getHref().equals(r.getHref())) {
+				return a;
+			}
+		}
+		return null;
+	}
 
 	public boolean saveToPrevious(Recipe r, User u) {
 		for(Recipe saved: u.getPreviousRecipes()) {
@@ -102,7 +112,9 @@ public class RecipeService {
 			u.getPreviousRecipes().add(recipe);
 		}else {
 			dao.saveOrUpdate(r);
+			System.out.println(udao.findByUsername(u.getUsername()));
 			u.getPreviousRecipes().add(r);
+			System.out.println(u.toString());
 		}
 		return udao.update(u);
 	}

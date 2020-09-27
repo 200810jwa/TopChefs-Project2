@@ -47,8 +47,14 @@ public class RecipeController {
 //	@CrossOrigin(origins = "http://localhost:4200")
 	@PatchMapping("rate")
 	@ResponseBody
-	public ResponseEntity rateRecipe(@RequestBody Recipe r) {
+	public ResponseEntity rateRecipe(@RequestBody RecipeTemp rt) {
+		Recipe r = new Recipe(rt);
+		Recipe dbrecipe = rservice.findByHref(r);
+		if(dbrecipe != null) {
+			r.setId(dbrecipe.getId());
+		}
 		if(rservice.update(r) == true) {
+			System.out.println(r);
 			return ResponseEntity.accepted().build();
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

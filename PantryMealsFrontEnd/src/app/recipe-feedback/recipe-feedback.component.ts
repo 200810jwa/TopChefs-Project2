@@ -74,27 +74,25 @@ export class RecipeFeedbackComponent implements OnInit {
         alert('Failed to submit');
       }
     }
+    this.rate();
     sessionStorage.removeItem("Recipe");
     history.go(-1);
   }
 
-  async rate() {
+  rate(): void {
     let a = this.RatingForm.get('rating').value;
     if(this.recipe.rating == null){
       this.recipe.rating = [a];
     }else{
       this.recipe.rating.push(a);
     }
-    console.log(this.recipe);
-    if (a <= 5 && a >= 1) {
-      this.recipe.currentRating = this.RatingForm.get('rating').value;
+    console.log(JSON.stringify(this.recipe));
+    if (a <= 5 && a >= 0) {
       try {
-        // console.log(document.getElementById("rating").nodeValue);
-        let result = await this.http.patch(
+        let result = this.http.patch(
           this.baseURL + 'rate',
           {
-            user: this.currentUser,
-            recipe: this.recipe
+            rec: this.recipe
           });
         console.log("Rating successful");
       } catch (error) {
@@ -102,7 +100,7 @@ export class RecipeFeedbackComponent implements OnInit {
         alert('Failed to submit');
       }
     } else {
-      alert("Please enter a number between 1 and 5")
+      alert("Please enter a number between 0 and 5")
     }
   }
 }
