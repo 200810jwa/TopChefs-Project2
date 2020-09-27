@@ -42,14 +42,20 @@ export class HomepageComponent implements OnInit {
   value = '';
 
   constructor(private router: Router, private http: HttpClient) {
+    this.update;
   }
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     //this.taskTypeOptions = Object.keys(this.listOfIngredients);
     this.looseFilter = false;
-
+    this.SavedRecipes = this.currentUser.previousRecipes;
+    this.FavoriteRecipes = this.currentUser.favoriteRecipes;
   }
+  update() {
+    this.ngOnInit();
+  }
+
   Add(): void {
     this.ingredients.push(this.value);
     // console.log(this.value);
