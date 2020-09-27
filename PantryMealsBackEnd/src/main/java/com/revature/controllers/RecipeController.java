@@ -61,7 +61,7 @@ public class RecipeController {
 	public ResponseEntity<Set<Recipe>> findRecipes(@RequestBody RecipeRequestTemplate rt) {
 		Set<Recipe> results;
 		results = rservice.getRecipes(rt.list,rt.looseFilter);
-		rservice.assignRatings(results);
+		//rservice.assignRatings(results);
 		if(results != null) {
 			return ResponseEntity.ok(results);
 		}else {

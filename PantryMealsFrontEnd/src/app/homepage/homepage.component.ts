@@ -8,6 +8,7 @@ import { Ingredient } from 'src/app/new-ingredient/ingredient';
 import { ListOfIngredients } from 'src/app/new-ingredient/list-of-ingredients.enum';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { environment } from '../../environments/environment';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-homepage',
@@ -40,15 +41,13 @@ export class HomepageComponent implements OnInit {
   { name: "Pear" }, { name: "Sherry" }, { name: "Bourbon" }, { name: "Wine" }, { name: "Kiwi" }, { name: "Cloves" },];
   value = '';
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) {
+    this.reload;
+  }
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     //this.taskTypeOptions = Object.keys(this.listOfIngredients);
-    if (this.currentUser != null) {
-      this.SavedRecipes = this.currentUser.previousRecipes;
-      this.FavoriteRecipes = this.currentUser.favoriteRecipes;
-    }
     this.looseFilter = false;
 
   }
