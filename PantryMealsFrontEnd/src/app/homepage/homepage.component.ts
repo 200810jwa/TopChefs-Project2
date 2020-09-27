@@ -49,22 +49,40 @@ export class HomepageComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     //this.taskTypeOptions = Object.keys(this.listOfIngredients);
     this.looseFilter = false;
-    if(this.currentUser != null){
+    if (this.currentUser != null) {
       this.SavedRecipes = this.currentUser.previousRecipes;
       this.FavoriteRecipes = this.currentUser.favoriteRecipes;
     }
-    
+
   }
   update() {
     this.ngOnInit();
   }
 
   Add(): void {
-    this.ingredients.push(this.value);
+    //console.log(this.value.length);
+    if (this.value.length > 0) {// && this.checkList() == true) {
+      //console.log(this.value);
+      this.ingredients.push(this.value);
+    } //else if (this.checkList() == false) {
+    //console.log("Please select a different Ingredient")}
+    else if (this.value.length == 0) {
+      //console.log("Run")
+      alert("Please Select an ingredient!")
+    }
     // console.log(this.value);
-    // this.ingredient = null;
+    this.value = '';
   }
-  Rate(arr: number[]): number{
+  /*  checkList(): Boolean {
+      this.ingredients.forEach(element => {
+        console.log(element.valueOf)
+        if (element.valueOf == this.value.valueOf) {
+          return false;
+        }
+      });
+      return true;
+    }*/
+  Rate(arr: number[]): number {
     let sum = arr.reduce((previous, current) => current += previous);
     let avg = sum / arr.length;
     return avg;
