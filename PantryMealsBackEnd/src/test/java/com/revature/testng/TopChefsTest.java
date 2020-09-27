@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -68,21 +69,21 @@ public class TopChefsTest {
 	  }
   
   @Test(dependsOnMethods = {"confirmLoginPage"}, dataProvider = "credentials")
-  public void loginWorks(String username, String password) {
-	  TopChefsLogin tcl = new TopChefsLogin(driver);
-	  // Instantiate corresponding pages
+  public void loginWorks(String username, String password) 
+  {
 	  
+	  WebDriverWait wait1 = new WebDriverWait(driver, 5);
+	  wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[text()='PantryMeals']")));
+	  TopChefsLogin tcl = new TopChefsLogin(driver);
+	 
 	tcl.loginToTopChefs(username, password);
-	  // Login
+	  
 	  
 	  TopChefsProfile tcp = new TopChefsProfile(driver);
-	  // Obtain other page
-
-	  // Wait for it to be visible
+	  
 	  WebDriverWait wait = new WebDriverWait(driver, 5);
 	  wait.until(ExpectedConditions.visibilityOf(tcp.header));
-	  
-	  // Make assertion
+	
 	  assertEquals(driver.getTitle(), TopChefsProfile.title);
 	  
 	  tcp.signOffLink.click();
