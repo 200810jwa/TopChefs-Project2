@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -16,6 +17,10 @@ export class RecipeFeedbackComponent implements OnInit {
   public currentRating = 2;
   public addToFavorites: Boolean;
   baseURL = environment.baseURL;
+
+  RatingForm = new FormGroup({
+    rating: new FormControl(''),
+  });
   //baseURL: string = 'http://ec2-3-137-136-86.us-east-2.compute.amazonaws.com:8085/TopChefs-Project2/';
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -73,4 +78,26 @@ export class RecipeFeedbackComponent implements OnInit {
     history.go(-1);
   }
 
+  async rate() {
+    let a = this.RatingForm.get('rating').value;
+    //console.log(this.recipe);
+    if (a <= 5 && a >= 1) {
+      this.recipe.currentRating = this.RatingForm.get('rating').value;
+      try {
+        // console.log(document.getElementById("rating").nodeValue);
+        let result = await this.http.patch(
+          this.baseURL + 'rate',
+          {
+            user: this.currentUser,
+            recipe: this.recipe
+          });
+        alert("Rating successful");
+      } catch (error) {
+        console.log(error);
+        alert('Failed to submit');
+      }
+    } else {
+      alert("Please enter a number between 1 and 5")
+    }
+  }
 }
