@@ -80,7 +80,12 @@ export class RecipeFeedbackComponent implements OnInit {
 
   async rate() {
     let a = this.RatingForm.get('rating').value;
-    //console.log(this.recipe);
+    if(this.recipe.rating == null){
+      this.recipe.rating = [a];
+    }else{
+      this.recipe.rating.push(a);
+    }
+    console.log(this.recipe);
     if (a <= 5 && a >= 1) {
       this.recipe.currentRating = this.RatingForm.get('rating').value;
       try {
@@ -91,7 +96,7 @@ export class RecipeFeedbackComponent implements OnInit {
             user: this.currentUser,
             recipe: this.recipe
           });
-        alert("Rating successful");
+        console.log("Rating successful");
       } catch (error) {
         console.log(error);
         alert('Failed to submit');

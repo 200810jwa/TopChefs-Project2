@@ -4,5 +4,5 @@ export class Recipe {
     public thumbnail: String;
     public ingredients: String;
     public href: string;
-    public rating: Number[];
+    public rating: number[];
 }

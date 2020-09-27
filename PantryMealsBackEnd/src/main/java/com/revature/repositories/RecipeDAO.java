@@ -80,6 +80,23 @@ public class RecipeDAO implements IRecipeDAO {
 
 	}
 
+	@Override
+	public Recipe findbyHref(String href) {
+		Session sess = HibernateUtil.getSession();
+		Transaction tx = sess.beginTransaction();
+
+		Criteria cr = sess.createCriteria(Recipe.class);
+		cr.add(Restrictions.eq("href",href));
+		if (cr.list().isEmpty()) {
+			tx.commit();
+			return null;
+		}
+		Recipe r = (Recipe) cr.list().get(0);
+		tx.commit();
+		return r;
+
+	}
+
 
 
 }

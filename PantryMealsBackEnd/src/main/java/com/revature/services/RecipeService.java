@@ -80,9 +80,15 @@ public class RecipeService {
 				return true;
 			}
 		}
-		dao.saveOrUpdate(r);
-		u.getFavoriteRecipes().add(r);
+		Recipe recipe = dao.findbyHref(r.getHref());
+		if(recipe != null) {
+			u.getFavoriteRecipes().add(recipe);
+		}else {
+			dao.saveOrUpdate(r);
+			u.getFavoriteRecipes().add(r);
+		}
 		return udao.update(u);
+		
 	}
 
 	public boolean saveToPrevious(Recipe r, User u) {
@@ -91,8 +97,13 @@ public class RecipeService {
 				return true;
 			}
 		}
-		dao.saveOrUpdate(r);
-		u.getPreviousRecipes().add(r);
+		Recipe recipe = dao.findbyHref(r.getHref());
+		if(recipe != null) {
+			u.getPreviousRecipes().add(recipe);
+		}else {
+			dao.saveOrUpdate(r);
+			u.getPreviousRecipes().add(r);
+		}
 		return udao.update(u);
 	}
 

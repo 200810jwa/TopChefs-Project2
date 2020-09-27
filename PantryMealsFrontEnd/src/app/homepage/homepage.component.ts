@@ -49,8 +49,11 @@ export class HomepageComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     //this.taskTypeOptions = Object.keys(this.listOfIngredients);
     this.looseFilter = false;
-    this.SavedRecipes = this.currentUser.previousRecipes;
-    this.FavoriteRecipes = this.currentUser.favoriteRecipes;
+    if(this.currentUser != null){
+      this.SavedRecipes = this.currentUser.previousRecipes;
+      this.FavoriteRecipes = this.currentUser.favoriteRecipes;
+    }
+    
   }
   update() {
     this.ngOnInit();
@@ -61,7 +64,11 @@ export class HomepageComponent implements OnInit {
     // console.log(this.value);
     // this.ingredient = null;
   }
-
+  Rate(arr: number[]): number{
+    let sum = arr.reduce((previous, current) => current += previous);
+    let avg = sum / arr.length;
+    return avg;
+  }
   Logout(): void {
     sessionStorage.removeItem('currentUser');
     window.location.reload();

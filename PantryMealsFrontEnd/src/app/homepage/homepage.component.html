@@ -96,16 +96,25 @@
                 <img src="{{ recipe.thumbnail }}" alt="Photo of Recipe" class="thumbnail" />
                 <div class="TitleandRating">
                   <h3 class="Recipe-Title">{{ recipe.title }}</h3>
-                  <div class="Rating">
-                    <p>Rating: {{recipe.rating}}</p>
-                    <!-- <span *ngFor="let i of recipe.Rating" class="glyphicon glyphicon-star"></span>
-                    <span *ngFor="let i of recipe" class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>-->
-
+                  <div class="Rating" *ngIf = "recipe.rating">
+                    <p>Rating:</p><br/>
+                    <span *ngIf="Rate(recipe.rating) >= 1" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 1" class="glyphicon glyphicon-star-empty"></span>
+                    <span *ngIf="Rate(recipe.rating) >= 2" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 2" class="glyphicon glyphicon-star-empty"></span>
+                    <span *ngIf="Rate(recipe.rating) >= 3" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 3" class="glyphicon glyphicon-star-empty"></span>
+                    <span *ngIf="Rate(recipe.rating) >= 4" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 4" class="glyphicon glyphicon-star-empty"></span>
+                    <span *ngIf="Rate(recipe.rating) >= 5" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 5" class="glyphicon glyphicon-star-empty"></span>
+                  </div>
+                  <div class = "Rating" *ngIf = "!recipe.rating">
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
                   </div>
                 </div>
               </div>
@@ -127,11 +136,24 @@
                 <img src="{{ recipe.thumbnail }}" alt="Photo of Recipe" class="thumbnail" />
                 <div class="TitleandRating">
                   <h3 class="Recipe-Title">{{ recipe.title }}</h3>
-                  <div class="Rating">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
+                  <div class="Rating" *ngIf = "recipe.rating">
+                    <p>Rating: {{ Rate(recipe.rating) }}</p><br/>
+                    <span *ngIf="Rate(recipe.rating) >= 1" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 1" class="glyphicon glyphicon-star-empty"></span>
+                    <span *ngIf="Rate(recipe.rating) >= 2" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 2" class="glyphicon glyphicon-star-empty"></span>
+                    <span *ngIf="Rate(recipe.rating) >= 3" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 3" class="glyphicon glyphicon-star-empty"></span>
+                    <span *ngIf="Rate(recipe.rating) >= 4" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 4" class="glyphicon glyphicon-star-empty"></span>
+                    <span *ngIf="Rate(recipe.rating) >= 5" class="glyphicon glyphicon-star"></span>
+                    <span *ngIf="Rate(recipe.rating) !>= 5" class="glyphicon glyphicon-star-empty"></span>
+                  </div>
+                  <div class = "Rating" *ngIf = "!recipe.rating">
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                    <span class="glyphicon glyphicon-star-empty"></span>
                     <span class="glyphicon glyphicon-star-empty"></span>
                   </div>
                 </div>

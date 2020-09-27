@@ -52,4 +52,7 @@ export class RegisterFormComponent implements OnInit {
     console.warn(this.registerForm.value);
     this.router.navigate(['login']);
   }
+  Back(): void{
+    history.go(-1);
+  }
 }
