@@ -58,6 +58,7 @@ public class UserService {
 	}
 	
 	public boolean update(User u) {
+		u.setPassword(pw.passwordHash(u.getPassword()));
 		return userDao.update(u);
 	}
 	

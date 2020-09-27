@@ -47,7 +47,7 @@ export class ModifyUserComponent implements OnInit {
           username: this.username,
           password: this.modifyForm.get('Password').value,
           firstName: this.modifyForm.get('FirstName').value,
-          LastName: this.modifyForm.get('LastName').value,
+          lastName: this.modifyForm.get('LastName').value,
           email: this.modifyForm.get('Email').value,
         }
       ).toPromise();
