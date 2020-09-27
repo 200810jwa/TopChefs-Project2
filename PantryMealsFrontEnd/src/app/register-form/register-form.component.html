@@ -3,12 +3,17 @@
 </nav>
 
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" orient="vertical">
-  <label> Username:&nbsp;&nbsp;<input type="text" formControlName="Username" /> </label><br />
-  <label> Password:&nbsp;&nbsp;<input type="text" formControlName="Password" /></label><br />
-  <label> First Name:<input type="text" formControlName="First" /></label><br />
-  <label> Last Name:&nbsp;<input type="text" formControlName="Last" /></label><br />
-  <label> Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
-      formControlName="Email"/></label><br/>
-  <button type = "submit" (click) = "Back()">Back</button>
-  <button type="submit">Submit</button>
+  <label> Username:&nbsp;&nbsp;<input class="form-control" placeholder="Username" type="text"
+      formControlName="Username" /> </label><br />
+  <label> Password:&nbsp;&nbsp;<input class="form-control" placeholder="Password" type="text"
+      formControlName="Password" /></label><br />
+  <label> First Name:<input class="form-control" type="text" placeholder="First Name"
+      formControlName="First" /></label><br />
+  <label> Last Name:&nbsp;<input class="form-control" placeholder="Last Name" type="text"
+      formControlName="Last" /></label><br />
+  <label> Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input placeholder="Email" type="text"
+      class="form-control" formControlName="Email" /></label><br />
+  <button class="btn btn-primary" type="submit">Submit</button>
+  <button class="btn btn-primary" type="submit" (click)="Back()">Back</button>
+
 </form>

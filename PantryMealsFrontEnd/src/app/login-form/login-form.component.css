@@ -6,16 +6,17 @@ h1 {
 }
 
 input {
-
+width: 200px;
 
 }
 button {
   border: medium solid black;
-  margin: 10px;}
+}
 
 form {
   border: medium solid black;
-  margin: 10px;
+  margin: 0 auto;
+  width:250px;
 }
 .title {
   font-size: 30px;

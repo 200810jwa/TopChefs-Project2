@@ -6,3 +6,17 @@
   .navbar{
     height: 100px;
   }
+
+  input {
+    width: 200px;
+    
+    }
+    button {
+      border: medium solid black;
+    }
+    
+    form {
+      border: medium solid black;
+      margin: 0 auto;
+      width:250px;
+    }
