@@ -4,17 +4,14 @@
 
 <div>
   <form [formGroup]="modifyForm" (ngSubmit)="update()">
-    <label>
-      First Name&nbsp;:
-      <input type="text" formControlName="FirstName" /> </label><br />
-    <label>
-      Last Name&nbsp; : <input type="text" formControlName="LastName" /></label><br />
-    <label>
-      Email&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="text" formControlName="Email" /></label><br />
-    <label>
-      Password&nbsp;:&nbsp;&nbsp;&nbsp;
-      <input type="text" formControlName="Password" /></label><br />
+    <label>First Name&nbsp;:
+      <input class="form-control" placeholder="First Name" type="text" formControlName="FirstName" /> </label><br />
+    <label> Last Name&nbsp; : <input class="form-control" placeholder="Last Name" type="text"
+        formControlName="LastName" /></label><br />
+    <label> Email&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input class="form-control" placeholder="Email" type="text" formControlName="Email" /></label><br />
+    <label> Password&nbsp;:&nbsp;&nbsp;&nbsp;
+      <input class="form-control" placeholder="Password" type="text" formControlName="Password" /></label><br />
     <button class="btn btn-primary" type="submit">Update</button>
     <button class="btn btn-primary" (click)="goBack()">Go Back</button>
   </form>
