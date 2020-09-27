@@ -42,7 +42,6 @@ export class HomepageComponent implements OnInit {
   value = '';
 
   constructor(private router: Router, private http: HttpClient) {
-    this.reload;
   }
 
   ngOnInit(): void {
