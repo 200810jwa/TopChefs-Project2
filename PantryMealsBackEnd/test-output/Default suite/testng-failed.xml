@@ -6,7 +6,7 @@
       <class name="com.revature.testng.TopChefsTest">
         <methods>
           <include name="confirmLoginPage"/>
-          <include name="loginWorks" invocation-numbers="0 1 2"/>
+          <include name="loginWorks"/>
           <include name="beforeClass"/>
           <include name="afterClass"/>
         </methods>
