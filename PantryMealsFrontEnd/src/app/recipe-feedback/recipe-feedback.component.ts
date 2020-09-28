@@ -95,6 +95,8 @@ export class RecipeFeedbackComponent implements OnInit {
             rec: this.recipe
           });
         console.log("Rating successful");
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.setItem("currentUser", JSON.stringify(result));
       } catch (error) {
         console.log(error);
         alert('Failed to submit');
