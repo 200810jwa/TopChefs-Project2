@@ -58,7 +58,7 @@ public class UserControllerTest {
 			User u = new User();
 			when(userService.update(u)).thenReturn(true);
 			
-			this.mockMvc.perform(get("/newUser"))
+			this.mockMvc.perform(get("/updateUser"))
 								.andExpect(status().isOk());
 		}
 	
