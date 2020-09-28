@@ -44,15 +44,15 @@ export class RegisterFormComponent implements OnInit {
           email: this.registerForm.get('Email').value,
         }
       ).toPromise();
+      alert("User was sucessfully created")
     } catch (error) {
       console.log(error);
       alert('Failed to submit');
     }
-
     console.warn(this.registerForm.value);
-    this.router.navigate(['login']);
+    //this.router.navigate(['login']);
   }
-  Back(): void{
+  Back(): void {
     history.go(-1);
   }
 }

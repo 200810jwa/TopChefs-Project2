@@ -23,7 +23,7 @@ export class LoginFormComponent implements OnInit {
 
   goToRegister() {
     this.router.navigate(['register-form']);
-    console.warn('Switch to Register component?');
+    // console.warn('Switch to Register component?');
   }
   async Login(): Promise<void> {
     console.log("logging in...");

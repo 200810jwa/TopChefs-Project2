@@ -29,7 +29,9 @@ export class ModifyUserComponent implements OnInit {
   // userService = UserServicesService;
   constructor(private router: Router, private http: HttpClient) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+  }
 
   async update(): Promise<void> {
     let cu = sessionStorage.getItem("currentUser");
@@ -39,7 +41,6 @@ export class ModifyUserComponent implements OnInit {
     //this.username = obj.username;
     console.log(this.id);
     try {
-      //Doesn't work at the moment
       let user = await this.http.patch<User>(
         this.baseUrl + 'updateUser',
         {
