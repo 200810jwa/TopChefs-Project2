@@ -57,6 +57,7 @@ public class UserActionsController {
 	@PutMapping("saveToFavorites")
 	@ResponseBody
 	public ResponseEntity<User> saveToFavorites(@RequestBody RecipeSaveTemplate rst) {
+		rservice.saveToPrevious(rst.getRecipe(), rst.getUser());
 		if(rservice.saveToFavorites(rst.getRecipe(), rst.getUser()) == true) {
 			User u = uservice.findByUserName(rst.getUser());
 			return ResponseEntity.ok(u);

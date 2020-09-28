@@ -45,11 +45,11 @@
           <span *ngIf = "Rate(recipe.rating) >= 3" class="glyphicon glyphicon-star"></span>
           <span *ngIf = "Rate(recipe.rating) >= 4" class="glyphicon glyphicon-star"></span>
           <span *ngIf = "Rate(recipe.rating) >= 5" class="glyphicon glyphicon-star"></span>
-          <span *ngIf = "!Rate(recipe.rating) > 1" class="glyphicon glyphicon-star-empty"></span>
-          <span *ngIf = "!Rate(recipe.rating) > 2" class="glyphicon glyphicon-star-empty"></span>
-          <span *ngIf = "!Rate(recipe.rating) > 3" class="glyphicon glyphicon-star-empty"></span>
-          <span *ngIf = "!Rate(recipe.rating) > 4" class="glyphicon glyphicon-star-empty"></span>
-          <span *ngIf = "!Rate(recipe.rating) > 5" class="glyphicon glyphicon-star-empty"></span>
+          <span *ngIf = "!(Rate(recipe.rating) >= 1)" class="glyphicon glyphicon-star-empty"></span>
+          <span *ngIf = "!(Rate(recipe.rating) >= 2)" class="glyphicon glyphicon-star-empty"></span>
+          <span *ngIf = "!(Rate(recipe.rating) >= 3)" class="glyphicon glyphicon-star-empty"></span>
+          <span *ngIf = "!(Rate(recipe.rating) >= 4)" class="glyphicon glyphicon-star-empty"></span>
+          <span *ngIf = "!(Rate(recipe.rating) >= 5)" class="glyphicon glyphicon-star-empty"></span>
         </div>
       </div>
       <div class = "Rating" *ngIf = "!recipe.rating">
@@ -71,7 +71,7 @@
     <h4>How would you rate this recipe? (1-5)</h4>
     <form [formGroup]="RatingForm" (ngSubmit)="rate()">
       <input type="number" id="quantity" name="quantity" min="1" max="5" formControlName="rating">
-      <button class="btn btn-primary" type="submit">Rate</button>
+      <!-- <button class="btn btn-primary" type="submit">Rate</button> -->
     </form>
     <ngb-rating [(rate)]="currentRating"></ngb-rating>
   </div>

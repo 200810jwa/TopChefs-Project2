@@ -39,6 +39,8 @@ export class RecipeFeedbackComponent implements OnInit {
     this.made = false;
   }
   async Back(): Promise<void> {
+    this.rate();
+    console.log(JSON.stringify(this.recipe));
     if (this.currentUser != null && this.made == true) {
       try {
         let result = await this.http.put(
@@ -74,7 +76,6 @@ export class RecipeFeedbackComponent implements OnInit {
         alert('Failed to submit');
       }
     }
-    this.rate();
     sessionStorage.removeItem("Recipe");
     history.go(-1);
   }
@@ -86,7 +87,6 @@ export class RecipeFeedbackComponent implements OnInit {
     }else{
       this.recipe.rating.push(a);
     }
-    console.log(JSON.stringify(this.recipe));
     if (a <= 5 && a >= 0) {
       try {
         let result = this.http.patch(
@@ -102,5 +102,10 @@ export class RecipeFeedbackComponent implements OnInit {
     } else {
       alert("Please enter a number between 0 and 5")
     }
+  }
+  Rate(arr: number[]): number {
+    let sum = arr.reduce((previous, current) => current += previous);
+    let avg = sum / arr.length;
+    return avg;
   }
 }

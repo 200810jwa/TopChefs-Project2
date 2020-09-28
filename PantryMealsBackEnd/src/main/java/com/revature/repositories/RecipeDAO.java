@@ -17,18 +17,18 @@ import com.revature.util.HibernateUtil;
 @Repository
 public class RecipeDAO implements IRecipeDAO {
 
-//	@Override
-//	public boolean save(Recipe r) {
-//		Session sess = HibernateUtil.getSession();
-//		Transaction tx = sess.beginTransaction();
-//		sess.saveOrUpdate(r);
-////		int id = (Integer) sess.save(r);		
-//		if (sess.save(r) != null) {
-//			tx.commit();
-//			return true;
-//		}
-//		return false;
-//	}
+
+	public Recipe save(Recipe r) {
+		Session sess = HibernateUtil.getSession();
+		Transaction tx = sess.beginTransaction();
+		int id = (Integer) sess.save(r);		
+		if (sess.save(r) != null) {
+			r.setId(id);
+			tx.commit();
+			return r;
+		}
+		return null;
+	}
 
 	@Override
 	public Set<Recipe> findAll() {

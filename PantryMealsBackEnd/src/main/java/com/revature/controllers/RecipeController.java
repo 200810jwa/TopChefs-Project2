@@ -54,7 +54,6 @@ public class RecipeController {
 			r.setId(dbrecipe.getId());
 		}
 		if(rservice.update(r) == true) {
-			System.out.println(r);
 			return ResponseEntity.accepted().build();
 		}else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

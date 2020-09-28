@@ -17,6 +17,8 @@ public interface IRecipeDAO {
 	public boolean delete(Recipe r);
 	
 	public Recipe findbyHref(String href);
+
+	public Recipe save(Recipe r);
 	
 	
 	

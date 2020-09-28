@@ -38,20 +38,15 @@ public class RecipeService {
 
 	@Autowired
 	private IUserDAO udao;
-	
 
 	public RecipeService() {
 		super();
 	}
-	
-	
 
 	public RecipeService(IRecipeDAO dao) {
 		super();
 		this.dao = dao;
 	}
-
-
 
 	private final CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -66,7 +61,7 @@ public class RecipeService {
 	public Recipe findById(int id) {
 		return dao.findbyId(id);
 	}
-	
+
 	public boolean update(Recipe r) {
 		return dao.saveOrUpdate(r);
 	}
@@ -76,25 +71,26 @@ public class RecipeService {
 	}
 
 	public boolean saveToFavorites(Recipe r, User u) {
-		for(Recipe favs: u.getFavoriteRecipes()) {
-			if(favs.getHref().equals(r.getHref())) {
+		for (Recipe favs : u.getFavoriteRecipes()) {
+			if (favs.getHref().equals(r.getHref())) {
 				return true;
 			}
 		}
 		Recipe recipe = dao.findbyHref(r.getHref());
-		if(recipe != null) {
-			u.getFavoriteRecipes().add(recipe);
-		}else {
-			dao.saveOrUpdate(r);
-			u.getFavoriteRecipes().add(r);
+		if (recipe == null) {
+			recipe = dao.save(r);
 		}
+		System.out.println(udao.findByUsername(u.getUsername()).toString());
+		u.getFavoriteRecipes().add(recipe);
+		System.out.println(u.toString());
 		return udao.update(u);
-		
+
 	}
+
 	public Recipe findByHref(Recipe r) {
 		Set<Recipe> list = dao.findAll();
-		for (Recipe a: list) {
-			if(a.getHref().equals(r.getHref())) {
+		for (Recipe a : list) {
+			if (a.getHref().equals(r.getHref())) {
 				return a;
 			}
 		}
@@ -102,20 +98,19 @@ public class RecipeService {
 	}
 
 	public boolean saveToPrevious(Recipe r, User u) {
-		for(Recipe saved: u.getPreviousRecipes()) {
-			if(saved.getHref().equals(r.getHref())) {
+		for (Recipe saved : u.getPreviousRecipes()) {
+			if (saved.getHref().equals(r.getHref())) {
 				return true;
 			}
 		}
 		Recipe recipe = dao.findbyHref(r.getHref());
-		if(recipe != null) {
-			u.getPreviousRecipes().add(recipe);
-		}else {
-			dao.saveOrUpdate(r);
-			System.out.println(udao.findByUsername(u.getUsername()));
-			u.getPreviousRecipes().add(r);
-			System.out.println(u.toString());
+		if (recipe == null) {
+			recipe = dao.save(r);
 		}
+
+		System.out.println(udao.findByUsername(u.getUsername()).toString());
+		u.getPreviousRecipes().add(recipe);
+		System.out.println(u.toString());
 		return udao.update(u);
 	}
 
@@ -154,18 +149,18 @@ public class RecipeService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		if(recipes == null) {
+			return null;
+		}
 		Set<Recipe> results = recipes.getResults();
-//		for(Recipe r: results) {
-//			r.setId(null);
-//		}
+
 		if (looseFilter == false && results != null && !results.isEmpty()) {
-			return filterExtraIng(results, ingredients);			
+			return filterExtraIng(results, ingredients);
 		}
 		return results;
 	}
-	
-	public Set<Recipe> filterExtraIng(Set<Recipe> results, String[] ingredients){
+
+	public Set<Recipe> filterExtraIng(Set<Recipe> results, String[] ingredients) {
 		List<String> ing = Arrays.asList(ingredients);
 		Set<Recipe> a = results;
 		for (Recipe r : results) {
@@ -173,12 +168,13 @@ public class RecipeService {
 			for (String s : rpingredients) {
 				if (ing.contains(s) == false) {
 					a.remove(r);
-					//r.setHref("delete");
-					}
+					// r.setHref("delete");
 				}
 			}
-		//results.removeIf(r -> (r.getHref().equals("delete"))); // THIS IS NOT WORKING!!!!!!
-		
+		}
+		// results.removeIf(r -> (r.getHref().equals("delete"))); // THIS IS NOT
+		// WORKING!!!!!!
+
 		return a;
 	}
 }
