@@ -53,6 +53,14 @@ public class UserControllerTest {
 								.andExpect(jsonPath("$.size()", is(userList.size())));
 		}
 	
+		@Test
+		public void  UpdateUser(int id) throws Exception{
+			User u = new User();
+			when(userService.update(u)).thenReturn(true);
+			
+			this.mockMvc.perform(get("/updateUser"))
+								.andExpect(status().isOk());
+		}
 	
 }
 
